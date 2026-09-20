@@ -1,0 +1,174 @@
+/* ============================================================================
+ *  plan.css — стили чертежа (внутренняя система координат SVG = метры)
+ * ==========================================================================*/
+
+.plan-svg {
+  --pp-wall: #233240;
+  --pp-paper: #ffffff;
+  --pp-line: #4a5a6a;
+  --pp-text: #22303c;
+  --pp-soft: #6b7a8b;
+  --pp-axis: #d8483c;
+  --pp-furn: #6c7c8d;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: 'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: transparent;
+  touch-action: none;
+}
+
+.lyr.off { display: none; }
+
+/* ── помещения ─────────────────────────────────────────────────────────── */
+.room-fill { stroke: none; stroke-width: 0; transition: opacity .25s ease; }
+.room-fill.hl  { stroke: #f5a623; stroke-width: .16; }
+.room-fill.sel { stroke: #ff7a1a; stroke-width: .22; }
+
+.balcony .bal-slab { fill: #e9eef3; stroke: #7f95a8; stroke-width: .1; }
+.balcony .bal-rail { fill: none; stroke: #7f95a8; stroke-width: .16; stroke-dasharray: .3 .18; }
+.bal-lbl         { font-size: .28; fill: #56697b; text-anchor: middle; paint-order: stroke; stroke: #eef1f4; stroke-width: .1; }
+
+/* ── стены ─────────────────────────────────────────────────────────────── */
+.walls .w-part polygon {
+  fill: none; stroke: var(--pp-wall); stroke-width: .2;
+  stroke-linejoin: miter; stroke-miterlimit: 8;
+}
+.walls .w-party line { stroke: var(--pp-wall); stroke-width: .4; stroke-linecap: butt; }
+.walls .w-facade     { fill: none; stroke: var(--pp-wall); stroke-width: .8; stroke-linejoin: miter; }
+.walls .w-outline    { fill: none; stroke: #16212c; stroke-width: .07; }
+
+.plan-svg.hatch .walls .w-part polygon { stroke: url(#pp-hatch); }
+.plan-svg.hatch .walls .w-party line,
+.plan-svg.hatch .walls .w-facade       { stroke: url(#pp-hatch); }
+
+/* строгий чёрно-белый режим */
+.plan-svg.mono .room-fill { fill: #ffffff !important; }
+.plan-svg.mono .apt-frame { opacity: .35; }
+.plan-svg.mono .bal-slab  { fill: #f5f7f9; }
+.plan-svg.mono .furn      { opacity: .5; }
+
+/* фокус на квартире / ядре */
+.plan-svg[data-focus] .room-fill,
+.plan-svg[data-focus] .bal-slab,
+.plan-svg[data-focus] .bal-lbl,
+.plan-svg[data-focus] .apt-frame,
+.plan-svg[data-focus] .furn,
+.plan-svg[data-focus] .rm-lbl,
+.plan-svg[data-focus] .rm-area { opacity: .12; }
+.plan-svg[data-focus="a1"] .room-fill[data-apt="a1"],
+.plan-svg[data-focus="a2"] .room-fill[data-apt="a2"],
+.plan-svg[data-focus="a3"] .room-fill[data-apt="a3"],
+.plan-svg[data-focus="a4"] .room-fill[data-apt="a4"] { opacity: 1; }
+.plan-svg[data-focus="a1"] .apt-frame.f-a1,
+.plan-svg[data-focus="a2"] .apt-frame.f-a2,
+.plan-svg[data-focus="a3"] .apt-frame.f-a3,
+.plan-svg[data-focus="a4"] .apt-frame.f-a4 { opacity: 1; }
+.plan-svg[data-focus="a1"] .furn[data-apt="a1"],
+.plan-svg[data-focus="a2"] .furn[data-apt="a2"],
+.plan-svg[data-focus="a3"] .furn[data-apt="a3"],
+.plan-svg[data-focus="a4"] .furn[data-apt="a4"] { opacity: 1; }
+.plan-svg[data-focus="core"] .room-fill[data-apt="core"] { opacity: 1; }
+
+/* ── проёмы ────────────────────────────────────────────────────────────── */
+.op-erase    { stroke: var(--pp-paper); stroke-linecap: butt; }
+.op-window line { stroke: var(--pp-wall); stroke-width: .055; }
+.op-window .win-mid { stroke-width: .04; }
+.win-glass   { fill: #bcdff5; opacity: .85; stroke: none; }
+.op-door .leaf  { stroke: var(--pp-wall); stroke-width: .1; stroke-linecap: butt; }
+.op-door .sweep { fill: none; stroke: #8fa1b2; stroke-width: .045; stroke-dasharray: .18 .12; }
+.op-opening .open-line { stroke: #9aa7b4; stroke-width: .05; stroke-dasharray: .22 .14; }
+.op-lift .lift-door { stroke: var(--pp-wall); stroke-width: .07; }
+.op-lift .lift-jamb { stroke: var(--pp-wall); stroke-width: .1; }
+
+/* ── лестница ──────────────────────────────────────────────────────────── */
+.st-landing  { fill: #f7f9fb; stroke: #56697b; stroke-width: .05; }
+.st-flight rect { fill: #ffffff; stroke: #56697b; stroke-width: .06; }
+.st-flight line { stroke: #7d8fa1; stroke-width: .045; }
+.st-arrow    { fill: none; stroke: #3c4d5e; stroke-width: .07; stroke-linecap: round; stroke-linejoin: round; }
+.st-lbl      { font-size: .26; fill: #3c4d5e; text-anchor: middle; letter-spacing: .04; font-weight: 700; }
+
+/* ── лифты ─────────────────────────────────────────────────────────────── */
+.lift-shaft { fill: #eceff3; stroke: #46586a; stroke-width: .07; }
+.lift-x     { stroke: #a8b4c0; stroke-width: .04; }
+.lift-cab   { fill: #ffffff; stroke: #46586a; stroke-width: .06; stroke-dasharray: .2 .12; }
+.lift-lbl   { font-size: .34; fill: #33414f; text-anchor: middle; font-weight: 700; }
+
+/* ── мебель ────────────────────────────────────────────────────────────── */
+.furn { fill: none; stroke: var(--pp-furn); stroke-width: .038; stroke-linejoin: round; stroke-linecap: round; opacity: .9; }
+
+/* ── стояки ────────────────────────────────────────────────────────────── */
+.riser circle { fill: #ffffff; stroke-width: .05; }
+.riser .dot   { stroke: none; }
+.riser text   { font-size: .24; font-weight: 700; }
+.r-water circle { stroke: #2f7fd1; } .r-water .dot { fill: #2f7fd1; } .r-water text { fill: #2f7fd1; }
+.r-sewer circle { stroke: #8a6a3c; } .r-sewer .dot { fill: #8a6a3c; } .r-sewer text { fill: #8a6a3c; }
+.r-vent  circle { stroke: #6b7a8b; } .r-vent  .dot { fill: #6b7a8b; } .r-vent  text { fill: #6b7a8b; }
+.r-smoke circle { stroke: #d24a3f; } .r-smoke .dot { fill: #d24a3f; } .r-smoke text { fill: #d24a3f; }
+.r-elec  circle { stroke: #e08a1e; } .r-elec  .dot { fill: #e08a1e; } .r-elec  text { fill: #e08a1e; }
+
+/* ── подписи помещений ─────────────────────────────────────────────────── */
+.rm-name { font-size: .34; fill: var(--pp-text); text-anchor: middle; font-weight: 600; }
+.rm-area { font-size: .30; fill: #4a5a6a; text-anchor: middle; font-weight: 500; }
+.rm-area.sm { font-size: .26; }
+.rm-note { font-size: .21; fill: #7b8899; text-anchor: middle; font-style: italic; }
+.rm-num circle { fill: #ffffff; stroke: #33414f; stroke-width: .05; }
+.rm-num text   { font-size: .32; fill: #33414f; text-anchor: middle; font-weight: 700; }
+
+/* ── маркировка квартир ────────────────────────────────────────────────── */
+.apt-frame { fill: none; stroke-width: .13; stroke-dasharray: .55 .34; opacity: .9; }
+.apt-frame.f-a1 { stroke: #4a7fc1; } .apt-frame.f-a2 { stroke: #d98e32; }
+.apt-frame.f-a3 { stroke: #4fa382; } .apt-frame.f-a4 { stroke: #b56a9b; }
+.apt-tag rect  { opacity: .95; }
+.apt-tag .t1   { font-size: .38; fill: #fff; font-weight: 800; }
+.apt-tag .t2   { font-size: .26; fill: rgba(255,255,255,.9); font-weight: 600; }
+.apt-tag { cursor: pointer; }
+
+/* ── оси ───────────────────────────────────────────────────────────────── */
+.axis { stroke: var(--pp-axis); stroke-width: .045; stroke-dasharray: 1.25 .28 .1 .28; opacity: .85; }
+.axis-bubble circle { fill: #ffffff; stroke: var(--pp-axis); stroke-width: .07; }
+.axis-bubble text   { font-size: .48; fill: var(--pp-axis); text-anchor: middle; font-weight: 700; }
+
+/* ── размеры ───────────────────────────────────────────────────────────── */
+.dim-line { stroke: var(--pp-line); stroke-width: .05; }
+.dim-tick { stroke: var(--pp-line); stroke-width: .07; }
+.dim-ext  { stroke: #8b98a6; stroke-width: .035; }
+.dim-txt  { font-size: .38; fill: var(--pp-line); text-anchor: middle; font-weight: 600; }
+
+/* ── аннотации ─────────────────────────────────────────────────────────── */
+.n-ring  { fill: #ffffff; stroke: #33414f; stroke-width: .07; }
+.n-arrow { fill: #d8483c; stroke: #d8483c; stroke-width: .04; }
+.n-lbl   { font-size: .46; fill: #33414f; text-anchor: middle; font-weight: 800; }
+.sb-b    { fill: #33414f; } .sb-w { fill: #ffffff; }
+.sb-frame{ fill: none; stroke: #33414f; stroke-width: .05; }
+.sb-lbl  { font-size: .3; fill: #33414f; text-anchor: middle; font-weight: 600; }
+.sb-title{ font-size: .32; fill: #56697b; font-weight: 600; }
+.lvl-tri { fill: none; stroke: #33414f; stroke-width: .06; }
+.lvl-line{ stroke: #33414f; stroke-width: .06; }
+.lvl-txt { font-size: .38; fill: #33414f; font-weight: 700; text-anchor: middle; }
+.sm-ring { fill: #ffffff; stroke: #33414f; stroke-width: .07; }
+.sm-txt  { font-size: .44; fill: #33414f; text-anchor: middle; font-weight: 800; }
+.section-line { stroke: #33414f; stroke-width: .07; stroke-dasharray: .5 .25; }
+
+/* ── примечания ────────────────────────────────────────────────────────── */
+.notes-title { font-size: .44; fill: var(--pp-text); font-weight: 800; letter-spacing: .02; }
+.note        { font-size: .32; fill: #3d4c5b; }
+
+/* ── штамп ─────────────────────────────────────────────────────────────── */
+.st-frame { fill: #ffffff; stroke: #22303c; stroke-width: 1; }
+.st-zone  { fill: #f4f6f8; stroke: none; }
+.st-cell  { fill: none; stroke: #22303c; stroke-width: .5; }
+.st-line  { stroke: #22303c; stroke-width: .5; }
+.st-txt   { font-size: 3.1; fill: #22303c; }
+.st-txt.b { font-weight: 800; }
+.st-txt.sm2 { font-size: 2.7; }
+.st-title { font-size: 5.6; font-weight: 800; fill: #16212c; letter-spacing: .1; }
+.st-sub   { font-size: 3.1; fill: #56697b; }
+.st-k     { font-size: 2.4; fill: #7b8899; }
+.st-v     { font-size: 4.4; font-weight: 800; fill: #16212c; }
+
+/* ── интерактивный слой ────────────────────────────────────────────────── */
+.hit-room { fill: transparent; stroke: none; cursor: pointer; }
+.hit { pointer-events: all; }
+.lyr:not(.hit) { pointer-events: none; }
+.apt-tag { pointer-events: all; }

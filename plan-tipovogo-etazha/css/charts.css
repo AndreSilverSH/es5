@@ -1,0 +1,76 @@
+/* ============================================================================
+ *  charts.css — диаграммы, объёмная схема и аксонометрия
+ * ==========================================================================*/
+
+.chart { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--sans); }
+
+/* кольцевая */
+.donut .c-big   { font-size: 15px; font-weight: 800; fill: var(--txt); text-anchor: middle; font-family: var(--mono); }
+.donut .c-small { font-size: 5.4px; fill: var(--txt-3); text-anchor: middle; }
+.donut .c-cap   { font-size: 4.6px; fill: var(--txt-3); text-anchor: middle; }
+.donut .seg     { transition: opacity .18s; cursor: default; }
+.donut .seg:hover { opacity: .82; }
+
+/* полосы */
+.bars .b-lbl  { font-size: 4.6px; fill: var(--txt-2); text-anchor: end; font-weight: 600; }
+.bars .b-val  { font-size: 4.4px; fill: var(--txt); text-anchor: start; font-family: var(--mono); font-weight: 600; }
+.bars .b-track{ fill: var(--panel-2); }
+.bars .b-fill { transition: filter .18s; }
+.bars .b-fill:hover { filter: brightness(1.12); }
+
+/* стек */
+.stack .s-lbl { font-size: 5px; fill: #0d1117; text-anchor: middle; font-weight: 800; }
+
+/* роза */
+.rose .r-grid { fill: none; stroke: var(--line); stroke-width: .6; }
+.rose .r-axis { stroke: var(--line); stroke-width: .6; stroke-dasharray: 2 1.6; }
+.rose .r-lbl  { font-size: 6px; fill: var(--txt-2); text-anchor: middle; font-weight: 800; }
+.rose .r-poly { fill: rgba(240,160,60,.28); stroke: var(--accent); stroke-width: 1.1; stroke-linejoin: round; }
+.rose .r-dot  { fill: var(--accent); }
+.rose .r-cap  { font-size: 4.4px; fill: var(--txt-3); text-anchor: middle; }
+
+/* шкала */
+.gauge .g-val  { font-size: 21px; font-weight: 800; fill: var(--txt); text-anchor: middle; font-family: var(--mono); }
+.gauge .g-lbl  { font-size: 5px; fill: var(--txt-3); text-anchor: middle; }
+.gauge .g-tick { stroke: var(--txt-3); stroke-width: 1.1; }
+
+/* этажи */
+.floors .fl rect { fill: var(--panel-2); stroke: var(--line); stroke-width: .5; }
+.floors .f-typ rect { fill: color-mix(in srgb, var(--accent-2) 22%, var(--panel-2)); }
+.floors .f-first rect { fill: color-mix(in srgb, var(--accent) 26%, var(--panel-2)); }
+.floors .f-roof rect { fill: color-mix(in srgb, var(--txt-3) 25%, var(--panel-2)); }
+.floors .fl.hi rect { fill: var(--accent); stroke: #fff3; }
+.floors .f-no  { font-size: 4.4px; fill: var(--txt-3); text-anchor: end; font-family: var(--mono); }
+.floors .f-tag { font-size: 4px; fill: var(--accent); text-anchor: end; font-weight: 800; letter-spacing: .1px; }
+.floors .fl.hi .f-tag { fill: #1a1206; }
+
+/* ── объёмная схема корпуса ───────────────────────────────────────────── */
+.massing-svg text { font-family: var(--sans); }
+.ms-ground { fill: rgba(120,150,180,.14); stroke: rgba(140,170,200,.28); stroke-width: .08; }
+.ms-shadow { fill: #08111c; opacity: .45; }
+.ms-face   { stroke: rgba(255,255,255,.16); stroke-width: .05; }
+.ms-top    { fill: #eef2f6; stroke-width: .1; }
+.ms-top.hi { fill: #ffc773; }
+.ms-hi-floor { fill: #ffe0b0; opacity: .95; stroke: #e0a02e; stroke-width: .1; }
+.ms-callout line { stroke: var(--accent); stroke-width: .1; }
+.ms-callout circle { fill: var(--accent); }
+.ms-t1 { font-size: 1.15; font-weight: 800; fill: var(--accent); letter-spacing: .04; }
+.ms-t2 { font-size: .82; fill: #9fb0c2; }
+.ms-m  { font-size: .82; fill: #9fb0c2; font-family: var(--mono); }
+
+/* ── аксонометрия этажа ───────────────────────────────────────────────── */
+.iso-svg { background: linear-gradient(165deg, #fbfaf7, #eceae4); }
+.iso-shadow { fill: #1a2a3a; opacity: .22; }
+.iso-slab-top  { fill: #f6f7f8; stroke: #98a5b3; stroke-width: .05; }
+.iso-slab-side { stroke: rgba(255,255,255,.25); stroke-width: .03; }
+.iso-floor     { stroke: #ffffff; stroke-width: .05; opacity: .95; }
+.iso-wall-face { stroke: #b6c0cb; stroke-width: .025; }
+.iso-wall-top  { stroke: #8d9aa8; stroke-width: .035; }
+.iso-bal       { fill: #e9eef3; stroke: #7f95a8; stroke-width: .06; }
+.iso-rail      { fill: rgba(150,185,215,.22); stroke: #7f95a8; stroke-width: .045; }
+.iso-core-side { fill: rgba(240,160,60,.10); stroke: #e0a02e; stroke-width: .05; stroke-dasharray: .3 .18; }
+.iso-core      { fill: rgba(240,160,60,.14); stroke: #e0a02e; stroke-width: .06; stroke-dasharray: .35 .2; }
+.iso-tag text  { font-family: var(--sans); }
+.iso-t1 { font-size: .44; font-weight: 800; fill: #fff; }
+.iso-t2 { font-size: .3; fill: rgba(255,255,255,.92); font-weight: 600; }

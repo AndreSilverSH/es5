@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>План типового этажа · подача проекта</title>
+<meta name="description" content="Интерактивная подача проекта плана типового этажа жилого дома: чертёж, аксонометрия, экспликация, квартирография, ТЭП и нормоконтроль.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/ui.css">
+<link rel="stylesheet" href="css/plan.css">
+<link rel="stylesheet" href="css/charts.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════ ШАПКА ══════════════════════════════ -->
+<header class="topbar no-print">
+  <div class="tb-left">
+    <span class="mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32"><rect x="3" y="3" width="26" height="26" rx="3"/><path d="M3 12h26M12 3v26M12 20h17"/></svg>
+    </span>
+    <span class="tb-title">
+      <b id="tbProject">Жилой комплекс «Прибрежный»</b>
+      <small id="tbSheet">АР-07 · План типового этажа · 1:100</small>
+    </span>
+  </div>
+  <nav class="tb-nav">
+    <a href="#sheet">Чертёж</a>
+    <a href="#explic">Экспликация</a>
+    <a href="#apts">Квартирография</a>
+    <a href="#analytics">Аналитика</a>
+    <a href="#core">Ядро</a>
+    <a href="#tep">ТЭП</a>
+    <a href="#data">Данные</a>
+  </nav>
+  <div class="tb-actions">
+    <button class="btn ghost" id="btnTheme" title="Тема оформления">◐</button>
+    <button class="btn ghost" id="btnPrint">Печать листа</button>
+    <button class="btn" id="btnExportSvg">SVG</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════ ПЕРВЫЙ ЭКРАН ══════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-text no-print">
+    <p class="eyebrow"><span class="dot"></span> Проектная документация · стадия «П»</p>
+    <h1>План типового этажа<br><span class="accent">как главный лист подачи</span></h1>
+    <p class="lead" id="heroLead">
+      Секция на 4 квартиры, монолитный каркас, 17 этажей. Чертёж, аксонометрия, экспликация,
+      квартирография и технико-экономические показатели собраны в один интерактивный лист —
+      его можно показывать с экрана, печатать и отдавать на согласование.
+    </p>
+    <dl class="hero-facts" id="heroFacts"></dl>
+    <div class="hero-cta">
+      <a class="btn big" href="#sheet">Смотреть чертёж</a>
+      <a class="btn ghost big" href="#apts">Квартирография</a>
+      <a class="btn ghost big" href="#data">Подставить свои данные</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div id="massing" class="massing"></div>
+    <p class="vis-cap">Объёмная схема корпуса · подсвечен типовой этаж</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ ЧЕРТЁЖ ═════════════════════════════ -->
+<section class="sheet-sec" id="sheet">
+  <div class="sec-head no-print">
+    <h2>Лист АР-07 · план и аксонометрия</h2>
+    <p>Колесо мыши — масштаб, перетаскивание — панорама, клик по помещению — карточка справа.</p>
+  </div>
+
+  <div class="viewer no-print">
+    <div class="toolbar">
+      <div class="tb-group">
+        <span class="tb-lbl">Вид</span>
+        <div class="seg" id="modeSeg">
+          <button class="on" data-mode="plan">План</button>
+          <button data-mode="iso">Аксонометрия</button>
+        </div>
+      </div>
+      <div class="tb-group">
+        <span class="tb-lbl">Фрагмент</span>
+        <div class="seg" id="scopeSeg">
+          <button class="on" data-scope="full">Этаж</button>
+          <button data-scope="core">Ядро</button>
+          <button data-scope="a1">Кв. 1</button>
+          <button data-scope="a2">Кв. 2</button>
+          <button data-scope="a3">Кв. 3</button>
+          <button data-scope="a4">Кв. 4</button>
+        </div>
+      </div>
+      <div class="tb-group right">
+        <button class="btn icon" id="btnZoomOut" title="Уменьшить">−</button>
+        <button class="btn icon" id="btnZoomIn" title="Увеличить">+</button>
+        <button class="btn icon wide" id="btnFit" title="Вписать лист">⤢</button>
+      </div>
+    </div>
+
+    <div class="viewer-body">
+      <div class="canvas-wrap" id="canvasWrap">
+        <div id="planCanvas" class="canvas"></div>
+        <div id="tooltip" class="tooltip"></div>
+        <div class="canvas-hud">
+          <span id="hudMode">План · 1:100</span>
+          <span id="hudScale"></span>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="side-block">
+          <h3>Слои</h3>
+          <div id="layerList" class="layers"></div>
+          <div class="row-btns">
+            <button class="btn tiny" id="btnLayersOn">Все</button>
+            <button class="btn tiny ghost" id="btnLayersPlan">Чертежи</button>
+            <button class="btn tiny ghost" id="btnLayersMono">Ч/Б</button>
+            <button class="btn tiny ghost" id="btnHatch">Штриховка стен</button>
+          </div>
+        </div>
+
+        <div class="side-block" id="roomCard">
+          <h3>Помещение</h3>
+          <div class="empty">Наведите или кликните помещение на чертеже</div>
+        </div>
+
+        <div class="side-block">
+          <h3>Легенда зон</h3>
+          <ul id="legend" class="legend"></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- печатная версия листа -->
+  <div class="print-sheet" id="printSheet"></div>
+</section>
+
+<!-- ══════════════════════════════ ЭКСПЛИКАЦИЯ ════════════════════════ -->
+<section id="explic">
+  <div class="sec-head no-print">
+    <h2>Экспликация помещений</h2>
+    <p>Формируется автоматически из геометрии плана. Клик по строке подсвечивает помещение на чертеже.</p>
+  </div>
+  <div class="panel no-print">
+    <div class="panel-tools">
+      <div class="seg" id="explFilter">
+        <button class="on" data-f="all">Все</button>
+        <button data-f="a1">Кв. 1</button>
+        <button data-f="a2">Кв. 2</button>
+        <button data-f="a3">Кв. 3</button>
+        <button data-f="a4">Кв. 4</button>
+        <button data-f="core">Общие</button>
+      </div>
+      <div class="grow"></div>
+      <input type="search" id="explSearch" placeholder="Поиск помещения…">
+      <button class="btn tiny ghost" id="btnCsv">CSV</button>
+    </div>
+    <div class="table-wrap">
+      <table class="expl">
+        <thead>
+          <tr>
+            <th class="num">№</th><th>Наименование</th><th>Принадлежность</th>
+            <th class="r">Площадь, м²</th><th class="r">Жилая</th><th>Отделка / примечание</th>
+          </tr>
+        </thead>
+        <tbody id="explBody"></tbody>
+        <tfoot id="explFoot"></tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ КВАРТИРОГРАФИЯ ═════════════════════ -->
+<section id="apts">
+  <div class="sec-head no-print">
+    <h2>Квартирография типового этажа</h2>
+    <p>Мини-планы, состав помещений, площади с учётом летних помещений и ориентация по сторонам света.</p>
+  </div>
+  <div class="apt-grid" id="aptCards"></div>
+</section>
+
+<!-- ══════════════════════════════ АНАЛИТИКА ══════════════════════════ -->
+<section id="analytics">
+  <div class="sec-head no-print">
+    <h2>Аналитика этажа и нормоконтроль</h2>
+    <p>Показатели считаются по данным плана — измените данные, и все диаграммы пересчитаются.</p>
+  </div>
+  <div class="grid-4">
+    <div class="card no-print">
+      <h3>Структура площади этажа</h3>
+      <div id="chartStack" class="chart-box"></div>
+      <ul class="mini-legend" id="stackLegend"></ul>
+    </div>
+    <div class="card no-print">
+      <h3>Площади по зонам</h3>
+      <div id="chartZones" class="chart-box sq"></div>
+      <ul class="mini-legend" id="zoneLegend"></ul>
+    </div>
+    <div class="card no-print">
+      <h3>Квартиры этажа, м²</h3>
+      <div id="chartApts" class="chart-box"></div>
+      <p class="card-note" id="aptNote"></p>
+    </div>
+    <div class="card no-print">
+      <h3>Коэффициент эффективности</h3>
+      <div id="chartGauge" class="chart-box"></div>
+      <p class="card-note" id="gaugeNote"></p>
+      <p class="card-note">Отношение площади квартир к площади этажа в габаритах наружных стен. Ориентир для комфорт-класса — 65–75 %.</p>
+    </div>
+    <div class="card no-print">
+      <h3>Ориентация окон</h3>
+      <div id="chartRose" class="chart-box sq"></div>
+      <p class="card-note" id="roseNote"></p>
+    </div>
+    <div class="card wide no-print">
+      <h3>Нормоконтроль · СП 54.13330.2022, СП 1.13130, ФЗ-123</h3>
+      <ul class="norms" id="normList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ ЯДРО И ИНЖЕНЕРИЯ ═══════════════════ -->
+<section id="core">
+  <div class="sec-head no-print">
+    <h2>Лестнично-лифтовой узел и инженерия</h2>
+    <p>Фрагмент ядра в крупном масштабе, состав стояков и требования к путям эвакуации.</p>
+  </div>
+  <div class="core-grid">
+    <div class="card no-print core-view">
+      <div id="coreCanvas" class="canvas small"></div>
+      <div class="core-tools">
+        <label><input type="checkbox" id="coreRisers" checked> Инженерные стояки</label>
+        <label><input type="checkbox" id="coreDims" checked> Размеры фрагмента</label>
+      </div>
+    </div>
+    <div class="card no-print">
+      <h3>Состав ядра</h3>
+      <ul class="spec" id="coreSpec"></ul>
+      <h3 class="mt">Инженерные системы этажа</h3>
+      <ul class="risers-legend" id="riserLegend"></ul>
+      <h3 class="mt">Конструктив</h3>
+      <p class="text" id="structText"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ ТЭП ════════════════════════════════ -->
+<section id="tep">
+  <div class="sec-head no-print">
+    <h2>Технико-экономические показатели</h2>
+    <p>Поэтажные показатели пересчитаны на здание в целом.</p>
+  </div>
+  <div class="tep-grid">
+    <div class="card no-print">
+      <h3>Поэтажные показатели</h3>
+      <table class="kv" id="tepFloor"></table>
+    </div>
+    <div class="card no-print">
+      <h3>Показатели здания</h3>
+      <table class="kv" id="tepBuilding"></table>
+    </div>
+    <div class="card no-print floors-card">
+      <h3>Разрез по корпусу</h3>
+      <div id="chartFloors" class="chart-box tall"></div>
+      <p class="card-note" id="floorsNote"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ ДАННЫЕ ═════════════════════════════ -->
+<section id="data">
+  <div class="sec-head no-print">
+    <h2>Ваши данные вместо демонстрационных</h2>
+    <p>
+      Всё на странице — оси, стены, помещения, проёмы, мебель, площади и показатели — строится из одного
+      объекта <code>FLOOR_DATA</code>. Замените его целиком или поправьте отдельные массивы: чертёж и все
+      таблицы пересоберутся автоматически.
+    </p>
+  </div>
+  <div class="data-grid">
+    <div class="card no-print">
+      <h3>Редактор данных</h3>
+      <textarea id="dataEditor" spellcheck="false"></textarea>
+      <div class="row-btns">
+        <button class="btn" id="btnApply">Применить и пересобрать</button>
+        <button class="btn ghost" id="btnReset">Сбросить</button>
+        <button class="btn ghost" id="btnJson">Скачать JSON</button>
+      </div>
+      <p class="err" id="dataErr"></p>
+    </div>
+    <div class="card no-print">
+      <h3>Как подставить свой план</h3>
+      <ol class="steps">
+        <li>Координаты — в метрах, начало в левом верхнем углу наружного контура, ось Y направлена вниз.</li>
+        <li>Помещения задаются «в свету»: между соседними помещениями оставляйте зазор, равный толщине стены
+          (0,2 м — перегородки, 0,4 м — наружные и межквартирные). Стены рисуются сами.</li>
+        <li>Проёмы — отрезки на осевой линии стены: <code>seg: [[x1,y1],[x2,y2]]</code>.</li>
+        <li>Площади, квартирография, ТЭП и нормоконтроль считаются автоматически — вручную их вписывать не нужно.</li>
+        <li>Нужен готовый лист? Кнопка «Печать листа» собирает А3-альбомную страницу со штампом.</li>
+      </ol>
+      <h3 class="mt">Быстрая замена</h3>
+      <p class="text">Пришлите мне оси, размеры и состав помещений в любом виде — таблицей, списком или файлом
+      <code>.json</code> / <code>.dxf</code>-выгрузкой; я перенесу их в <code>FLOOR_DATA</code> и подгоню подачу.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="no-print">
+  <div class="foot-in">
+    <p><b id="footProject"></b> · <span id="footSheet"></span></p>
+    <p class="dim">Демонстрационная планировка приведена как пример подачи. Перед выпуском документации
+      сверьте геометрию и площади с рабочей моделью проекта.</p>
+  </div>
+</footer>
+
+<script src="js/geometry.js"></script>
+<script src="js/data.js"></script>
+<script src="js/render-plan.js"></script>
+<script src="js/render-iso.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
