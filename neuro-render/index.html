@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Нейро-рендер · проходы для ControlNet из IFC</title>
+<link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+<div id="app">
+  <main id="stage">
+    <div id="frame">
+      <canvas id="view"></canvas>
+      <img id="refOverlay" alt="" hidden>
+      <div id="thirds" hidden></div>
+      <div id="dropHint">Перетащите сюда файл <b>.ifc</b> (или .ifc.txt)<br>или нажмите «Открыть IFC» справа</div>
+    </div>
+    <div id="status">Готово</div>
+  </main>
+
+  <aside id="panel">
+    <h1>Нейро-рендер <small>IFC → ControlNet</small></h1>
+
+    <section>
+      <h2>1. Модель</h2>
+      <div class="row">
+        <label class="btn primary">Открыть IFC<input id="fileIfc" type="file" accept=".ifc,.txt,.ifc.txt" hidden></label>
+        <button id="btnDemo">Демо-модель</button>
+      </div>
+      <div id="modelInfo" class="muted">Модель не загружена</div>
+      <div id="classList"></div>
+      <label class="check"><input id="chkGround" type="checkbox" checked> Земля под моделью (в seg — «earth»)</label>
+    </section>
+
+    <section>
+      <h2>2. Кадр</h2>
+      <div class="row">
+        <select id="selRes">
+          <option value="1024x1024">1024 × 1024 (1:1)</option>
+          <option value="1152x896">1152 × 896 (9:7)</option>
+          <option value="1216x832" selected>1216 × 832 (3:2, SDXL)</option>
+          <option value="1344x768">1344 × 768 (16:9, SDXL)</option>
+          <option value="832x1216">832 × 1216 (2:3)</option>
+          <option value="1536x1024">1536 × 1024 (3:2)</option>
+          <option value="1920x1080">1920 × 1080 (Full HD)</option>
+          <option value="custom">Свой размер…</option>
+        </select>
+      </div>
+      <div class="row" id="customRes" hidden>
+        <input id="resW" type="number" min="64" step="8" value="1216"> ×
+        <input id="resH" type="number" min="64" step="8" value="832">
+      </div>
+      <div class="row">
+        <label>Фокусное, мм <input id="focal" type="number" min="8" max="300" step="1" value="28"></label>
+        <button id="btnLevel" title="Горизонтальный взгляд: вертикали станут параллельными">Горизонт</button>
+      </div>
+      <label class="check"><input id="chkThirds" type="checkbox"> Сетка третей</label>
+    </section>
+
+    <section>
+      <h2>3. Референс (удачный рендер)</h2>
+      <div class="row">
+        <label class="btn">Загрузить<input id="fileRef" type="file" accept="image/*" hidden></label>
+        <button id="btnRefAspect" disabled>Кадр по референсу</button>
+      </div>
+      <label>Прозрачность наложения <input id="refOpacity" type="range" min="0" max="1" step="0.05" value="0.5"></label>
+      <p class="muted">Наложите удачный рендер поверх модели и совместите камеру: тогда нейросеть получит
+        геометрию этого ракурса, а стиль возьмёт с референса (IP-Adapter).</p>
+    </section>
+
+    <section>
+      <h2>4. Ракурсы</h2>
+      <div class="row">
+        <input id="viewName" type="text" placeholder="Название, напр. fasad_yug">
+        <button id="btnSaveView" class="primary">Сохранить</button>
+      </div>
+      <ul id="viewList"></ul>
+      <div class="row">
+        <button id="btnExportViews">Ракурсы → JSON</button>
+        <label class="btn">JSON → ракурсы<input id="fileViews" type="file" accept=".json" hidden></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Проходы</h2>
+      <div class="passes">
+        <label class="check"><input type="checkbox" data-pass="beauty" checked> beauty</label>
+        <label class="check"><input type="checkbox" data-pass="depth" checked> depth</label>
+        <label class="check"><input type="checkbox" data-pass="normal" checked> normal</label>
+        <label class="check"><input type="checkbox" data-pass="lineart" checked> lineart</label>
+        <label class="check"><input type="checkbox" data-pass="seg" checked> seg</label>
+      </div>
+      <details>
+        <summary>Настройки проходов</summary>
+        <label>Глубина
+          <select id="depthMode">
+            <option value="linear">линейная</option>
+            <option value="inverse">обратная (как MiDaS)</option>
+          </select>
+        </label>
+        <label>Гамма глубины <input id="depthGamma" type="number" step="0.1" min="0.2" max="4" value="1"></label>
+        <label>Угол рёбер, ° <input id="lineAngle" type="number" min="1" max="89" value="20"></label>
+        <label>Толщина линий, px <input id="lineWidth" type="number" min="1" max="4" value="1"></label>
+        <label class="check"><input id="lineInvert" type="checkbox" checked> Белые линии на чёрном (для ControlNet)</label>
+        <label class="check"><input id="normalFlipX" type="checkbox"> Нормали: инвертировать X</label>
+        <label class="check"><input id="normalFlipY" type="checkbox"> Нормали: инвертировать Y</label>
+        <label>Сглаживание (SSAA) <select id="ssaa"><option value="1">нет</option><option value="2" selected>2×</option><option value="3">3×</option></select></label>
+      </details>
+      <div class="row">
+        <button id="btnPreview">Просмотр текущего кадра</button>
+      </div>
+      <div id="thumbs"></div>
+    </section>
+
+    <section>
+      <h2>6. Экспорт</h2>
+      <div class="row">
+        <button id="btnZipCurrent" class="primary">ZIP: текущий кадр</button>
+        <button id="btnZipAll">ZIP: все ракурсы</button>
+      </div>
+      <p class="muted">Архив содержит <code>&lt;ракурс&gt;/depth.png</code>, <code>lineart.png</code>, … и
+        <code>render_job.json</code>. Дальше: <code>python comfy/comfy_render.py passes.zip</code> (см. README).</p>
+    </section>
+  </aside>
+</div>
+
+<div id="lightbox" hidden><img alt=""></div>
+
+<script type="module" src="./js/app.js"></script>
+</body>
+</html>

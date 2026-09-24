@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Пример: нейро-рендер внутри своей three.js-модели</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; font: 13px system-ui, sans-serif; }
+  #c { width: 100%; height: 100%; display: block; }
+  .kpi { position: fixed; left: 14px; top: 14px; background: #fffd; padding: 10px 14px; border-radius: 8px; box-shadow: 0 2px 10px #0003; }
+  .kpi b { font-size: 18px; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<!-- «Показатели» — обычный HTML поверх canvas: в проходы не попадают -->
+<div class="kpi">Площадь застройки: <b>108 м²</b><br>Этажность: <b>1</b><br>Площадь фасада: <b>128 м²</b></div>
+
+<script type="module">
+  import * as THREE from '../vendor/three.module.js';
+  import { OrbitControls } from '../vendor/OrbitControls.js';
+  import { attachNeuroRender } from '../js/embed.js';
+
+  const canvas = document.getElementById('c');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xdde8f0);
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 500);
+  camera.position.set(16, 7, 16);
+  const controls = new OrbitControls(camera, canvas);
+  controls.target.set(0, 1.5, 0);
+  controls.update();
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x777766, 2));
+
+  const box = (name, w, h, d, x, y, z, color) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshStandardMaterial({ color, name }));
+    m.name = name; m.position.set(x, y, z); scene.add(m); return m;
+  };
+  box('Земля', 80, 0.1, 80, 0, -0.05, 0, 0x8a9a6a);
+  box('Стена южная', 12, 3.2, 0.3, 0, 1.6, 4, 0xe0dcd0);
+  box('Стена северная', 12, 3.2, 0.3, 0, 1.6, -4, 0xe0dcd0);
+  box('Стена западная', 0.3, 3.2, 8, -6, 1.6, 0, 0xe0dcd0);
+  box('Стена восточная', 0.3, 3.2, 8, 6, 1.6, 0, 0xe0dcd0);
+  box('Кровля', 12.6, 0.3, 8.6, 0, 3.35, 0, 0x777777);
+  box('Окно 1', 2.4, 1.6, 0.05, -3, 1.7, 4.17, 0x88aacc);
+  box('Окно 2', 2.4, 1.6, 0.05, 2, 1.7, 4.17, 0x88aacc);
+  box('Дверь', 0.05, 2.1, 1, 6.17, 1.05, 1, 0x6b4a33);
+  // служебный маркер показателя — исключаем из проходов
+  const marker = box('Маркер KPI', 0.4, 0.4, 0.4, 0, 5, 0, 0xff3333);
+  marker.userData.noPass = true;
+
+  function resize() {
+    const w = innerWidth, h = innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  addEventListener('resize', resize);
+  resize();
+  renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+
+  // ↓↓↓ единственная строка, которую нужно добавить в вашу модель
+  window.neuro = attachNeuroRender({ THREE, renderer, scene, camera, controls, modelName: 'embed-example' });
+</script>
+</body>
+</html>

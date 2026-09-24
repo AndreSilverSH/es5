@@ -1,0 +1,65 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #16181c; color: #e6e6e6;
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+#app { display: flex; height: 100%; }
+#stage { flex: 1; position: relative; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: repeating-conic-gradient(#1c1f24 0 25%, #191b20 0 50%) 0 0 / 24px 24px; }
+#frame { position: relative; box-shadow: 0 0 0 1px #444, 0 10px 40px rgba(0,0,0,.5); background: #000; }
+#view { display: block; width: 100%; height: 100%; }
+#refOverlay { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+#thirds { position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to right, transparent calc(33.33% - .5px), rgba(255,255,255,.35) 0, rgba(255,255,255,.35) calc(33.33% + .5px), transparent 0,
+      transparent calc(66.66% - .5px), rgba(255,255,255,.35) 0, rgba(255,255,255,.35) calc(66.66% + .5px), transparent 0),
+    linear-gradient(to bottom, transparent calc(33.33% - .5px), rgba(255,255,255,.35) 0, rgba(255,255,255,.35) calc(33.33% + .5px), transparent 0,
+      transparent calc(66.66% - .5px), rgba(255,255,255,.35) 0, rgba(255,255,255,.35) calc(66.66% + .5px), transparent 0); }
+#dropHint { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center;
+  color: #aaa; font-size: 15px; pointer-events: none; }
+#stage.dragover #frame { box-shadow: 0 0 0 3px #4d8dff; }
+#status { position: absolute; left: 12px; bottom: 10px; padding: 4px 8px; border-radius: 4px;
+  background: rgba(0,0,0,.6); color: #ccc; font-size: 12px; max-width: calc(100% - 24px); }
+
+#panel { width: 340px; flex: none; overflow-y: auto; background: #1f2227; border-left: 1px solid #30343b; padding: 12px 14px 40px; }
+#panel h1 { font-size: 16px; margin: 0 0 8px; }
+#panel h1 small { color: #8a9099; font-weight: normal; font-size: 12px; }
+#panel h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #9fb4d9; margin: 0 0 8px; }
+section { border-top: 1px solid #30343b; padding: 12px 0; }
+.row { display: flex; gap: 6px; align-items: center; margin: 6px 0; flex-wrap: wrap; }
+label { display: block; margin: 6px 0; color: #c9ccd1; }
+label.check { display: flex; gap: 6px; align-items: center; }
+.row label { margin: 0; }
+button, .btn, select, input[type=text], input[type=number] {
+  background: #2b2f36; color: #e6e6e6; border: 1px solid #3c414a; border-radius: 5px; padding: 5px 9px; font: inherit; }
+input[type=number] { width: 74px; }
+input[type=text] { flex: 1; min-width: 0; }
+button, .btn { cursor: pointer; display: inline-block; }
+button:hover, .btn:hover { background: #353a42; }
+button:disabled { opacity: .45; cursor: default; }
+.primary { background: #2f5fb3; border-color: #3b6fd0; }
+.primary:hover { background: #3a6ccc; }
+input[type=range] { width: 100%; }
+.muted { color: #8a9099; font-size: 12px; margin: 6px 0; }
+code { background: #2b2f36; padding: 0 3px; border-radius: 3px; font-size: 11px; }
+details { margin: 6px 0; }
+summary { cursor: pointer; color: #c9ccd1; }
+.passes { display: flex; flex-wrap: wrap; gap: 2px 12px; }
+
+#classList { margin: 6px 0; max-height: 180px; overflow-y: auto; }
+#classList label { display: flex; align-items: center; gap: 6px; margin: 2px 0; }
+#classList .sw { width: 12px; height: 12px; border-radius: 2px; flex: none; border: 1px solid #0006; }
+#classList .cnt { margin-left: auto; color: #8a9099; }
+
+#viewList { list-style: none; padding: 0; margin: 6px 0; }
+#viewList li { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+#viewList li span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
+#viewList li span:hover { color: #9fc1ff; }
+#viewList li button { padding: 2px 7px; }
+
+#thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+#thumbs figure { margin: 0; }
+#thumbs img { width: 100%; display: block; border: 1px solid #3c414a; cursor: zoom-in; background: #000; }
+#thumbs figcaption { font-size: 11px; color: #8a9099; }
+
+#lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; z-index: 10; cursor: zoom-out; }
+#lightbox img { max-width: 95vw; max-height: 95vh; }
+[hidden] { display: none !important; }

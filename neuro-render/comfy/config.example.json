@@ -1,0 +1,46 @@
+{
+  "server": "http://127.0.0.1:8188",
+
+  "checkpoint": "sd_xl_base_1.0.safetensors",
+
+  "prompt": "architectural visualization, modern one-storey building, light plaster facade, large glazed windows, wooden door, soft overcast daylight, green lawn, photorealistic, high detail, 35mm photo",
+  "negative": "blurry, lowres, distorted geometry, extra windows, warped lines, people, text, watermark, cartoon, painting",
+
+  "seed": 123456,
+  "seeds_per_view": 1,
+  "steps": 30,
+  "cfg": 5.5,
+  "sampler": "dpmpp_2m",
+  "scheduler": "karras",
+
+  "controlnets": [
+    { "pass": "depth",   "model": "controlnet-depth-sdxl-1.0.safetensors", "strength": 0.75, "start": 0.0, "end": 0.85 },
+    { "pass": "lineart", "model": "controlnet-canny-sdxl-1.0.safetensors", "strength": 0.55, "start": 0.0, "end": 0.6 }
+  ],
+
+  "style_reference": {
+    "enabled": false,
+    "images": ["refs/best_render_01.jpg"],
+    "preset": "PLUS (high strength)",
+    "weight": 0.8,
+    "weight_type": "style transfer",
+    "start": 0.0,
+    "end": 1.0
+  },
+
+  "init_image": {
+    "enabled": false,
+    "pass": "beauty",
+    "denoise": 0.8
+  },
+
+  "lora": {
+    "enabled": false,
+    "name": "my_studio_style.safetensors",
+    "strength_model": 0.8,
+    "strength_clip": 0.8
+  },
+
+  "output_dir": "renders",
+  "filename_prefix": "neuro"
+}
