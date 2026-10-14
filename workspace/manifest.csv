@@ -1,0 +1,98 @@
+﻿source_html;xlsx_file;title
+A.html;Приложение_A_информационное_Краткое_описание_грамматик.xlsx;Приложение A (информационное) Краткое описание грамматик
+anno/x10.4.1.1.html;anno/Аннотация_10.4.1.1_Исходный_глобальный_контекст_исполнения_Различия_в_web-платформах.xlsx;Аннотация — 10.4.1.1 Исходный глобальный контекст исполнения — Различия в web-платформах
+anno/x10.5.html;anno/Аннотация_10.5_Инстанциирование_привязки_объявления.xlsx;Аннотация — 10.5 Инстанциирование привязки объявления
+anno/x12.6.4.html;anno/Аннотация_12.6.4_Инструкция_for-in_Различия_в_web-платформах.xlsx;Аннотация — 12.6.4 Инструкция for-in — Различия в web-платформах
+anno/x15.1.2.2.html;anno/Аннотация_15.1.2.2_parseInt_string_radix.xlsx;Аннотация — 15.1.2.2 parseInt (string , radix)
+anno/x15.10.2.15.html;anno/Аннотация_15.10.2.15_NonemptyClassRanges_Различия_в_web-платформах.xlsx;Аннотация — 15.10.2.15 NonemptyClassRanges — Различия в web-платформах
+anno/x15.10.5.html;anno/Аннотация_15.10.5_Свойства_конструктора_RegExp_Различия_в_web-платформах.xlsx;Аннотация — 15.10.5 Свойства конструктора RegExp — Различия в web-платформах
+anno/x15.10.6.html;anno/Аннотация_15.10.6_Свойства_объекта-прототипа_RegExp_Различия_в_web-платформах.xlsx;Аннотация — 15.10.6 Свойства объекта-прототипа RegExp — Различия в web-платформах
+anno/x15.2.4.html;anno/Аннотация_15.2.4_Свойства_объекта-прототипа_Object_Различия_в_web-платформах.xlsx;Аннотация — 15.2.4 Свойства объекта-прототипа Object — Различия в web-платформах
+anno/x15.3.4.3.html;anno/Аннотация_15.3.4.3_Function.prototype.apply_thisArg_argArray_Различия_в_web-платформах.xlsx;Аннотация — 15.3.4.3 Function.prototype.apply (thisArg, argArray) — Различия в web-платформах
+anno/x15.5.4.html;anno/Аннотация_15.5.4_Свойства_объекта-прототипа_String_Различия_в_web-платформах.xlsx;Аннотация — 15.5.4 Свойства объекта-прототипа String — Различия в web-платформах
+anno/x15.9.4.3.html;anno/Аннотация_15.9.4.3_Date.UTC_year_month_date_hours_minutes_seconds_ms_Различия_в_web-платформах.xlsx;Аннотация — 15.9.4.3 Date.UTC (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] ) — Различия в web-платформах
+anno/x4.2.html;anno/Аннотация_4.2_Общий_обзор_языка.xlsx;Аннотация — 4.2 Общий обзор языка
+anno/x7.4.html;anno/Аннотация_7.4_Комментарии_Различия_в_web-платформах.xlsx;Аннотация — 7.4 Комментарии — Различия в web-платформах
+anno/x7.6.html;anno/Аннотация_7.6_Имена_идентификаторов_и_идентификаторы_Различия_в_web-платформах.xlsx;Аннотация — 7.6 Имена идентификаторов и идентификаторы — Различия в web-платформах
+anno/x8.6.html;anno/Аннотация_8.6_Тип_Object_Различия_в_web-платформах.xlsx;Аннотация — 8.6 Тип Object — Различия в web-платформах
+B.html;Приложение_В_информационное_Совместимость.xlsx;Приложение В (информационное) Совместимость
+bibliography.html;Bibliography.xlsx;Bibliography
+C.html;Приложение_C_информационное_Строгий_вариант_языка_ECMAScript.xlsx;Приложение C (информационное) Строгий вариант языка ECMAScript
+D.html;Annex_D_informative_Corrections_and_Clarifications_in_the_5th_Edition_with_Possible_3rd_Edition_Compatibility_Impact.xlsx;Annex D (informative) Corrections and Clarifications in the 5th Edition with Possible 3rd Edition Compatibility Impact
+E.html;Annex_E_informative_Additions_and_Changes_in_the_5th_Edition_that_Introduce_Incompatibilities_with_the_3rd_Edition.xlsx;Annex E (informative) Additions and Changes in the 5th Edition that Introduce Incompatibilities with the 3rd Edition
+erra/A.1.html;erra/Исправление_A.1_Лексическая_грамматика.xlsx;Исправление — A.1 Лексическая грамматика
+erra/A.8.1.html;erra/Исправление_A.8.1_Лексическая_грамматика_JSON.xlsx;Исправление — A.8.1 Лексическая грамматика JSON
+erra/C.html;erra/Исправление_Приложение_C_информационное_Строгий_вариант_языка_ECMAScript.xlsx;Исправление — Приложение C (информационное) Строгий вариант языка ECMAScript
+erra/x10.2.1.1.3.html;erra/Исправление_10.2.1.1.3_SetMutableBinding_N_V_S.xlsx;Исправление — 10.2.1.1.3 SetMutableBinding (N,V,S)
+erra/x10.2.1.2.2.html;erra/Исправление_10.2.1.2.2_CreateMutableBinding_N_D.xlsx;Исправление — 10.2.1.2.2 CreateMutableBinding (N, D)
+erra/x10.5.html;erra/Исправление_10.5_Инстанциирование_привязки_объявления.xlsx;Исправление — 10.5 Инстанциирование привязки объявления
+erra/x12.6.4.html;erra/Исправление_12.6.4_Инструкция_for-in.xlsx;Исправление — 12.6.4 Инструкция for-in
+erra/x15.11.1.1.html;erra/Исправление_15.11.1.1_Error_message.xlsx;Исправление — 15.11.1.1 Error (message)
+erra/x15.11.2.1.html;erra/Исправление_15.11.2.1_new_Error_message.xlsx;Исправление — 15.11.2.1 new Error (message)
+erra/x15.11.4.4.html;erra/Исправление_15.11.4.4_Error.prototype.toString.xlsx;Исправление — 15.11.4.4 Error.prototype.toString ( )
+erra/x15.11.7.4.html;erra/Исправление_15.11.7.4_New_NativeError_message.xlsx;Исправление — 15.11.7.4 New NativeError (message)
+erra/x15.2.3.7.html;erra/Исправление_15.2.3.7_Object.defineProperties_O_Properties.xlsx;Исправление — 15.2.3.7 Object.defineProperties ( O, Properties )
+erra/x15.2.4.2.html;erra/Исправление_15.2.4.2_Object.prototype.toString.xlsx;Исправление — 15.2.4.2 Object.prototype.toString ( )
+erra/x15.3.4.3.html;erra/Исправление_15.3.4.3_Function.prototype.apply_thisArg_argArray.xlsx;Исправление — 15.3.4.3 Function.prototype.apply (thisArg, argArray)
+erra/x15.4.4.18.html;erra/Исправление_15.4.4.18_Array.prototype.forEach_callbackfn_thisArg.xlsx;Исправление — 15.4.4.18 Array.prototype.forEach ( callbackfn [ , thisArg ] )
+erra/x15.4.4.21.html;erra/Исправление_15.4.4.21_Array.prototype.reduce_callbackfn_initialValue.xlsx;Исправление — 15.4.4.21 Array.prototype.reduce ( callbackfn [ , initialValue ] )
+erra/x15.4.4.22.html;erra/Исправление_15.4.4.22_Array.prototype.reduceRight_callbackfn_initialValue.xlsx;Исправление — 15.4.4.22 Array.prototype.reduceRight ( callbackfn [ , initialValue ] )
+erra/x15.4.5.1.html;erra/Исправление_15.4.5.1_DefineOwnProperty_P_Desc_Throw.xlsx;Исправление — 15.4.5.1 [[DefineOwnProperty]] ( P, Desc, Throw )
+erra/x15.5.5.2.html;erra/Исправление_15.5.5.2_GetOwnProperty_P.xlsx;Исправление — 15.5.5.2 [[GetOwnProperty]] ( P )
+erra/x15.9.1.15.html;erra/Исправление_15.9.1.15_Строковый_формат_дата_и_время.xlsx;"Исправление — 15.9.1.15 Строковый формат ""дата и время"""
+erra/x7.1.html;erra/Исправление_7.1_Юникодные_символы_управления_форматом.xlsx;Исправление — 7.1 Юникодные символы управления форматом
+es5_errata.html;Erratum_for_ECMAScript_5th_Edition_Specification_ECMA-262-5.xlsx;"Erratum
+for ECMAScript, 5th
+Edition Specification (ECMA-262-5)"
+index.html;ECMAScript_5_на_русском.xlsx;ECMAScript 5 на русском
+introduction.html;Введение.xlsx;Введение
+key.html;ES5_ключи_к_аннотациям.xlsx;ES5: ключи к аннотациям
+plan-tipovogo-etazha/index.html;plan-tipovogo-etazha/План_типового_этажа_подача_проекта.xlsx;План типового этажа · подача проекта
+rev1/B.2.1.html;rev1/Редакция_5.1_B.2.1_escape_string.xlsx;Редакция 5.1 — B.2.1 escape (string)
+rev1/x11.5.3.html;rev1/Редакция_5.1_11.5.3_Применение_оператора.xlsx;Редакция 5.1 — 11.5.3 Применение оператора %
+rev1/x12.14.html;rev1/Редакция_5.1_12.14_Инструкция_try.xlsx;Редакция 5.1 — 12.14 Инструкция try
+rev1/x12.6.3.html;rev1/Редакция_5.1_12.6.3_Инструкция_for.xlsx;Редакция 5.1 — 12.6.3 Инструкция for
+rev1/x12.7.html;rev1/Редакция_5.1_12.7_Инструкция_continue.xlsx;Редакция 5.1 — 12.7 Инструкция continue
+rev1/x12.8.html;rev1/Редакция_5.1_12.8_Инструкция_break.xlsx;Редакция 5.1 — 12.8 Инструкция break
+rev1/x12.9.html;rev1/Редакция_5.1_12.9_Инструкция_return.xlsx;Редакция 5.1 — 12.9 Инструкция return
+rev1/x15.1.2.2.html;rev1/Редакция_5.1_15.1.2.2_parseInt_string_radix.xlsx;Редакция 5.1 — 15.1.2.2 parseInt (string , radix)
+rev1/x15.1.2.3.html;rev1/Редакция_5.1_15.1.2.3_parseFloat_string.xlsx;Редакция 5.1 — 15.1.2.3 parseFloat (string)
+rev1/x15.1.3.html;rev1/Редакция_5.1_15.1.3_Свойства-функции_для_обработки_URI.xlsx;Редакция 5.1 — 15.1.3 Свойства-функции для обработки URI
+rev1/x15.10.2.2.html;rev1/Редакция_5.1_15.10.2.2_Шаблон_Pattern.xlsx;Редакция 5.1 — 15.10.2.2 Шаблон (Pattern)
+rev1/x15.10.2.6.html;rev1/Редакция_5.1_15.10.2.6_Утверждение_Assertion.xlsx;Редакция 5.1 — 15.10.2.6 Утверждение (Assertion)
+rev1/x15.10.2.8.html;rev1/Редакция_5.1_15.10.2.8_Атом_Atom.xlsx;Редакция 5.1 — 15.10.2.8 Атом (Atom)
+rev1/x15.10.6.2.html;rev1/Редакция_5.1_15.10.6.2_RegExp.prototype.exec_string.xlsx;Редакция 5.1 — 15.10.6.2 RegExp.prototype.exec(string)
+rev1/x15.12.3.html;rev1/Редакция_5.1_15.12.3_stringify_value_replacer_space.xlsx;Редакция 5.1 — 15.12.3 stringify ( value [ , replacer [ , space ] ] )
+rev1/x15.4.4.12.html;rev1/Редакция_5.1_15.4.4.12_Array.prototype.splice_start_deleteCount_item1_item2.xlsx;Редакция 5.1 — 15.4.4.12 Array.prototype.splice (start, deleteCount [ , item1 [ , item2 [ , … ] ] ] )
+rev1/x15.4.4.15.html;rev1/Редакция_5.1_15.4.4.15_Array.prototype.lastIndexOf_searchElement_fromIndex.xlsx;Редакция 5.1 — 15.4.4.15 Array.prototype.lastIndexOf ( searchElement [ , fromIndex ] )
+rev1/x15.5.4.14.html;rev1/Редакция_5.1_15.5.4.14_String.prototype.split_separator_limit.xlsx;Редакция 5.1 — 15.5.4.14 String.prototype.split (separator, limit)
+rev1/x15.5.4.9.html;rev1/Редакция_5.1_15.5.4.9_String.prototype.localeCompare_that.xlsx;Редакция 5.1 — 15.5.4.9 String.prototype.localeCompare (that)
+rev1/x7.8.4.html;rev1/Редакция_5.1_7.8.4_Строковые_литералы.xlsx;Редакция 5.1 — 7.8.4 Строковые литералы
+x1.html;1_Область_применения.xlsx;1 Область применения
+x10.html;10_Исполняемый_код_и_контексты_исполнения.xlsx;10 Исполняемый код и контексты исполнения
+x11.html;11_Выражения.xlsx;11 Выражения
+x12.html;12_Инструкции.xlsx;12 Инструкции
+x13.html;13_Определение_функции.xlsx;13 Определение функции
+x14.html;14_Программа.xlsx;14 Программа
+x15.1.html;15.1_The_Global_Object.xlsx;15.1 The Global Object
+x15.10.html;15.10_Объекты_RegExp_регулярные_выражения.xlsx;15.10 Объекты RegExp (регулярные выражения)
+x15.11.html;15.11_Объекты_Error.xlsx;15.11 Объекты Error
+x15.12.html;15.12_Объект_JSON.xlsx;15.12 Объект JSON
+x15.2.html;15.2_Объекты_Object.xlsx;15.2 Объекты Object
+x15.3.html;15.3_Объекты_Function.xlsx;15.3 Объекты Function
+x15.4.html;15.4_Объекты_Array.xlsx;15.4 Объекты Array
+x15.5.html;15.5_Объекты_String.xlsx;15.5 Объекты String
+x15.6.html;15.6_Объекты_Boolean.xlsx;15.6 Объекты Boolean
+x15.7.html;15.7_Объекты_Number.xlsx;15.7 Объекты Number
+x15.8.html;15.8_Объект_Math.xlsx;15.8 Объект Math
+x15.9.html;15.9_Объекты_Date.xlsx;15.9 Объекты Date
+x15.html;15_Стандартные_встроенные_объекты_ECMAScript.xlsx;15 Стандартные встроенные объекты ECMAScript
+x16.html;16_Ошибки.xlsx;16 Ошибки
+x2.html;2_Соответствие_стандарту.xlsx;2 Соответствие стандарту
+x3.html;3_Нормативно-справочные_материалы.xlsx;3 Нормативно-справочные материалы
+x4.html;4_Общий_обзор.xlsx;4 Общий обзор
+x5.html;5_Соглашения_о_наименованиях.xlsx;5 Соглашения о наименованиях
+x6.html;6_Исходный_текст.xlsx;6 Исходный текст
+x7.html;7_Лексические_соглашения.xlsx;7 Лексические соглашения
+x8.html;8_Типы.xlsx;8 Типы
+x9.html;9_Преобразование_и_проверка_типов.xlsx;9 Преобразование и проверка типов

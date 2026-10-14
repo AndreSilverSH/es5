@@ -36,4 +36,9 @@
 
    [3]: https://github.com/iliakan/es5/pulls
 
+# Выгрузки в Excel
+
+В каталоге [`xlsx/`](xlsx/) находятся версии HTML-документов в формате XLSX. Один исходный HTML соответствует одной книге; имена книг описывают содержимое, а исходники и новые имена сопоставлены в [`xlsx/manifest.csv`](xlsx/manifest.csv). Структура подпапок сохранена.
+
+Полный набор также собран в папку [`workspace/`](workspace/). [Скачать все файлы одним архивом `workspace.zip`](https://github.com/AndreSilverSH/es5/raw/refs/heads/arena/5bf95a2e-es5/workspace.zip). Инструкция по повторному созданию XLSX находится в [`xlsx/README.md`](xlsx/README.md).
 
