@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Детский сад в парковой зоне — концепция унификации</title>
+<style>
+:root{
+  --paper:#f4f1e8;
+  --paper-2:#ece7da;
+  --ink:#15221d;
+  --ink-2:#3d4b44;
+  --muted:#6f7b73;
+  --forest:#1c3a2e;
+  --forest-2:#2a5541;
+  --moss:#7d9257;
+  --line:#d6cdb8;
+  --red:#c63c2f;
+  --yellow:#e8ac24;
+  --green:#2e6b4f;
+  --teal:#3aa79a;
+  --blue:#2b5ca8;
+  --magenta:#b8447f;
+  --radius:14px;
+  --shadow:0 18px 50px rgba(21,34,29,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Inter","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--forest-2)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 34px}
+.narrow{max-width:860px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;background:rgba(244,241,232,.86);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+}
+.topbar .wrap{display:flex;align-items:center;gap:22px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em;font-size:14px}
+.brand .dot{width:11px;height:11px;border-radius:50%;background:var(--red);box-shadow:14px 0 0 var(--yellow),28px 0 0 var(--green)}
+.brand span{margin-left:34px}
+.topnav{display:flex;gap:18px;margin-left:auto;flex-wrap:wrap}
+.topnav a{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:6px 0;border-bottom:1px solid transparent}
+.topnav a:hover{color:var(--ink);border-color:var(--ink)}
+@media (max-width:900px){.topnav{display:none}}
+
+/* ---------- cover ---------- */
+.cover{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;background:#132019}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.92}
+.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,16,.55) 0%,rgba(10,20,16,.05) 35%,rgba(10,20,16,.82) 100%)}
+.cover .inner{position:relative;z-index:2;padding:64px 0 46px;color:#fff;width:100%}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#dfe7d8;margin-bottom:22px}
+.kicker i{display:block;width:34px;height:1px;background:#dfe7d8}
+.cover h1{font-size:clamp(34px,5.4vw,68px);line-height:1.02;margin:0 0 18px;letter-spacing:-.02em;font-weight:700;max-width:15ch}
+.cover h1 em{font-style:normal;color:#f0c454}
+.cover p.lead{font-size:clamp(16px,1.5vw,20px);max-width:62ch;color:#e7ede4;margin:0 0 30px}
+.cover .meta{display:flex;gap:40px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.25);padding-top:20px}
+.cover .meta div{font-size:13px;color:#cfd8cc}
+.cover .meta b{display:block;color:#fff;font-size:15px;font-weight:600;margin-bottom:2px}
+
+/* ---------- sections ---------- */
+section{padding:76px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:grid;grid-template-columns:96px 1fr;gap:26px;margin-bottom:40px}
+.sec-num{font-size:13px;letter-spacing:.12em;color:var(--muted);padding-top:10px;border-top:2px solid var(--ink)}
+h2{font-size:clamp(26px,3.1vw,40px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em;font-weight:700}
+h2 .sub{display:block;font-size:15px;letter-spacing:.02em;font-weight:500;color:var(--muted);margin-top:10px;text-transform:none}
+h3{font-size:21px;margin:0 0 10px;letter-spacing:-.01em}
+h4{font-size:15px;margin:0 0 6px;letter-spacing:.01em}
+p{margin:0 0 14px}
+.lead{font-size:19px;line-height:1.55;color:var(--ink-2)}
+.small{font-size:13.5px;color:var(--muted)}
+.mono{font-variant-numeric:tabular-nums}
+
+/* ---------- blocks ---------- */
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:980px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr}.sec-head{grid-template-columns:1fr;gap:8px}.wrap{padding:0 20px}}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.card.tint{background:var(--paper-2);border-color:#ddd3bd}
+.card.dark{background:var(--forest);color:#eaf0e6;border-color:var(--forest)}
+.card.dark h3,.card.dark h4{color:#fff}
+.card.dark .small{color:#b9c8bb}
+
+.stat{font-size:40px;line-height:1;font-weight:700;letter-spacing:-.03em;margin:0 0 6px}
+.stat small{font-size:15px;font-weight:500;color:var(--muted);letter-spacing:0}
+.card.dark .stat small{color:#a9bcae}
+
+.note{border-left:3px solid var(--yellow);background:#fbf6e7;padding:18px 22px;border-radius:0 10px 10px 0;margin:22px 0;font-size:15px}
+.note b{color:#7a5a10}
+.warn{border-left:3px solid var(--red);background:#fbeeec;padding:18px 22px;border-radius:0 10px 10px 0;margin:22px 0;font-size:15px}
+.ok{border-left:3px solid var(--green);background:#edf4ef;padding:18px 22px;border-radius:0 10px 10px 0;margin:22px 0;font-size:15px}
+
+ul.clean{list-style:none;padding:0;margin:0}
+ul.clean li{position:relative;padding:0 0 0 20px;margin-bottom:10px;font-size:15px}
+ul.clean li:before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--moss)}
+ol.num{padding-left:0;list-style:none;counter-reset:n;margin:0}
+ol.num li{counter-increment:n;position:relative;padding-left:38px;margin-bottom:16px}
+ol.num li:before{content:counter(n);position:absolute;left:0;top:0;width:25px;height:25px;border:1px solid var(--ink);border-radius:50%;font-size:12px;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+
+/* ---------- figures ---------- */
+figure{margin:0}
+figure img{border-radius:10px;border:1px solid var(--line);width:100%}
+figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.45}
+figure .tag{display:inline-block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:#fff;padding:3px 8px;border-radius:3px;margin-bottom:8px}
+.fig-wide img{border-radius:14px}
+.shot{position:relative}
+.shot .badge{position:absolute;top:12px;left:12px;background:rgba(21,34,29,.86);color:#fff;font-size:11px;letter-spacing:.08em;padding:5px 10px;border-radius:4px;backdrop-filter:blur(6px)}
+.shot .badge.warnb{background:rgba(198,60,47,.92)}
+.shot .cap{font-size:12.5px;color:var(--muted);margin-top:9px}
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid #e6dfcd;vertical-align:top}
+th{background:var(--paper-2);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+
+/* ---------- palette ---------- */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:18px 0}
+@media (max-width:800px){.swatches{grid-template-columns:repeat(3,1fr)}}
+.sw{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.sw .chip{height:82px}
+.sw .txt{padding:9px 11px;font-size:11.5px;line-height:1.35;color:var(--ink-2)}
+.sw .txt b{display:block;font-size:12.5px;color:var(--ink)}
+.sw .txt span{color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* ---------- rules ---------- */
+.rule{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.rule .rn{font-size:12px;letter-spacing:.1em;color:var(--muted);padding-top:4px}
+.rule h4{font-size:17px}
+.rule p{margin:0;font-size:14.5px;color:var(--ink-2)}
+
+/* ---------- plan svg ---------- */
+.figbox{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.figbox svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin-top:12px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:7px;vertical-align:-2px;border:1px solid rgba(0,0,0,.12)}
+
+/* ---------- TOC ---------- */
+.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:34px 0 0}
+.toc a{background:#fff;padding:18px 20px;text-decoration:none;color:var(--ink);display:block;transition:background .15s}
+.toc a:hover{background:var(--paper-2)}
+.toc .n{font-size:11px;color:var(--muted);letter-spacing:.1em}
+.toc .t{font-weight:600;font-size:15px;margin-top:4px}
+@media (max-width:800px){.toc{grid-template-columns:1fr 1fr}}
+
+/* ---------- misc ---------- */
+.tagrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 0}
+.pill{font-size:11.5px;letter-spacing:.04em;border:1px solid var(--line);border-radius:100px;padding:4px 11px;color:var(--ink-2);background:#fff}
+.pill.red{border-color:#e7b7b1;background:#fbeeec;color:#8c2c21}
+.pill.yel{border-color:#ecd48f;background:#fbf6e7;color:#7a5a10}
+.pill.grn{border-color:#b9d0c1;background:#edf4ef;color:#22553d}
+
+.quote{font-family:Georgia,"Times New Roman",serif;font-size:23px;line-height:1.42;color:var(--forest);border-left:3px solid var(--yellow);padding:6px 0 6px 26px;margin:30px 0;max-width:900px}
+.footer{padding:56px 0 80px;color:var(--muted);font-size:13px}
+.footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--ink);color:#fff;text-decoration:none;border:0;border-radius:100px;padding:11px 20px;font-size:13px;letter-spacing:.02em;cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--forest-2)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+
+@media print{
+  @page{size:A4;margin:14mm}
+  body{background:#fff;font-size:10.5pt}
+  .topbar,.noprint{display:none!important}
+  .cover{min-height:0;height:250mm;page-break-after:always}
+  section{padding:22px 0;break-inside:auto}
+  .card,figure,.rule,table,.figbox{break-inside:avoid}
+  h2,h3,h4{break-after:avoid}
+  .wrap{max-width:none;padding:0}
+  .grid{gap:12px}
+  a{color:inherit;text-decoration:none}
+  .toc{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><i class="dot"></i><span>Детский сад в парке · концепция</span></div>
+    <nav class="topnav">
+      <a href="#diagnos">Диагноз</a>
+      <a href="#scheme">Схема</a>
+      <a href="#program">Программа</a>
+      <a href="#offer">Предложения</a>
+      <a href="#road">План</a>
+      <a href="#viz">Визуализации</a>
+      <a href="#promptkit">Каркас</a>
+    </nav>
+  </div>
+</div>
+
+<header class="cover">
+  <img src="assets/img/03-green-roof-day.jpg" alt="Общий вид детского сада в парковой зоне">
+  <div class="inner">
+    <div class="wrap">
+      <div class="kicker"><i></i> Архитектурная концепция · рабочая версия для обсуждения</div>
+      <h1>Детский сад<br>в парковой зоне.<br><em>Одна схема</em> вместо шести картинок</h1>
+      <p class="lead">Разбор восьми изображений, единый архитектурный язык, планировочная схема, функциональная программа и пакет предложений — что оставить, что убрать и в каком порядке доводить проект.</p>
+      <div class="meta">
+        <div><b>Объект</b>ДОУ в парковой зоне, 12 групп</div>
+        <div><b>Стадия</b>Концепция / предпроектный анализ</div>
+        <div><b>Дата</b>19 октября 2026</div>
+        <div><b>Материалы</b>8 изображений, 3 стилистики</div>
+        <div><b>Статус</b>К обсуждению с заказчиком</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ 00 SUMMARY ============ -->
+<section id="summary">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">00 / Резюме</div>
+      <div>
+        <h2>Коротко: что происходит с проектом<span class="sub">Три разных объекта на одном участке — и ни один из них не доведён до схемы</span></h2>
+      </div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card dark">
+        <div class="stat">8<small> изображений</small></div>
+        <p class="small">Одна и та же площадка показана в трёх визуальных языках и двух сезонах. Заказчик видит «красиво», проектировщик — три несводимых объекта.</p>
+      </div>
+      <div class="card dark">
+        <div class="stat">2–3<small> этажа</small></div>
+        <p class="small">Высота и количество ярусов арок меняются от кадра к кадру. Нет единого модуля — значит, нет и рабочей документации.</p>
+      </div>
+      <div class="card dark">
+        <div class="stat">×4<small> масштаб</small></div>
+        <p class="small">Показанный «квартал» в 3–4 раза больше реального здания сада на 220–240 мест. Это ключевое противоречие проекта.</p>
+      </div>
+    </div>
+
+    <p class="lead" style="margin-top:34px">Изображения сделаны как <b>атмосферные картинки</b>, а не как проектная подача. У них нет общей геометрии, общей палитры и общей типологии. Ниже — что с этим делать: сначала зафиксировать <b>одну архитектурную схему</b> (план, модуль, палитра, кровля, двор), затем на её основе пересобрать визуализации. Тогда каждая следующая картинка будет уточнять проект, а не создавать новый.</p>
+
+    <div class="toc">
+      <a href="#diagnos"><div class="n">01</div><div class="t">Диагноз по изображениям</div></a>
+      <a href="#principles"><div class="n">02</div><div class="t">Что сохраняем</div></a>
+      <a href="#scheme"><div class="n">03</div><div class="t">Единая схема</div></a>
+      <a href="#program"><div class="n">04</div><div class="t">Функциональная программа</div></a>
+      <a href="#offer"><div class="n">05</div><div class="t">Предложения</div></a>
+      <a href="#road"><div class="n">06</div><div class="t">План внедрения</div></a>
+      <a href="#viz"><div class="n">07</div><div class="t">Стандарт визуализации</div></a>
+      <a href="#appendix"><div class="n">08</div><div class="t">Нормы и вопросы</div></a>
+      <a href="#promptkit"><div class="n">09</div><div class="t">Каркас для рендеров</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 DIAGNOSIS ============ -->
+<section id="diagnos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">01 / Диагноз</div>
+      <div>
+        <h2>Что именно не сходится<span class="sub">Разбор по кадрам: геометрия, масштаб, палитра, кровля, двор, транспорт, качество подачи</span></h2>
+        <p class="lead">Ниже — восемь изображений в том виде, в котором они пришли, с пометками о том, что в каждом кадре работает, а что противоречит остальным.</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <figure class="shot">
+        <span class="badge">01 · улица, закат</span>
+        <img src="assets/img/01-sunset-arcade.jpg" alt="Аркада главного фасада на закате">
+        <figcaption>Аркада с суперграфикой и навесами. Сильный образ, но по масштабу — <b>торговая улица</b>: арки высотой с этаж, витрины от пола, тенты, «магазинные» акценты. Входов в группы не читается.</figcaption>
+      </figure>
+      <figure class="shot">
+        <span class="badge">02 · двор, день</span>
+        <img src="assets/img/02-courtyard-day.jpg" alt="Внутренний двор днём">
+        <figcaption>Лучший кадр по атмосфере: сосны, мощение, детская площадка. Но слева — <b>три яруса арок</b>, в глубине — два. Площадка одна и «дворовая», без возрастного зонирования и тени.</figcaption>
+      </figure>
+      <figure class="shot">
+        <span class="badge">03 · аэро, день</span>
+        <img src="assets/img/03-green-roof-day.jpg" alt="Аэровид с зелёной кровлей">
+        <figcaption>Зелёная кровля, солнечные панели, парковка по фронту, грузовики во дворе. Красиво, но <b>все сценарии сразу</b>: СЭС, газоны, террасы, световые фонари — на одной кровле без иерархии.</figcaption>
+      </figure>
+      <figure class="shot">
+        <span class="badge warnb">04 · аэро, золотой час</span>
+        <img src="assets/img/04-green-roof-golden.jpg" alt="Аэровид в золотой час">
+        <figcaption>Фактически <b>другой проект</b>: иная пластика фасадов, стеклянная пирамида у входа, лес вплотную к стене. Совпадает только каре.</figcaption>
+      </figure>
+      <figure class="shot">
+        <span class="badge warnb">05 · двор, водяной знак</span>
+        <img src="assets/img/05-courtyard-watermark.jpg" alt="Двор с водяным знаком генератора">
+        <figcaption>Тот же ракурс, что 02, но <b>с водяным знаком сервиса</b> и другим светом. В таком виде не годится ни для заказчика, ни для экспертизы.</figcaption>
+      </figure>
+      <figure class="shot">
+        <span class="badge">06 · улица, дубль</span>
+        <img src="assets/img/06-sunset-arcade-b.jpg" alt="Аркада, повторный кадр">
+        <figcaption>Почти дубль 01 с изменёнными навесами. <b>Дубликаты в подборке</b> — признак того, что нет утверждённого опорного ракурса.</figcaption>
+      </figure>
+    </div>
+
+    <div class="note" style="margin-top:34px">
+      <b>Замечание по файлам.</b> В подборке есть полный дубликат (<span class="mono">a_Улучши_изображение_в.webp</span> и <span class="mono">a_Улучши_изображение_в-1.webp</span> совпадают побайтно), а два кадра несут логотип генератора изображений. Перед показом заказчику подборку нужно почистить — это вопрос доверия к материалу.
+    </div>
+
+    <h3 style="margin-top:52px">Диагноз по группам</h3>
+    <div class="grid g2" style="margin-top:18px">
+
+      <div class="card">
+        <h4>A. Архитектурный язык</h4>
+        <ol class="num" style="margin-top:12px">
+          <li><b>Три стилистики.</b> Кадры 01/06 — «итальянская аркада с суперграфикой»; 03/04 — «эко-квартал с зелёной кровлей»; 04 — «аквапарк со стеклянным куполом». Общего языка нет.</li>
+          <li><b>Радуга вместо иерархии.</b> На одном фасаде 6–7 акцентных цветов равной силы. Цвет ничего не обозначает — он просто раскрашивает. Для детского сада это допустимо, для архитектуры — нет.</li>
+          <li><b>Арка как штамп.</b> Арка применяется и на улице, и во дворе, и на кровле, с разным шагом и высотой. Приём перестаёт быть приёмом.</li>
+          <li><b>Нет входов.</b> Не читаются 12 групповых входов, главный вход и хозяйственный въезд. Вход — единственное, что должно быть видно на фасаде сада.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h4>B. Масштаб и типология</h4>
+        <ol class="num" style="margin-top:12px">
+          <li><b>Здание не по программе.</b> Для 220–240 мест нужно 3,0–3,5 тыс. м² общей площади; показанное каре — в разы больше. Либо это не сад, либо это «детский квартал» с другими функциями.</li>
+          <li><b>Высота «плывёт».</b> От кадра к кадру 2 или 3 этажа. Нет единой высоты этажа и карниза.</li>
+          <li><b>Витрины в пол.</b> Стекло 0–3,6 м на детском фасаде — это перегрев, инсоляция, безопасность и мытьё. Нужны подоконная часть, защитные ограждения, солнцезащита.</li>
+          <li><b>Кровля как сцена.</b> Террасы, по которым гуляют взрослые, — на детском учреждении это требует ограждений 1,2 м, эвакуации и расчёта нагрузки; на картинках этого нет.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h4>C. Кровля, вода, инженерия</h4>
+        <ol class="num" style="margin-top:12px">
+          <li><b>Всё сразу.</b> Зелёная кровля + СЭС + террасы + зенитные фонари на одном скате. Панели затеняются объёмами и деревьями — работать не будут.</li>
+          <li><b>Вода на кровле.</b> На кадрах 01/06 читается бассейн на крыше; у входа — стеклянная пирамида «с водой». Для ДОУ это спорное решение: безопасность, санитария, эксплуатация. Нужно решение — оставляем или убираем.</li>
+          <li><b>Нет технического контура.</b> Не показаны венткамеры, ИТП, место для наружных блоков, доступ обслуживания к кровле.</li>
+          <li><b>Зелёные стены</b> нависают над окнами групп: затемнение, влага, насекомые, обслуживание. Нужна регламентация: не выше 1-го этажа или на глухих участках.</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h4>D. Двор, транспорт, безопасность</h4>
+        <ol class="num" style="margin-top:12px">
+          <li><b>Двор перегружен.</b> Перголы, павильоны, огороды, пруды, площадки, заборчики — одновременно. Свободного газона для бега почти нет.</li>
+          <li><b>Деревья вплотную.</b> Сосны в 3–5 м от стены: корни, хвоя, ветровал, затенение групповых. На кадре 04 лес стоит практически на отмостке.</li>
+          <li><b>Машины у фасада.</b> Парковка по фронту, грузовики во дворе, нет разделения потоков «дети / родители / хозяйство».</li>
+          <li><b>Нет периметра.</b> Ограждение, КПП, один контролируемый вход — обязательные элементы, на картинках их нет.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="warn">
+      <b>Главный вывод.</b> Дело не в «недоработанности картинок». Дело в том, что <b>не принято несколько проектных решений</b>: вместимость и площадь, этажность, наличие воды, состав кровли, сценарий двора. Пока они не приняты, любая следующая визуализация будет снова «другой».
+    </div>
+  </div>
+</section>
+<!-- ============ 02 PRINCIPLES ============ -->
+<section id="principles">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">02 / Опора</div>
+      <div>
+        <h2>Что в проекте уже хорошо<span class="sub">Пять качеств, которые нужно защитить, а не перерисовать</span></h2>
+      </div>
+    </div>
+
+    <div class="grid g4" style="align-items:stretch">
+      <div class="card"><h4>Каре</h4><p class="small">Замкнутый периметр — правильная типология для участка с ветрами и шумом. Двор защищён, фасады получают свет, граница участка читается.</p></div>
+      <div class="card"><h4>Аркада</h4><p class="small">Ритм арок — сильный, узнаваемый приём. Он даёт тень, масштаб и «детскую» пластику. Его нужно не менять, а нормировать.</p></div>
+      <div class="card"><h4>Цвет</h4><p class="small">Цветные окна и акценты — то, за что проект запоминают. Задача не убрать цвет, а выстроить его иерархию.</p></div>
+      <div class="card"><h4>Зелёная кровля</h4><p class="small">Эксплуатируемая кровля с газоном и СЭС — реальное конкурентное преимущество и экологическая повестка.</p></div>
+    </div>
+    <div class="grid g4" style="margin-top:22px">
+      <div class="card"><h4>Парковый контекст</h4><p class="small">Сосны и клёны вокруг — главный «материал» участка. Их нужно сохранить и вписать в сценарий прогулок.</p></div>
+      <div class="card"><h4>Двор как комната</h4><p class="small">Идея «двор — это ещё одно помещение группы» уже заложена. Её надо довести до зонирования.</p></div>
+      <div class="card"><h4>Два этажа</h4><p class="small">Малая этажность — правильный выбор для дошкольников: эвакуация, вертикальные связи, безопасность.</p></div>
+      <div class="card"><h4>Масштаб деталей</h4><p class="small">Скамьи, ступени, ниши, низкие окна — человеческий масштаб уже присутствует в кадрах 02 и 05.</p></div>
+    </div>
+
+    <div class="quote">Задача концепции — не нарисовать ещё одну красивую картинку, а сделать так, чтобы все следующие картинки были об одном и том же здании.</div>
+  </div>
+</section>
+
+<!-- ============ 03 SCHEME ============ -->
+<section id="scheme">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">03 / Схема</div>
+      <div>
+        <h2>Единая схема проекта<span class="sub">План, модуль, палитра, кровля, двор, транспорт — шесть решений, которые связывают всё остальное</span></h2>
+        <p class="lead">Схема ниже — не финальный проект, а <b>рамка</b>. Внутри неё можно менять размеры и отделку, но нельзя менять принцип: каре, два этажа, аркадный модуль, ограниченная палитра, зонированная кровля, разделённые потоки.</p>
+      </div>
+    </div>
+
+    <h3>3.1 Генплан и функциональное зонирование</h3>
+    <div class="figbox" style="margin-top:16px">
+      <svg viewBox="0 0 1000 660" role="img" aria-label="Схема генплана детского сада">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c63c2f"/>
+          </marker>
+          <marker id="arK" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#5c665f"/>
+          </marker>
+        </defs>
+        <style>
+          .lbl{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;fill:#3d4b44}
+          .lbl-s{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:9.5px;fill:#5c665f}
+          .cap{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:11px;fill:#15221d}
+          .cap-b{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:10px;font-weight:700;fill:#15221d;letter-spacing:.05em}
+        </style>
+
+        <rect x="52" y="26" width="896" height="556" rx="4" fill="#eef2e6" stroke="#9fae8c" stroke-width="1.4" stroke-dasharray="7 5"/>
+        <text x="66" y="46" class="lbl-s">граница участка · 1,55 га</text>
+
+        <rect x="52" y="582" width="896" height="46" fill="#e7e3d8"/>
+        <line x1="52" y1="605" x2="948" y2="605" stroke="#fff" stroke-width="2" stroke-dasharray="16 12"/>
+        <text x="66" y="618" class="lbl-s">улица · остановка · пешеходный бульвар</text>
+
+        <rect x="250" y="140" width="540" height="380" fill="#fffdf7" stroke="#15221d" stroke-width="1.6"/>
+        <rect x="328" y="208" width="384" height="244" fill="#e7eddd" stroke="#15221d" stroke-width="1.2"/>
+
+        <rect x="455" y="452" width="90" height="68" fill="#f4f1e8" stroke="#15221d" stroke-width="1.2"/>
+        <text x="500" y="480" text-anchor="middle" class="lbl-s">проход</text>
+        <text x="500" y="493" text-anchor="middle" class="lbl-s">во двор</text>
+
+        <text x="520" y="172" text-anchor="middle" class="cap-b">СЕВЕРНОЕ КРЫЛО · ЯСЛИ И МЛАДШИЕ ГРУППЫ</text>
+        <text x="352" y="486" text-anchor="middle" class="cap-b">ОБЩЕСТВЕННЫЙ ЦЕНТР</text>
+        <text x="352" y="501" text-anchor="middle" class="lbl-s">юго-запад · зал, бассейн</text>
+        <text x="668" y="486" text-anchor="middle" class="cap-b">КРУЖКИ · ПИЩЕБЛОК</text>
+        <text x="668" y="501" text-anchor="middle" class="lbl-s">юго-восток · студии, хозблок</text>
+        <text transform="translate(292,330) rotate(-90)" text-anchor="middle" class="cap-b">ЗАПАД · ГРУППЫ</text>
+        <text transform="translate(753,330) rotate(90)" text-anchor="middle" class="cap-b">ВОСТОК · КРУЖКИ</text>
+
+        <rect x="496" y="208" width="48" height="244" fill="#f2efe3"/>
+        <rect x="328" y="316" width="384" height="44" fill="#f2efe3"/>
+
+        <rect x="340" y="220" width="86" height="92" rx="8" fill="#cfe7e2" stroke="#3aa79a" stroke-width="1.2"/>
+        <text x="383" y="262" text-anchor="middle" class="cap">ясли</text>
+        <text x="383" y="277" text-anchor="middle" class="lbl-s">1,5–3</text>
+
+        <rect x="614" y="220" width="86" height="92" rx="8" fill="#d5e3cd" stroke="#2e6b4f" stroke-width="1.2"/>
+        <text x="657" y="262" text-anchor="middle" class="cap">младшие</text>
+        <text x="657" y="277" text-anchor="middle" class="lbl-s">3–4</text>
+
+        <rect x="340" y="364" width="86" height="80" rx="8" fill="#f7e6b8" stroke="#e8ac24" stroke-width="1.2"/>
+        <text x="383" y="402" text-anchor="middle" class="cap">средние</text>
+        <text x="383" y="417" text-anchor="middle" class="lbl-s">4–5</text>
+
+        <rect x="614" y="364" width="86" height="80" rx="8" fill="#f0cfc9" stroke="#c63c2f" stroke-width="1.2"/>
+        <text x="657" y="402" text-anchor="middle" class="cap">старшие</text>
+        <text x="657" y="417" text-anchor="middle" class="lbl-s">5–7</text>
+
+        <circle cx="520" cy="338" r="46" fill="#fffdf7" stroke="#e8ac24" stroke-width="1.6"/>
+        <text x="520" y="334" text-anchor="middle" class="cap">площадь</text>
+        <text x="520" y="348" text-anchor="middle" class="lbl-s">амфитеатр</text>
+
+        <g fill="#c63c2f">
+          <circle cx="370" cy="212" r="5"/><circle cx="430" cy="212" r="5"/><circle cx="610" cy="212" r="5"/><circle cx="670" cy="212" r="5"/>
+          <circle cx="322" cy="270" r="5"/><circle cx="322" cy="390" r="5"/>
+          <circle cx="718" cy="270" r="5"/><circle cx="718" cy="390" r="5"/>
+        </g>
+        <text x="370" y="200" text-anchor="middle" class="lbl-s" fill="#c63c2f">входы в группы</text>
+
+        <line x1="500" y1="568" x2="500" y2="530" stroke="#c63c2f" stroke-width="2.4" marker-end="url(#ar)"/>
+        <text x="512" y="560" class="cap" fill="#c63c2f">главный вход</text>
+
+        <rect x="88" y="356" width="146" height="196" rx="6" fill="#e9e6dc" stroke="#b9b2a0" stroke-dasharray="4 4"/>
+        <text x="161" y="374" text-anchor="middle" class="lbl-s">парковка 20 м/м</text>
+        <g fill="#cfcabd" stroke="#a9a290" stroke-width=".8">
+          <rect x="98" y="386" width="52" height="22" rx="4"/><rect x="98" y="418" width="52" height="22" rx="4"/>
+          <rect x="98" y="450" width="52" height="22" rx="4"/><rect x="98" y="482" width="52" height="22" rx="4"/>
+          <rect x="176" y="386" width="52" height="22" rx="4"/><rect x="176" y="418" width="52" height="22" rx="4"/>
+          <rect x="176" y="450" width="52" height="22" rx="4"/><rect x="176" y="482" width="52" height="22" rx="4"/>
+        </g>
+        <rect x="88" y="522" width="146" height="30" rx="4" fill="#dfe6ee" stroke="#2b5ca8" stroke-dasharray="4 3"/>
+        <text x="161" y="541" text-anchor="middle" class="lbl-s" fill="#2b5ca8">drop-off · 5 мест</text>
+
+        <rect x="806" y="64" width="128" height="72" rx="6" fill="#ece7da" stroke="#b9b2a0" stroke-dasharray="4 4"/>
+        <text x="870" y="92" text-anchor="middle" class="lbl-s">хозяйственный</text>
+        <text x="870" y="105" text-anchor="middle" class="lbl-s">двор · загрузка</text>
+        <line x1="860" y1="140" x2="860" y2="140" stroke="#5c665f" stroke-width="2"/>
+        <path d="M870,140 L870,146" stroke="#5c665f" stroke-width="2" marker-end="url(#arK)"/>
+
+        <g fill="#c9d8b6" stroke="#8fa778" stroke-width="1">
+          <circle cx="120" cy="110" r="13"/><circle cx="176" cy="150" r="11"/><circle cx="218" cy="96" r="10"/>
+          <circle cx="120" cy="230" r="12"/><circle cx="180" cy="278" r="10"/><circle cx="126" cy="320" r="9"/>
+          <circle cx="824" cy="196" r="12"/><circle cx="880" cy="238" r="10"/><circle cx="890" cy="330" r="12"/>
+          <circle cx="846" cy="410" r="9"/><circle cx="884" cy="470" r="11"/>
+          <circle cx="300" cy="80" r="11"/><circle cx="400" cy="60" r="10"/><circle cx="560" cy="70" r="12"/>
+          <circle cx="700" cy="66" r="10"/><circle cx="770" cy="92" r="9"/>
+          <circle cx="100" cy="476" r="0"/>
+        </g>
+
+        <g transform="translate(908,498)">
+          <circle r="15" fill="#fffdf7" stroke="#15221d" stroke-width="1"/>
+          <path d="M0,-9 L4,4 L0,1 L-4,4 Z" fill="#15221d"/>
+          <text y="26" text-anchor="middle" class="lbl-s">N</text>
+        </g>
+
+        <g transform="translate(560,128)">
+          <line x1="0" y1="0" x2="100" y2="0" stroke="#15221d" stroke-width="2"/>
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#15221d" stroke-width="2"/>
+          <line x1="50" y1="-4" x2="50" y2="4" stroke="#15221d" stroke-width="2"/>
+          <line x1="100" y1="-4" x2="100" y2="4" stroke="#15221d" stroke-width="2"/>
+          <text x="0" y="-10" class="lbl-s">0</text><text x="44" y="-10" class="lbl-s">25</text><text x="92" y="-10" class="lbl-s">50 м</text>
+        </g>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#fffdf7"></i>здание, 2 этажа</span>
+        <span><i style="background:#e7eddd"></i>двор-парк 3 000 м²</span>
+        <span><i style="background:#cfe7e2"></i>возрастные кластеры</span>
+        <span><i style="background:#e9e6dc"></i>парковка</span>
+        <span><i style="background:#dfe6ee"></i>drop-off</span>
+      </div>
+    </div>
+    <p class="small" style="margin-top:12px">Схема не в масштабе; пропорции уточняются после принятия вместимости. Ориентир: участок 1,55 га, пятно застройки ≈ 3 900 м² (при сценарии «детский квартал» — до 6 900 м²).</p>
+
+    <h3 style="margin-top:52px">3.2 Разрез: два этажа, аркада, кровля</h3>
+    <div class="figbox" style="margin-top:16px">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Разрез здания">
+        <style>
+          .t{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:11px;fill:#15221d}
+          .ts{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:9.5px;fill:#5c665f}
+          .dim{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:10px;fill:#c63c2f}
+        </style>
+        <rect x="0" y="0" width="1000" height="400" fill="#f8f6ef"/>
+
+        <g transform="translate(150,64)">
+          <circle r="20" fill="#f3cb62"/>
+          <g stroke="#f3cb62" stroke-width="2" stroke-linecap="round">
+            <line x1="0" y1="-30" x2="0" y2="-40"/><line x1="21" y1="-21" x2="28" y2="-28"/>
+            <line x1="30" y1="0" x2="40" y2="0"/><line x1="21" y1="21" x2="28" y2="28"/>
+            <line x1="0" y1="30" x2="0" y2="40"/><line x1="-21" y1="21" x2="-28" y2="28"/>
+            <line x1="-30" y1="0" x2="-40" y2="0"/><line x1="-21" y1="-21" x2="-28" y2="-28"/>
+          </g>
+          <text y="56" text-anchor="middle" class="ts">лето, 10:00</text>
+          <text y="70" text-anchor="middle" class="ts" fill="#a97e12">инсоляция ≥ 2 ч</text>
+        </g>
+        <line x1="166" y1="82" x2="300" y2="212" stroke="#e8b93c" stroke-width="1.6" stroke-dasharray="7 6"/>
+        
+
+        <line x1="30" y1="310" x2="970" y2="310" stroke="#15221d" stroke-width="1.4"/>
+        <rect x="30" y="310" width="940" height="26" fill="#e7e3d8"/>
+        <line x1="30" y1="336" x2="970" y2="336" stroke="#cfc8b6"/>
+
+        <rect x="70" y="190" width="240" height="120" fill="#fffdf7" stroke="#15221d" stroke-width="1.4"/>
+        <rect x="70" y="247" width="240" height="7" fill="#d8d1bf"/>
+        <rect x="70" y="190" width="240" height="8" fill="#d8d1bf"/>
+        <rect x="70" y="182" width="240" height="8" fill="#8fae72"/>
+        <g stroke="#5f7f47" stroke-width="1.2">
+          <path d="M84,182 q3,-7 6,0"/><path d="M112,182 q3,-7 6,0"/><path d="M140,182 q3,-7 6,0"/>
+          <path d="M168,182 q3,-7 6,0"/><path d="M196,182 q3,-7 6,0"/><path d="M224,182 q3,-7 6,0"/>
+          <path d="M252,182 q3,-7 6,0"/><path d="M280,182 q3,-7 6,0"/>
+        </g>
+
+        <g fill="#cfe3e0" stroke="#7fa7a2">
+          <rect x="88" y="208" width="44" height="30" rx="2"/><rect x="146" y="208" width="44" height="30" rx="2"/><rect x="204" y="208" width="44" height="30" rx="2"/><rect x="262" y="208" width="30" height="30" rx="2"/>
+          <rect x="88" y="264" width="52" height="38" rx="2"/><rect x="156" y="264" width="52" height="38" rx="2"/>
+        </g>
+        <g stroke="#8fb5ae" stroke-width="1"><line x1="102" y1="208" x2="102" y2="238"/><line x1="160" y1="208" x2="160" y2="238"/><line x1="218" y1="208" x2="218" y2="238"/></g>
+
+        <rect x="316" y="252" width="9" height="58" fill="#e6dfcd" stroke="#15221d" stroke-width="1"/>
+        <rect x="334" y="252" width="9" height="58" fill="#e6dfcd" stroke="#15221d" stroke-width="1"/>
+        <line x1="310" y1="252" x2="343" y2="252" stroke="#15221d" stroke-width="1.4"/>
+
+        <rect x="690" y="190" width="240" height="120" fill="#fffdf7" stroke="#15221d" stroke-width="1.4"/>
+        <rect x="690" y="247" width="240" height="7" fill="#d8d1bf"/>
+        <rect x="690" y="190" width="240" height="8" fill="#d8d1bf"/>
+        <line x1="690" y1="182" x2="930" y2="182" stroke="#15221d" stroke-width="1.2"/>
+        <g stroke="#15221d" stroke-width="1.3">
+          <line x1="694" y1="182" x2="694" y2="164"/><line x1="734" y1="182" x2="734" y2="164"/>
+          <line x1="774" y1="182" x2="774" y2="164"/><line x1="814" y1="182" x2="814" y2="164"/>
+          <line x1="854" y1="182" x2="854" y2="164"/><line x1="894" y1="182" x2="894" y2="164"/><line x1="926" y1="182" x2="926" y2="164"/>
+          <line x1="692" y1="164" x2="928" y2="164"/>
+        </g>
+        <g fill="#8ab0d8" stroke="#2b5ca8" stroke-width="1">
+          <path d="M700,170 l30,-10 l22,4 l-30,10 z"/><path d="M760,174 l30,-10 l22,4 l-30,10 z"/>
+          <path d="M820,170 l28,-9 l20,4 l-28,9 z"/>
+        </g>
+        <text x="810" y="152" class="ts" text-anchor="middle">СЭС + терраса группы</text>
+        <g stroke="#c63c2f" stroke-width="1">
+          <line x1="950" y1="182" x2="950" y2="310"/>
+          <line x1="944" y1="182" x2="956" y2="182"/><line x1="944" y1="310" x2="956" y2="310"/>
+        </g>
+        <text transform="translate(968,246) rotate(90)" text-anchor="middle" class="dim">8,4 м до карниза</text>
+
+        <rect x="657" y="252" width="9" height="58" fill="#e6dfcd" stroke="#15221d" stroke-width="1"/>
+        <rect x="672" y="252" width="9" height="58" fill="#e6dfcd" stroke="#15221d" stroke-width="1"/>
+        <line x1="648" y1="252" x2="681" y2="252" stroke="#15221d" stroke-width="1.4"/>
+
+        <rect x="310" y="304" width="380" height="6" fill="#c9d8b6"/>
+        <ellipse cx="500" cy="308" rx="120" ry="5" fill="#b7c9a2"/>
+        <g>
+          <line x1="392" y1="306" x2="392" y2="250" stroke="#7a5a3a" stroke-width="4"/>
+          <circle cx="392" cy="232" r="26" fill="#9db884"/><circle cx="372" cy="246" r="17" fill="#a9c18f"/><circle cx="412" cy="246" r="17" fill="#a9c18f"/>
+          <line x1="604" y1="306" x2="604" y2="256" stroke="#7a5a3a" stroke-width="4"/>
+          <circle cx="604" cy="238" r="24" fill="#9db884"/><circle cx="586" cy="252" r="15" fill="#a9c18f"/><circle cx="622" cy="252" r="15" fill="#a9c18f"/>
+          <line x1="470" y1="306" x2="470" y2="286" stroke="#7a5a3a" stroke-width="2.5"/>
+          <circle cx="470" cy="278" r="12" fill="#b3c99b"/>
+        </g>
+        <text x="500" y="332" text-anchor="middle" class="ts" fill="#3d4b44">двор-парк · газон 40 % · тень 20 %</text>
+
+        <g stroke="#c63c2f" stroke-width="1">
+          <line x1="56" y1="190" x2="56" y2="310"/>
+          <line x1="50" y1="190" x2="62" y2="190"/><line x1="50" y1="310" x2="62" y2="310"/>
+          <line x1="50" y1="250" x2="62" y2="250"/>
+        </g>
+        <text transform="translate(44,250) rotate(-90)" text-anchor="middle" class="dim">3,6 м</text>
+
+        <g transform="translate(636,310)" fill="#5c665f">
+          <circle cx="0" cy="-26" r="4"/><path d="M0,-22 L0,-10 M0,-10 L-5,0 M0,-10 L5,0 M0,-18 L-5,-12 M0,-18 L5,-12" stroke="#5c665f" stroke-width="2" fill="none"/>
+        </g>
+        <text x="626" y="326" class="ts">1,7 м</text>
+
+        <text x="70" y="372" class="ts">I этаж — групповые и спальни · II этаж — кружки и спальни младших</text>
+        <text x="70" y="388" class="ts">зелёная кровля 45 % площади · эксплуатируемая кровля 20 %</text>
+      </svg>
+    </div>
+    <p class="small" style="margin-top:12px">Разрез показывает главный принцип: <b>высота карниза одна по всему периметру</b>, кровля читается как пятый фасад, а двор работает как «внешняя комната» групп.</p>
+  </div>
+</section>
+<!-- 3.3 facade -->
+<section id="facade" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <h3>3.3 Фасадный модуль: одна арка, три типа</h3>
+    <p class="lead" style="max-width:900px">Вместо «радуги по всему фасаду» — <b>три типа проёма</b> в одном модуле. Тип определяется функцией, цвет — типом. Это даёт разнообразие без хаоса и позволяет собирать любой фасад из одного набора элементов.</p>
+
+    <div class="figbox" style="margin-top:18px">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" role="img" aria-label="Фасадный модуль, три типа проёма">
+        <style>
+          .fl{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;fill:#15221d}
+          .fs{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:9.5px;fill:#5c665f}
+          .fd{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:10px;fill:#c63c2f}
+        </style>
+        <rect x="0" y="0" width="1000" height="470" fill="#f8f6ef"/>
+        <rect x="40" y="100" width="920" height="250" fill="#f2eee4" stroke="#15221d" stroke-width="1.2"/>
+        <rect x="40" y="86" width="920" height="14" fill="#e6dfcd" stroke="#15221d" stroke-width="1.2"/>
+        <g stroke="#cfc6b1" stroke-width="1" stroke-dasharray="4 6">
+          <line x1="360" y1="114" x2="360" y2="350"/><line x1="660" y1="114" x2="660" y2="350"/>
+        </g>
+
+        <!-- TYPE A: window, sill 0.7 m -->
+        <path d="M145,302 L145,257 A55,55 0 0 1 255,257 L255,302 L255,350 L145,350 Z" fill="#f6e3ae" stroke="#e8ac24" stroke-width="6"/>
+        <path d="M151,304 L151,258 A49,49 0 0 1 249,258 L249,304 L249,350 L151,350 Z" fill="#cfe3e0"/>
+        <g stroke="#e8ac24" stroke-width="3">
+          <line x1="200" y1="209" x2="200" y2="350"/>
+          <line x1="151" y1="277" x2="249" y2="277"/>
+        </g>
+        <rect x="151" y="304" width="98" height="46" fill="#e2ded0"/>
+        <line x1="249" y1="304" x2="300" y2="304" stroke="#8c7b4a" stroke-width="1"/>
+        <text x="304" y="301" class="fs" fill="#8c7b4a">подоконник 0,7 м</text>
+        
+        <g stroke="#5c665f" stroke-width="2">
+          <line x1="145" y1="314" x2="255" y2="314"/><line x1="160" y1="314" x2="160" y2="350"/>
+          <line x1="178" y1="314" x2="178" y2="350"/><line x1="196" y1="314" x2="196" y2="350"/>
+          <line x1="214" y1="314" x2="214" y2="350"/><line x1="232" y1="314" x2="232" y2="350"/>
+        </g>
+        <text x="200" y="76" text-anchor="middle" class="fl">Тип A · окно группы</text>
+        <text x="200" y="378" text-anchor="middle" class="fs">ставни · защитное ограждение · наружное затенение</text>
+        <text x="200" y="394" text-anchor="middle" class="fs">≈ 60 % проёмов · проём 2,2 × 1,6 м</text>
+
+        <!-- TYPE B: group entrance -->
+        <path d="M435,350 L435,245 A65,65 0 0 1 565,245 L565,350 Z" fill="#c63c2f" stroke="#8c2c21" stroke-width="1"/>
+        <path d="M449,350 L449,248 A51,51 0 0 1 551,248 L551,350 Z" fill="#f6d7b8"/>
+        <rect x="435" y="286" width="130" height="64" fill="#f0cfc9"/>
+        <g stroke="#8c2c21" stroke-width="2"><line x1="470" y1="350" x2="470" y2="248"/><line x1="530" y1="350" x2="530" y2="248"/></g>
+        <rect x="405" y="172" width="190" height="8" fill="#15221d"/>
+        <line x1="412" y1="180" x2="412" y2="196" stroke="#15221d" stroke-width="2"/>
+        <line x1="588" y1="180" x2="588" y2="196" stroke="#15221d" stroke-width="2"/>
+        <rect x="420" y="350" width="160" height="8" fill="#cfc8b6" stroke="#a9a290"/>
+        <rect x="410" y="358" width="180" height="8" fill="#c5bda9" stroke="#a9a290"/>
+        <g fill="#e8ac24" stroke="#b8860b" stroke-width=".8">
+          <rect x="446" y="338" width="18" height="6" rx="1"/><rect x="446" y="346" width="18" height="6" rx="1"/>
+        </g>
+        <text x="500" y="76" text-anchor="middle" class="fl">Тип B · вход группы</text>
+        <text x="500" y="378" text-anchor="middle" class="fs">навес · пандус · тактильная плитка · цвет = адрес группы</text>
+        <text x="500" y="394" text-anchor="middle" class="fs">≈ 25 % проёмов · 12 входов · проём 1,8 м</text>
+
+        <!-- TYPE C: common hall -->
+        <path d="M725,350 L725,235 A75,75 0 0 1 875,235 L875,350 Z" fill="#2b5ca8" stroke="#1c3f76" stroke-width="1"/>
+        <path d="M735,350 L735,238 A65,65 0 0 1 865,238 L865,350 Z" fill="#dbe6f2"/>
+        <g stroke="#2b5ca8" stroke-width="3">
+          <line x1="766" y1="196" x2="766" y2="350"/><line x1="800" y1="180" x2="800" y2="350"/><line x1="834" y1="196" x2="834" y2="350"/>
+          <line x1="735" y1="286" x2="865" y2="286"/>
+        </g>
+        <g stroke="#8aa5c4" stroke-width="1">
+          <line x1="745" y1="226" x2="745" y2="350"/><line x1="855" y1="226" x2="855" y2="350"/>
+        </g>
+        <text x="800" y="76" text-anchor="middle" class="fl">Тип C · общий блок</text>
+        <text x="800" y="378" text-anchor="middle" class="fs">витраж зала · наружное затенение · ночной свет</text>
+        <text x="800" y="394" text-anchor="middle" class="fs">≈ 15 % проёмов · проём 3,0 × 2,4 м</text>
+
+        <g stroke="#c63c2f" stroke-width="1">
+          <line x1="972" y1="100" x2="972" y2="350"/>
+          <line x1="966" y1="100" x2="978" y2="100"/><line x1="966" y1="350" x2="978" y2="350"/>
+        </g>
+        <text transform="translate(988,225) rotate(-90)" text-anchor="middle" class="fd">3,6 м</text>
+
+        <g stroke="#c63c2f" stroke-width="1">
+          <line x1="145" y1="428" x2="360" y2="428" stroke-dasharray="2 3"/>
+          <line x1="145" y1="420" x2="145" y2="436"/><line x1="360" y1="420" x2="360" y2="436"/>
+        </g>
+        <text x="252" y="422" text-anchor="middle" class="fd">шаг 4,2 м</text>
+
+        <g transform="translate(932,350)">
+          <circle cx="0" cy="-26" r="4" fill="#5c665f"/><path d="M0,-22 L0,-10 M0,-10 L-5,0 M0,-10 L5,0 M0,-18 L-5,-12 M0,-18 L5,-12" stroke="#5c665f" stroke-width="2" fill="none"/>
+        </g>
+        <text x="914" y="366" class="fs">1,7 м</text>
+      </svg>
+      <div class="legend">
+        <span><i style="background:#e8ac24"></i>жёлтый — окна групп</span>
+        <span><i style="background:#c63c2f"></i>красный — входы, навигация</span>
+        <span><i style="background:#2b5ca8"></i>синий — общие залы</span>
+        <span><i style="background:#2e6b4f"></i>зелёный — сад, огород, МАФ</span>
+        <span><i style="background:#3aa79a"></i>бирюза — вода, санузлы</span>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card tint">
+        <h4>Геометрия модуля</h4>
+        <ul class="clean" style="margin-top:8px">
+          <li>Сетка колонн <b>7,2 × 7,2 м</b>, шаг проёмов <b>4,2 м</b>, арка <b>1,8 м</b> в свету</li>
+          <li>Высота этажа <b>3,6 м</b>, два этажа, карниз <b>+8,4 м</b>, парапет <b>+9,3 м</b></li>
+          <li>Глубина корпуса <b>13,2 м</b> — группы с двусторонним светом</li>
+          <li>Подоконник <b>0,7 м</b>, верх проёма <b>2,9 м</b>: ребёнок видит улицу, взрослый — двор</li>
+        </ul>
+      </div>
+      <div class="card tint">
+        <h4>Что это чинит</h4>
+        <ul class="clean" style="margin-top:8px">
+          <li>Исчезает «витринность»: витрин в пол больше нет</li>
+          <li>Появляется адресация: цвет входа = номер группы</li>
+          <li>Упрощается производство: 3 типа изделий вместо 20</li>
+          <li>Визуализации становятся сопоставимыми: один и тот же фасад в любом кадре</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3.4 palette -->
+<section id="palette">
+  <div class="wrap">
+    <h3>3.4 Палитра: правило 80 / 15 / 5</h3>
+    <p class="lead" style="max-width:900px">Цвет в проекте остаётся, но получает <b>иерархию</b>. Восемьдесят процентов фасада — тёплый белый и камень. Пятнадцать — два акцентных цвета на корпус. Пять — цвет входов и навигации. Одновременно на одном фасаде — не более <b>трёх</b> цветов.</p>
+
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#f2eee4"></div><div class="txt"><b>Тёплый белый</b><span>#F2EEE4 · RAL 9001</span></div></div>
+      <div class="sw"><div class="chip" style="background:#c63c2f"></div><div class="txt"><b>Красный</b><span>#C63C2F · RAL 3020</span></div></div>
+      <div class="sw"><div class="chip" style="background:#e8ac24"></div><div class="txt"><b>Жёлтый</b><span>#E8AC24 · RAL 1023</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2e6b4f"></div><div class="txt"><b>Зелёный</b><span>#2E6B4F · RAL 6024</span></div></div>
+      <div class="sw"><div class="chip" style="background:#3aa79a"></div><div class="txt"><b>Бирюзовый</b><span>#3AA79A · RAL 5018</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2b5ca8"></div><div class="txt"><b>Синий</b><span>#2B5CA8 · RAL 5015</span></div></div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Элемент</th><th>Цвет</th><th>Доля</th><th>Правило</th></tr></thead>
+        <tbody>
+          <tr><td>Стена, простенки, карниз</td><td>Тёплый белый / камень</td><td class="num">80 %</td><td>Без исключений: цвет никогда не заливает плоскость целиком</td></tr>
+          <tr><td>Откосы, ставни, рамы групп</td><td>Жёлтый + один цвет корпуса</td><td class="num">15 %</td><td>У каждого корпуса свой второй цвет; на фасаде — не больше двух</td></tr>
+          <tr><td>Входы, навигация, МАФ</td><td>Красный, бирюза, синий</td><td class="num">5 %</td><td>Только на функциональных узлах; дублируется в интерьере</td></tr>
+          <tr><td>Магенто, фиолетовый, оранжевый</td><td>—</td><td class="num">0 %</td><td>Из фасадной палитры исключаются: уходят в игровое оборудование и графику</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Почему так.</b> Детский сад должен быть ярким, но яркость не равна количеству цветов. Ограниченная палитра + сильные акценты читаются лучше, фотографируются ровнее и дешевле в исполнении: 6 цветов вместо 12 — это меньше артикулов краски и меньше ошибок на стройке.</div>
+  </div>
+</section>
+
+<!-- 3.5 roof -->
+<section id="roof">
+  <div class="wrap">
+    <h3>3.5 Кровля: три зоны вместо «всего сразу»</h3>
+    <p class="lead" style="max-width:900px">Кровля — самый заметный ракурс проекта (кадры 03 и 04). Сейчас на ней одновременно газон, СЭС, террасы и фонари, и они мешают друг другу. Предлагается <b>жёсткое зонирование по сторонам света</b>.</p>
+
+    <div class="grid g2" style="margin-top:18px;align-items:start">
+      <div class="figbox">
+        <svg viewBox="0 0 1000 620" role="img" aria-label="Схема зонирования кровли">
+          <defs>
+            <pattern id="pv" width="18" height="12" patternUnits="userSpaceOnUse">
+              <rect width="18" height="12" fill="#8fb0d6"/>
+              <line x1="0" y1="0" x2="0" y2="12" stroke="#2b5ca8" stroke-width="1.4"/>
+              <line x1="9" y1="0" x2="9" y2="12" stroke="#2b5ca8" stroke-width="1"/>
+            </pattern>
+            <pattern id="gr" width="16" height="16" patternUnits="userSpaceOnUse">
+              <rect width="16" height="16" fill="#a8c78c"/>
+              <circle cx="4" cy="5" r="1.6" fill="#6f9152"/><circle cx="11" cy="11" r="1.4" fill="#7fa05f"/>
+            </pattern>
+            <pattern id="dk" width="14" height="14" patternUnits="userSpaceOnUse">
+              <rect width="14" height="14" fill="#ddd0aa"/>
+              <line x1="0" y1="14" x2="14" y2="0" stroke="#b9a878" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="1000" height="620" fill="#f8f6ef"/>
+          <rect x="250" y="90" width="500" height="420" fill="#fffdf7" stroke="#15221d" stroke-width="1.6"/>
+          <rect x="330" y="160" width="340" height="280" fill="#e2ebd6" stroke="#15221d" stroke-width="1.2" stroke-dasharray="6 5"/>
+          <rect x="250" y="90" width="500" height="70" fill="url(#gr)" stroke="#15221d"/>
+          <rect x="250" y="440" width="500" height="70" fill="url(#dk)" stroke="#15221d"/>
+          <rect x="250" y="160" width="80" height="280" fill="url(#pv)" stroke="#15221d"/>
+          <rect x="670" y="160" width="80" height="280" fill="url(#gr)" stroke="#15221d"/>
+          <g fill="#3d4b44" stroke="#15221d">
+            <rect x="262" y="102" width="56" height="46" rx="3"/>
+            <rect x="682" y="102" width="56" height="46" rx="3"/>
+            <rect x="262" y="452" width="56" height="46" rx="3"/>
+            <rect x="682" y="452" width="56" height="46" rx="3"/>
+          </g>
+          <text x="500" y="132" text-anchor="middle" font-family="Inter,Arial" font-size="12" fill="#15221d">зелёная кровля · седаум и злаки</text>
+          <text x="500" y="478" text-anchor="middle" font-family="Inter,Arial" font-size="12" fill="#15221d">террасы групп · настил, тень</text>
+          <text transform="translate(290,300) rotate(-90)" text-anchor="middle" font-family="Inter,Arial" font-size="11.5" fill="#fff">СЭС · 130 кВтп</text>
+          <text transform="translate(710,300) rotate(90)" text-anchor="middle" font-family="Inter,Arial" font-size="12" fill="#15221d">зелёная кровля · тень</text>
+          <text x="500" y="292" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" fill="#6f7b73">двор — открытый проём</text>
+          <text x="500" y="310" text-anchor="middle" font-family="Inter,Arial" font-size="12.5" fill="#6f7b73">кровли здесь нет</text>
+          <text x="500" y="332" text-anchor="middle" font-family="Inter,Arial" font-size="10.5" fill="#8b948b">световой фонарь — только над залом</text>
+          <text x="250" y="545" font-family="Inter,Arial" font-size="10.5" fill="#5c665f">Юг — террасы групп: тень, доступ с этажа, ограждение 1,2 м</text>
+          <text x="250" y="565" font-family="Inter,Arial" font-size="10.5" fill="#5c665f">Север и восток — седаум: максимальная площадь озеленения</text>
+          <text x="250" y="585" font-family="Inter,Arial" font-size="10.5" fill="#5c665f">Запад — СЭС над техническими зонами, без затенения деревьями</text>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#a8c78c"></i>зелёная кровля · 47 %</span>
+          <span><i style="background:#ddd0aa"></i>террасы · 25 %</span>
+          <span><i style="background:#8fb0d6"></i>СЭС · 18 %</span>
+          <span><i style="background:#3d4b44"></i>техника · 10 %</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h4>Правила кровли</h4>
+          <ol class="num" style="margin-top:12px">
+            <li><b>Одна зона — одна функция.</b> Не смешивать СЭС и озеленение на одном скате: обслуживание и затенение конфликтуют.</li>
+            <li><b>СЭС только над техпомещениями и без деревьев рядом.</b> Ориентация — юг/запад, наклон 30–35°.</li>
+            <li><b>Террасы — только юг</b> и только с выходом из групповой; ограждение 1,2 м, настил, пергола.</li>
+            <li><b>Зелёная кровля — север и восток.</b> Экстенсивный седаум: 40–80 кг/м², без полива.</li>
+            <li><b>Один световой фонарь</b> над залом, не «пирамида у входа»: фонарь ставится над пространством, которое освещает.</li>
+          </ol>
+        </div>
+        <div class="warn" style="margin-top:20px">
+          <b>Решение, которое нужно принять заказчику.</b> Бассейн на кровле / у входа (кадры 01, 04, 06) — <b>не детская типология</b>. Предлагается: малая учебная чаша 6×10 м внутри здания (если есть запрос) либо сухой «водный дворик» с фонтанчиками на улице. Стеклянную пирамиду убрать — она не несёт функции.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 3.6 courtyard -->
+<section id="yard">
+  <div class="wrap">
+    <h3>3.6 Двор: «внешняя комната» группы, а не парк аттракционов</h3>
+    <p class="lead" style="max-width:900px">Сейчас двор — набор красивых объектов. Предлагается превратить его в <b>четыре возрастных двора</b> вокруг общей площади-амфитеатра, где у каждой группы есть свой выход, своя тень и своя площадка.</p>
+
+    <div class="grid g2" style="margin-top:26px;align-items:start">
+      <div class="card">
+        <h4>Баланс территории двора</h4>
+        <div style="margin:18px 0 6px">
+          <div style="display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--line)">
+            <div style="width:40%;background:#8fae72"></div>
+            <div style="width:25%;background:#cfc8b6"></div>
+            <div style="width:20%;background:#6f8f5a"></div>
+            <div style="width:15%;background:#e8ac24"></div>
+          </div>
+          <div class="legend" style="margin-top:10px">
+            <span><i style="background:#8fae72"></i>газон для свободной игры — 40 %</span>
+            <span><i style="background:#cfc8b6"></i>мощение и проезды — 25 %</span>
+            <span><i style="background:#6f8f5a"></i>тень (деревья, перголы) — 20 %</span>
+            <span><i style="background:#e8ac24"></i>МАФ и покрытия — 15 %</span>
+          </div>
+        </div>
+        <p class="small" style="margin-top:16px">Сегодня на картинках доля «объектов» и мощения — больше половины. Ребёнку негде просто бегать.</p>
+      </div>
+
+      <div class="card">
+        <h4>Пять правил двора</h4>
+        <ol class="num" style="margin-top:12px">
+          <li><b>Один двор — один возраст.</b> Ясли, младшие, средние, старшие — четыре кластера, разделённые не заборами, а посадками и рельефом.</li>
+          <li><b>Выход из группы — сразу во двор.</b> Не через коридор и вестибюль: 12 прямых выходов.</li>
+          <li><b>Центр свободен.</b> Площадь-амфитеатр 25–30 м в диаметре: линейка, праздники, театр, зимний каток.</li>
+          <li><b>Тень обязательна.</b> Не менее 20 % площади в тени в полдень; деревья — лиственные, крупномеры с комом.</li>
+          <li><b>Никаких прудов.</b> Вода — только питьевые фонтанчики и «сухой ручей»; открытые водоёмы для ДОУ не проектируем.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card tint"><h4>Огород и метеостанция</h4><p class="small">20 грядок 1×2 м по периметру, теплица 12 м², метеоплощадка с флюгером и дождемером. Это не декор — это часть образовательной программы.</p></div>
+      <div class="card tint"><h4>Тропа здоровья</h4><p class="small">Кольцо 180 м с покрытиями разной фактуры: песок, щепа, камень, трава. Работает и как дренаж, и как «маршрут прогулки» в дождь.</p></div>
+      <div class="card tint"><h4>Сцена и амфитеатр</h4><p class="small">Три ступени-трибуны на 80 мест, навес-пергола, розетка и свет. Один объект вместо пяти павильонов — и он реально используется.</p></div>
+    </div>
+
+    <div class="warn" style="margin-top:26px">
+      <b>Про деревья.</b> Сосны на картинках стоят в 3–5 м от стен. Для крупномеров у здания нужно <b>не менее 8–10 м</b> от стены (корневая система, ветровал, ремонт кровли и отмостки). Существующие сосны сохраняем там, где они дальше 10 м, остальные — переносим в буферную зону участка.
+    </div>
+  </div>
+</section>
+
+<!-- 3.7 transport -->
+<section id="transport">
+  <div class="wrap">
+    <h3>3.7 Транспорт и безопасность: три потока, один вход</h3>
+    <div class="figbox" style="margin-top:18px">
+      <svg viewBox="0 0 1000 560" role="img" aria-label="Схема транспортных и пешеходных потоков">
+        <style>
+          .tl{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:10.5px;fill:#3d4b44}
+          .tl-b{font-family:"Inter","Segoe UI",Arial,sans-serif;font-size:10.5px;font-weight:700;fill:#15221d}
+        </style>
+        <defs>
+          <marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2b5ca8"/></marker>
+          <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c63c2f"/></marker>
+          <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5c665f"/></marker>
+        </defs>
+        <rect width="1000" height="560" fill="#f8f6ef"/>
+        <rect x="60" y="40" width="880" height="430" fill="#eef2e6" stroke="#9fae8c" stroke-dasharray="7 5"/>
+        <rect x="60" y="470" width="880" height="60" fill="#e7e3d8"/>
+        <line x1="60" y1="500" x2="940" y2="500" stroke="#fff" stroke-width="2" stroke-dasharray="16 12"/>
+        <text x="74" y="522" class="tl">улица · остановка · бульвар</text>
+        <rect x="940" y="40" width="50" height="490" fill="#e7e3d8"/>
+        <text transform="translate(972,300) rotate(90)" class="tl" text-anchor="middle">подъезд</text>
+
+        <rect x="300" y="110" width="400" height="280" fill="#fffdf7" stroke="#15221d" stroke-width="1.6"/>
+        <rect x="370" y="170" width="260" height="160" fill="#e7eddd" stroke="#15221d"/>
+        <rect x="470" y="330" width="60" height="60" fill="#f4f1e8" stroke="#15221d"/>
+        <text x="500" y="366" text-anchor="middle" class="tl" fill="#c63c2f">вход</text>
+
+        <rect x="300" y="390" width="400" height="50" fill="#dbe7cc" stroke="#a9be90" stroke-dasharray="3 3"/>
+        <text x="500" y="420" text-anchor="middle" class="tl">буферная зелёная зона 10 м · шум и пыль</text>
+
+        <rect x="86" y="220" width="150" height="210" rx="6" fill="#e9e6dc" stroke="#b9b2a0" stroke-dasharray="4 4"/>
+        <text x="161" y="240" text-anchor="middle" class="tl-b">парковка 20 м/м</text>
+        <g fill="#cfcabd" stroke="#a9a290">
+          <rect x="98" y="252" width="44" height="20" rx="3"/><rect x="152" y="252" width="44" height="20" rx="3"/>
+          <rect x="98" y="284" width="44" height="20" rx="3"/><rect x="152" y="284" width="44" height="20" rx="3"/>
+          <rect x="98" y="316" width="44" height="20" rx="3"/><rect x="152" y="316" width="44" height="20" rx="3"/>
+          <rect x="98" y="348" width="44" height="20" rx="3"/><rect x="152" y="348" width="44" height="20" rx="3"/>
+        </g>
+        <rect x="98" y="384" width="44" height="20" rx="3" fill="#cfe0f2" stroke="#2b5ca8"/>
+        <text x="120" y="416" class="tl" fill="#2b5ca8">МГН</text>
+
+        <rect x="380" y="470" width="220" height="26" fill="#cfe0f2" stroke="#2b5ca8" stroke-width="1.4"/>
+        <text x="490" y="487" text-anchor="middle" class="tl" fill="#2b5ca8">drop-off · 5 мест · 3 мин</text>
+        <g fill="#fff">
+          <rect x="484" y="496" width="7" height="30"/><rect x="496" y="496" width="7" height="30"/><rect x="508" y="496" width="7" height="30"/><rect x="520" y="496" width="7" height="30"/>
+        </g>
+
+        <path d="M910,506 L640,506" stroke="#2b5ca8" stroke-width="2.6" fill="none" marker-end="url(#ab)"/>
+        <path d="M610,506 L380,506" stroke="#2b5ca8" stroke-width="2.6" fill="none" marker-end="url(#ab)"/>
+        <path d="M380,483 L250,483 L236,438" stroke="#2b5ca8" stroke-width="1.6" fill="none" stroke-dasharray="6 5" marker-end="url(#ab)"/>
+        <text x="640" y="464" class="tl" fill="#2b5ca8">автомобили родителей</text>
+
+        <path d="M500,496 L500,440" stroke="#c63c2f" stroke-width="2.2" stroke-dasharray="7 5" fill="none" marker-end="url(#ar2)"/>
+        <path d="M500,440 L500,392" stroke="#c63c2f" stroke-width="2.2" stroke-dasharray="7 5" fill="none" marker-end="url(#ar2)"/>
+        <path d="M196,436 L470,436" stroke="#c63c2f" stroke-width="1.8" stroke-dasharray="7 5" fill="none" marker-end="url(#ar2)"/>
+        <text x="230" y="452" class="tl" fill="#c63c2f">от парковки — вдоль буфера</text>
+
+        <rect x="740" y="70" width="150" height="80" rx="6" fill="#ece7da" stroke="#b9b2a0" stroke-dasharray="4 4"/>
+        <text x="815" y="96" text-anchor="middle" class="tl-b">хоздвор</text>
+        <text x="815" y="112" text-anchor="middle" class="tl">загрузка · мусор · склад</text>
+        <text x="815" y="128" text-anchor="middle" class="tl">ворота 4,5 м</text>
+        <path d="M990,60 L950,60 L894,84" stroke="#5c665f" stroke-width="2.4" fill="none" marker-end="url(#ag)"/>
+
+        <rect x="86" y="120" width="150" height="66" rx="6" fill="#eef2e6" stroke="#9fae8c" stroke-dasharray="4 3"/>
+        <text x="161" y="146" text-anchor="middle" class="tl-b">вело- и самокат-парковка</text>
+        <text x="161" y="164" text-anchor="middle" class="tl">30 мест · у входа</text>
+
+        <g transform="translate(300,50)">
+          <rect x="0" y="0" width="360" height="46" rx="6" fill="#fffdf7" stroke="#d6cdb8"/>
+          <line x1="14" y1="17" x2="44" y2="17" stroke="#2b5ca8" stroke-width="2.6"/>
+          <text x="52" y="21" class="tl">авто</text>
+          <line x1="110" y1="17" x2="140" y2="17" stroke="#c63c2f" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <text x="148" y="21" class="tl">пешеходы</text>
+          <line x1="240" y1="17" x2="270" y2="17" stroke="#5c665f" stroke-width="2.4"/>
+          <text x="278" y="21" class="tl">хозтранспорт</text>
+          <text x="14" y="38" class="tl">дети и персонал — только через главный вход</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card"><h4>Один вход для людей</h4><p class="small">Все дети и сотрудники проходят через главный вестибюль с КПП. Групповые входы — только из двора, для прогулок.</p></div>
+      <div class="card"><h4>Drop-off без пробок</h4><p class="small">Карман на 5 машин, «поцеловал — уехал», 3 минуты. Разворотная площадка для школьного автобуса — в хоззоне.</p></div>
+      <div class="card"><h4>Периметр</h4><p class="small">Ограждение 1,8 м, видеонаблюдение по периметру, тревожная кнопка, освещение 50 лк по маршрутам.</p></div>
+    </div>
+  </div>
+</section>
+<!-- ============ 04 PROGRAM ============ -->
+<section id="program">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">04 / Программа</div>
+      <div>
+        <h2>Сколько здесь может быть детей<span class="sub">Три сценария вместимости — и почему от выбора зависит всё остальное</span></h2>
+        <p class="lead">Пока не принята вместимость, нельзя определить ни площадь, ни количество групп, ни размер двора, ни число парковочных мест. Это первое решение, которое нужно зафиксировать.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Сценарий</th><th class="num">Мест</th><th class="num">Площадь здания</th><th class="num">Пятно / этажность</th><th class="num">Двор</th><th>Что это значит</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>А. «Сад»</b><br><span class="small">базовый, рекомендуется</span></td>
+            <td class="num">220<br><span class="small">12 групп</span></td>
+            <td class="num">3 200 м²</td>
+            <td class="num">2 100 м²<br><span class="small">2 этажа</span></td>
+            <td class="num">2 400 м²</td>
+            <td>Компактный П-образный блок 75×50 м. Двор защищён, все группы с прямым выходом. Экономика и эксплуатация — предсказуемые.</td>
+          </tr>
+          <tr style="background:#fbf6e7">
+            <td><b>Б. «Детский квартал»</b><br><span class="small">если каре — условие</span></td>
+            <td class="num">160<br><span class="small">+ 400 мест доп.</span></td>
+            <td class="num">8 500–9 000 м²</td>
+            <td class="num">4 500 м²<br><span class="small">2 этажа</span></td>
+            <td class="num">3 000 м²</td>
+            <td>Сад + школа искусств + семейный клуб + бассейн для района. Полное каре оправдано, но появляются четыре оператора и общий график доступа.</td>
+          </tr>
+          <tr>
+            <td><b>В. «Сад-гигант»</b><br><span class="small">не рекомендуется</span></td>
+            <td class="num">320<br><span class="small">16 групп</span></td>
+            <td class="num">4 800 м²</td>
+            <td class="num">2 800 м²<br><span class="small">2 этажа</span></td>
+            <td class="num">4 000 м²</td>
+            <td>Огромный коллектив, длинные коридоры, эпидемиологические риски, очередь на входе. Масштаб картинок ближе к этому, но педагогически это худший вариант.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ok">
+      <b>Рекомендация.</b> Если участок и каре уже зафиксированы — идти по сценарию <b>Б</b> и честно назвать объект «детский квартал». Если задача — именно детский сад, брать <b>А</b> и уменьшать пятно, оставляя парк вокруг. Смешивать нельзя: именно это и произошло на изображениях.
+    </div>
+
+    <h3 style="margin-top:48px">Функциональная программа сценария А (220 мест)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Группа помещений</th><th>Состав</th><th class="num">Кол-во</th><th class="num">Площадь</th></tr></thead>
+        <tbody>
+          <tr><td>Групповые ячейки</td><td>игровая 56 + спальня 40 + раздевалка 16 + буфет 8 + санузел 12 + веранда 30</td><td class="num">12</td><td class="num">1 940 м²</td></tr>
+          <tr><td>Музыкальный зал</td><td>зал 180 + костюмерная 20 + инвентарная</td><td class="num">1</td><td class="num">210 м²</td></tr>
+          <tr><td>Физкультурный зал</td><td>зал 150 + снарядная 20</td><td class="num">1</td><td class="num">170 м²</td></tr>
+          <tr><td>Бассейн <span class="pill yel">опция</span></td><td>чаша 6×10, раздевалки, душ, техпомещение</td><td class="num">1</td><td class="num">300 м²</td></tr>
+          <tr><td>Студии</td><td>ИЗО 60 · конструирование 50 · мультстудия 40</td><td class="num">3</td><td class="num">150 м²</td></tr>
+          <tr><td>Кабинеты специалистов</td><td>логопед 18 · психолог 18</td><td class="num">2</td><td class="num">36 м²</td></tr>
+          <tr><td>Медицинский блок</td><td>врач 18 · процедурная 14 · изолятор 2×10</td><td class="num">—</td><td class="num">62 м²</td></tr>
+          <tr><td>Пищеблок</td><td>полный цикл, кладовые, мойка</td><td class="num">1</td><td class="num">220 м²</td></tr>
+          <tr><td>Прачечная и хозблок</td><td>стирка, сушка, глажка, склад</td><td class="num">—</td><td class="num">100 м²</td></tr>
+          <tr><td>Администрация</td><td>кабинет, методкабинет, комната персонала</td><td class="num">—</td><td class="num">140 м²</td></tr>
+          <tr><td>Вестибюль и КПП</td><td>тамбур, гардероб, ожидание родителей</td><td class="num">—</td><td class="num">150 м²</td></tr>
+          <tr><td>Технические помещения</td><td>ИТП, венткамеры, электрощитовая, связь</td><td class="num">—</td><td class="num">220 м²</td></tr>
+          <tr style="background:var(--paper-2);font-weight:600"><td>Итого полезная</td><td>без коридоров и конструкций</td><td class="num">—</td><td class="num">3 698 м²</td></tr>
+          <tr style="font-weight:600"><td>Общая площадь здания</td><td>с циркуляцией ×1,18</td><td class="num">—</td><td class="num">≈ 4 360 м²</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">Площади — ориентировочные, для проверки баланса; уточняются по СП 252.1325800.2016 и СанПиН 2.4.3648-20. Показатель ≈ 14 м²/место — комфортный уровень для ДОУ с бассейном и студиями.</p>
+
+    <div class="grid g4" style="margin-top:26px">
+      <div class="card tint"><div class="stat">12</div><p class="small">групповых ячеек с отдельным входом со двора</p></div>
+      <div class="card tint"><div class="stat">3 000<small> м²</small></div><p class="small">двор-парк, 40 % свободный газон</p></div>
+      <div class="card tint"><div class="stat">130<small> кВтп</small></div><p class="small">солнечная генерация на кровле</p></div>
+      <div class="card tint"><div class="stat">20<small> м/м</small></div><p class="small">парковка + 5 drop-off + 30 веломест</p></div>
+    </div>
+  </div>
+</section>
+<!-- ============ 05 PROPOSALS ============ -->
+<section id="offer">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">05 / Предложения</div>
+      <div>
+        <h2>Двенадцать предложений<span class="sub">От «принять решение» до «перерисовать кадр» — по убыванию влияния на проект</span></h2>
+        <p class="lead">Предложения сгруппированы по приоритету. Первые четыре меняют проект, остальные — приводят его в порядок. Все они выполнимы без пересмотра градостроительной посадки.</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <div class="tagrow"><span class="pill red">Приоритет 1</span><span class="pill">решение</span></div>
+        <h3 style="margin-top:12px">1. Зафиксировать вместимость</h3>
+        <p>Определить: 220 мест (сценарий А) или 160 + допобразование (Б). От этого зависят площадь, число групп, двор, парковка и смета. <b>Без этого решения дальнейшее проектирование невозможно.</b></p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill red">Приоритет 1</span><span class="pill">геометрия</span></div>
+        <h3 style="margin-top:12px">2. Одна высота, два этажа</h3>
+        <p>Задать единую отметку карниза <b>+8,4 м</b> и парапета <b>+9,3 м</b> по всему периметру. Убрать третий ярус арок и «мансардные» надстройки, которые появляются в разных кадрах.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill red">Приоритет 1</span><span class="pill">фасад</span></div>
+        <h3 style="margin-top:12px">3. Ввести фасадный модуль</h3>
+        <p>Шаг 4,2 м, арка 1,8 м, три типа проёма (окно / вход / общий блок). Все фасады собираются из одного набора. Это одновременно и стиль, и способ производства.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill red">Приоритет 1</span><span class="pill">палитра</span></div>
+        <h3 style="margin-top:12px">4. Ограничить палитру</h3>
+        <p>Шесть цветов, правило <b>80 / 15 / 5</b>, не более трёх цветов на фасад. Магенто и фиолетовый уходят в игровое оборудование и графику, не в стены.</p>
+      </div>
+
+      <div class="card">
+        <div class="tagrow"><span class="pill yel">Приоритет 2</span><span class="pill">кровля</span></div>
+        <h3 style="margin-top:12px">5. Разделить кровлю на зоны</h3>
+        <p>Зелёная кровля — север и восток; террасы — юг; СЭС — запад над техзоной; техника — углы. Один световой фонарь над залом. Пирамиду у входа и бассейн на кровле убрать.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill yel">Приоритет 2</span><span class="pill">двор</span></div>
+        <h3 style="margin-top:12px">6. Пересобрать двор</h3>
+        <p>Четыре возрастных кластера по сторонам, центр — площадь-амфитеатр, 12 прямых выходов из групп, 40 % свободного газона, обязательная тень. Павильоны и пруды — убрать.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill yel">Приоритет 2</span><span class="pill">ландшафт</span></div>
+        <h3 style="margin-top:12px">7. Отодвинуть деревья</h3>
+        <p>Крупномеры — не ближе <b>8–10 м</b> от стен. Существующие сосны сохраняем выборочно, остальные — в буферную зону. Компенсационная посадка 1:2.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill yel">Приоритет 2</span><span class="pill">транспорт</span></div>
+        <h3 style="margin-top:12px">8. Разделить потоки</h3>
+        <p>Люди — через главный вход и КПП; родители — drop-off на 5 машин; хозяйство — отдельные ворота и двор. Парковка за буферной зоной, не перед фасадом.</p>
+      </div>
+
+      <div class="card">
+        <div class="tagrow"><span class="pill grn">Приоритет 3</span><span class="pill">инженерия</span></div>
+        <h3 style="margin-top:12px">9. Собрать энергоэффективность в систему</h3>
+        <p>Тепловые насосы, вентиляция с рекуперацией ≥ 80 %, СЭС 130 кВтп, сбор дождевой воды с кровли для полива, датчики CO₂ и света в группах.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill grn">Приоритет 3</span><span class="pill">безопасность</span></div>
+        <h3 style="margin-top:12px">10. Показать безопасность</h3>
+        <p>Периметр 1,8 м, один контролируемый вход, КПП, видеонаблюдение, освещение маршрутов, антитеррористические мероприятия. На визуализациях этого нет вообще.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill">Приоритет 4</span><span class="pill">подача</span></div>
+        <h3 style="margin-top:12px">11. Убрать декор без функции</h3>
+        <p>Тенты-«магазины», подиумы на кровле, стеклянные пирамиды, радужные простенки, декоративные пруды. Каждый элемент должен отвечать на вопрос «зачем».</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill">Приоритет 4</span><span class="pill">визуализация</span></div>
+        <h3 style="margin-top:12px">12. Сделать единый сет кадров</h3>
+        <p>Шесть канонических ракурсов, один свет, один сезон, один уровень детализации. Тогда каждое следующее изображение будет уточнять проект, а не создавать новый.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:56px">Что убрать, что добавить, что оставить</h3>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card" style="border-top:4px solid var(--red)">
+        <h4>Убрать</h4>
+        <ul class="clean">
+          <li>Третий ярус арок и надстройки на кровле</li>
+          <li>Витрины в пол и «магазинные» тенты</li>
+          <li>Стеклянную пирамиду и бассейн на кровле</li>
+          <li>Пруды и водоёмы во дворе</li>
+          <li>Пять лишних акцентных цветов</li>
+          <li>Водяные знаки и дубликаты в подборке</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid var(--green)">
+        <h4>Добавить</h4>
+        <ul class="clean">
+          <li>Читаемые входы в каждую группу</li>
+          <li>Навесы, пандусы, тактильные маршруты</li>
+          <li>Амфитеатр и сцену во дворе</li>
+          <li>Огород, метеостанцию, тропу здоровья</li>
+          <li>КПП, периметр, освещение</li>
+          <li>Технический контур и доступ на кровлю</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid var(--moss)">
+        <h4>Оставить</h4>
+        <ul class="clean">
+          <li>Каре и замкнутый защищённый двор</li>
+          <li>Ритм арок как основной приём</li>
+          <li>Цветные окна и акценты</li>
+          <li>Зелёную кровлю и СЭС</li>
+          <li>Сосны и парковый контекст</li>
+          <li>Два этажа и человеческий масштаб</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:56px">Решения, которые нужны от заказчика</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th class="num">№</th><th>Решение</th><th>Варианты</th><th>Влияние</th><th>Срок</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Вместимость и тип объекта</td><td>А / Б / В</td><td>Площадь, смета, состав помещений</td><td>1–2 недели</td></tr>
+          <tr><td class="num">2</td><td>Бассейн</td><td>есть / нет / сухой дворик</td><td>+300 м², инженерия, персонал</td><td>1–2 недели</td></tr>
+          <tr><td class="num">3</td><td>Этажность и высота карниза</td><td>2 этажа / 2 + мансарда</td><td>Габариты, эвакуация, облик</td><td>2 недели</td></tr>
+          <tr><td class="num">4</td><td>Парковка</td><td>на участке / только drop-off</td><td>Баланс территории, двор</td><td>2 недели</td></tr>
+          <tr><td class="num">5</td><td>Кровля</td><td>зелёная / террасы / СЭС — доли</td><td>Конструкция, нагрузка, эксплуатация</td><td>3 недели</td></tr>
+          <tr><td class="num">6</td><td>Двор</td><td>4 кластера / общий парк</td><td>Педагогика, безопасность, смета</td><td>3 недели</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 ROADMAP ============ -->
+<section id="road">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">06 / План</div>
+      <div>
+        <h2>Как доводить проект<span class="sub">Четыре этапа на 20 недель — от решений до комплекта визуализаций</span></h2>
+      </div>
+    </div>
+
+    <div class="grid g4">
+      <div class="card">
+        <div class="tagrow"><span class="pill red">Этап 1 · 0–2 нед</span></div>
+        <h4 style="margin-top:12px">Решения</h4>
+        <p class="small">Вместимость, бассейн, этажность, парковка, доли кровли, сценарий двора. Протокол с заказчиком — 2 страницы.</p>
+        <p class="small"><b>Результат:</b> утверждённая программа-задание.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill yel">Этап 2 · 2–6 нед</span></div>
+        <h4 style="margin-top:12px">Схема</h4>
+        <p class="small">План, разрез, фасадный модуль, палитра, зонирование кровли и двора. Одна сводная схема на 1 листе А1.</p>
+        <p class="small"><b>Результат:</b> архитектурная концепция, 1 лист + пояснительная записка.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill grn">Этап 3 · 6–12 нед</span></div>
+        <h4 style="margin-top:12px">Проверка</h4>
+        <p class="small">Инсоляция, пожарная эвакуация, доступность МГН, баланс территории, ТЭО инженерии, укрупнённая смета.</p>
+        <p class="small"><b>Результат:</b> концепция, прошедшая внутреннюю экспертизу.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="pill">Этап 4 · 12–20 нед</span></div>
+        <h4 style="margin-top:12px">Подача</h4>
+        <p class="small">Шесть канонических визуализаций, аэросъёмка-схема, альбом А3, короткое видео 40 секунд.</p>
+        <p class="small"><b>Результат:</b> комплект для заказчика и публичных слушаний.</p>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:30px">
+      <b>Порядок важен.</b> Сначала решения и схема, потом картинки. Если снова начать с визуализаций, через две итерации опять получим три разных здания — просто красивее отрендеренных.
+    </div>
+  </div>
+</section>
+<!-- ============ 07 VISUAL ============ -->
+<section id="viz">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">07 / Подача</div>
+      <div>
+        <h2>Стандарт визуализации<span class="sub">Шесть кадров вместо восьми случайных — и правила, по которым они делаются</span></h2>
+        <p class="lead">Стилистический разнобой лечится не «более красивым рендером», а регламентом. Ниже — обязательный набор ракурсов и технические правила, которые делают кадры сопоставимыми.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th class="num">№</th><th>Кадр</th><th>Задача</th><th>Что обязательно видно</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Главный фасад с улицы</td><td>Образ и вход</td><td>Аркада, главный вход, вывеска, бульвар, люди</td></tr>
+          <tr><td class="num">2</td><td>Двор от входа</td><td>Среда</td><td>Амфитеатр, выходы групп, деревья, покрытия</td></tr>
+          <tr><td class="num">3</td><td>Аэро с юго-запада, 45°</td><td>Градостроительная посадка</td><td>Каре, кровля, парковка, контекст леса</td></tr>
+          <tr><td class="num">4</td><td>Кровля крупно</td><td>«Пятый фасад»</td><td>Терраса, СЭС, седаум, ограждения</td></tr>
+          <tr><td class="num">5</td><td>Вход в группу</td><td>Масштаб и детали</td><td>Навес, пандус, цвет-адрес, тактильная плитка</td></tr>
+          <tr><td class="num">6</td><td>Вечерний свет</td><td>Безопасность и сценарий</td><td>Освещение фасада, маршруты, окна групп</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g2" style="margin-top:26px;align-items:start">
+      <div class="card">
+        <h4>Технические правила</h4>
+        <ul class="clean" style="margin-top:10px">
+          <li><b>Одна 3D-модель.</b> Все кадры — из одного файла. Любое изменение геометрии проходит через модель.</li>
+          <li><b>Один свет:</b> лето, 10:00, солнце 35°, мягкие тени. Закат — только для одного «эмоционального» кадра.</li>
+          <li><b>Одна камера:</b> 35 мм, высота 1,6 м для «человеческих» кадров, 24 мм — для аэро.</li>
+          <li><b>Один набор растений:</b> сосна, клён, липа, злаки, гортензия. Никаких пальм и цветущей сакуры.</li>
+          <li><b>Люди в масштабе:</b> дети 1,1–1,3 м, взрослые 1,7 м, 3–6 человек в кадре, без постановочных улыбок в камеру.</li>
+          <li><b>Форматы:</b> 16:9 для презентации, 1:1 для соцсетей, 9:16 для вертикали. Без водяных знаков и логотипов генераторов.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Что исправить в текущих файлах</h4>
+        <ol class="num" style="margin-top:10px">
+          <li>Удалить дубликат и два кадра с водяным знаком ReRender.</li>
+          <li>Привести все кадры к одному сезону — лето (сейчас смешаны лето и золотая осень).</li>
+          <li>Убрать третий ярус арок там, где он появился.</li>
+          <li>Заменить тип детской площадки на согласованный (возрастное зонирование, тень).</li>
+          <li>Убрать «воду» у входа и на кровле до принятия решения по бассейну.</li>
+          <li>Добавить периметр, КПП и освещение — сейчас объект выглядит открытым.</li>
+        </ol>
+      </div>
+    </div>
+
+    <figure class="fig-wide" style="margin-top:34px">
+      <img src="assets/img/02-courtyard-day.jpg" alt="Двор — эталонный кадр для дальнейшей работы">
+      <figcaption><span class="tag">опорный кадр</span><br>Кадр 02 предлагается сделать <b>эталоном</b>: этот свет, эта плотность зелени, этот масштаб деталей. Все остальные визуализации приводятся к нему.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ APPENDIX ============ -->
+<section id="appendix">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">08 / Приложения</div>
+      <div>
+        <h2>Нормативная рамка и вопросы<span class="sub">Что проверить и что уточнить до начала следующего этапа</span></h2>
+      </div>
+    </div>
+
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <h4>Нормативные ориентиры</h4>
+        <ul class="clean" style="margin-top:10px">
+          <li>СП 252.1325800.2016 — здания дошкольных образовательных организаций</li>
+          <li>СанПиН 2.4.3648-20 — условия воспитания и обучения</li>
+          <li>СанПиН 1.2.3685-21 — гигиенические нормативы (инсоляция, микроклимат)</li>
+          <li>СП 59.13330.2020 — доступность маломобильных групп</li>
+          <li>СП 1.13130.2020 — эвакуация; СП 4.13130 — противопожарные расстояния</li>
+          <li>СП 42.13330 — планировка и застройка территорий</li>
+          <li>ФЗ № 384-ФЗ — безопасность зданий и сооружений</li>
+        </ul>
+        <p class="small">Приведено как рамка для проверки, а не как замена расчётам. Инсоляция, эвакуация и баланс территории подтверждаются проектом.</p>
+      </div>
+      <div>
+        <h4>Вопросы к заказчику</h4>
+        <ol class="num" style="margin-top:10px">
+          <li>Сколько мест и сколько групп нужно в итоге?</li>
+          <li>Нужен ли бассейн — учебный или оздоровительный?</li>
+          <li>Каре задано градостроительно или это наша гипотеза?</li>
+          <li>Есть ли требования к архитектурному облику района?</li>
+          <li>Кто эксплуатирует: один оператор или несколько?</li>
+          <li>Предусматривается ли допобразование и платные кружки?</li>
+          <li>Какой бюджет на благоустройство двора?</li>
+          <li>Нужна ли парковка на территории или только drop-off?</li>
+          <li>Есть ли ограничения по высоте и по сохраняемым деревьям?</li>
+          <li>Какой срок ввода и есть ли привязка к учебному году?</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3 style="margin-top:52px">Реестр изображений</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Файл</th><th class="num">Размер</th><th>Сюжет</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">goku-pink_…webp</td><td class="num">1360×768</td><td>Аркада, закат, «вода» у входа</td><td><span class="pill yel">переделать</span></td></tr>
+          <tr><td class="mono">a_Улучши_…webp</td><td class="num">1672×941</td><td>Двор днём</td><td><span class="pill grn">эталон</span></td></tr>
+          <tr><td class="mono">a_Улучши_…-1.webp</td><td class="num">1672×941</td><td>Дубликат предыдущего</td><td><span class="pill red">удалить</span></td></tr>
+          <tr><td class="mono">1792433013635.jpg</td><td class="num">1408×736</td><td>Двор, водяной знак ReRender</td><td><span class="pill red">удалить / перерендер</span></td></tr>
+          <tr><td class="mono">b_Улучши_…webp</td><td class="num">1416×740</td><td>Двор, водяной знак ReRender</td><td><span class="pill red">удалить / перерендер</span></td></tr>
+          <tr><td class="mono">1792432222850.jpg</td><td class="num">1408×736</td><td>Аркада, закат</td><td><span class="pill yel">в работу</span></td></tr>
+          <tr><td class="mono">1792432874970.jpg</td><td class="num">1408×736</td><td>Аэро, золотой час, пирамида</td><td><span class="pill yel">переделать</span></td></tr>
+          <tr><td class="mono">gpt-image-…webp</td><td class="num">1672×941</td><td>Аэро, день, парковка и грузовики</td><td><span class="pill yel">в работу</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 PROMPT ============ -->
+<section id="promptkit">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">09 / Инструмент</div>
+      <div>
+        <h2>Каркас для новых визуализаций<span class="sub">Один текстовый блок, который вставляется перед любым запросом на рендер</span></h2>
+        <p class="lead">Если изображения делаются генеративно, разнобой лечится не «рукой художника», а фиксированным описанием объекта. Ниже — готовый блок: он задаёт геометрию, палитру, свет и запреты. Его нужно вставлять в каждый запрос целиком.</p>
+      </div>
+    </div>
+
+    <div class="card" style="background:#fff;border-color:var(--line)">
+      <div class="small" style="letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Стилевой каркас · вставлять в начало каждого запроса</div>
+      <pre style="white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.65;margin:0;color:var(--ink-2);overflow-x:auto">Детский сад в парковой зоне. Замкнутое каре 78 × 66 м, два этажа,
+единый карниз +8,4 м, парапет +9,3 м. Фасад: тёплый белый камень
+(#F2EEE4), ритм арочных проёмов с шагом 4,2 м, арка 1,8 м в свету,
+подоконник 0,7 м. Три типа проёма: окно группы (жёлтая рама #E8AC24),
+вход группы (красный портал #C63C2F, навес, пандус), общий блок
+(синий витраж #2B5CA8). На фасаде не более трёх цветов.
+Кровля: зелёная (седаум) на севере и востоке, террасы с настилом
+на юге, солнечные панели на западе, техблоки по углам.
+Двор: газон 40 %, амфитеатр в центре, четыре возрастные площадки,
+крупные сосны не ближе 10 м от стен, тень 20 %.
+Периметр: ограждение 1,8 м, КПП у главного входа.
+Свет: лето, 10:00, солнце 35°, мягкие тени, небо с перистыми облаками.
+Люди в масштабе: дети 1,1–1,3 м, взрослые 1,7 м.
+Запрещено: третий этаж, витрины в пол, бассейн и стеклянная пирамида,
+пруды, пальмы, радужные простенки, водяные знаки.</pre>
+    </div>
+
+    <div class="grid g3" style="margin-top:22px">
+      <div class="card tint"><h4>Что даёт</h4><p class="small">Любой новый кадр совместим с уже сделанными: одна геометрия, один свет, одна палитра. Правки становятся локальными, а не «перерисовать всё».</p></div>
+      <div class="card tint"><h4>Как пользоваться</h4><p class="small">Каркас — постоянная часть; меняется только последняя строка: ракурс и задача кадра. Шесть канонических ракурсов — в разделе 07.</p></div>
+      <div class="card tint"><h4>Чего не делает</h4><p class="small">Не заменяет проект. Каркас держит образ, но инсоляцию, эвакуацию и площади всё равно считает архитектор.</p></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="footer">
+  <div class="wrap">
+    <div>
+      <b style="color:var(--ink)">Детский сад в парковой зоне · концепция унификации</b><br>
+      Рабочий документ для обсуждения · 19.10.2026
+    </div>
+    <div style="max-width:520px">
+      Материал подготовлен по восьми предоставленным изображениям. Площади, вместимость и технические решения — расчётная гипотеза для проверки, а не утверждённый проект.
+    </div>
+    <div class="noprint"><button class="btn" onclick="window.print()">Печать / PDF</button></div>
+  </div>
+</div>
+
+</body>
+</html>
