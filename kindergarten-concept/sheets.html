@@ -209,11 +209,12 @@ table.tb td.bad{color:var(--red);font-weight:600}
 /* print */
 @page{size:A1 landscape;margin:0}
 @media print{
-  html,body{background:#fff}
+  html,body{background:#fff;padding:0}
   .deck{display:none}
-  .sheet-wrap{width:841mm;max-width:none;margin:0;box-shadow:none;background:#fff}
-  .sheet{width:841mm;height:594mm;aspect-ratio:auto;break-after:page;page-break-after:always}
-  .sheet:last-of-type{break-after:auto;page-break-after:auto}
+  .sheet-wrap{width:841mm;max-width:none;margin:0;box-shadow:none;background:#fff;
+    break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}
+  .sheet{width:841mm;height:594mm;aspect-ratio:auto;break-after:auto;page-break-after:auto}
+  .sheet-wrap:last-of-type{break-after:auto;page-break-after:auto}
 }
 </style>
 </head>
@@ -222,6 +223,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 <div class="topnote">
   <b>Альбом подачи · 9 листов A1</b>
   <span>Печать: Ctrl / ⌘ + P → A1, альбомная, поля «нет», масштаб 100 %</span>
+  <a href="АЛЬБОМ-A1.pdf">скачать PDF · 9 × A1, 19 МБ</a>
   <a href="stage-p.html">← аудит стадии П</a>
   <a href="index.html">концепция →</a>
   <span class="sp">screen preview · 1 лист = 841 × 594 мм</span>
@@ -229,7 +231,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 
 <div class="deck">
   <h1>Альбом подачи: детский сад на ул. Коллективная</h1>
-  <p>Девять листов A1 в журнальной компоновке: одна мысль — один лист, крупные изображения, поля и подписи. Для экрана листы идут подряд; для печати — A1 альбомная, поля «нет», масштаб 100 %.</p>
+  <p>Девять листов A1 в журнальной компоновке: одна мысль — один лист, крупные изображения, поля и подписи. Готовый файл — <a href="АЛЬБОМ-A1.pdf" style="color:#b23a2b">АЛЬБОМ-A1.pdf</a>: 9 страниц 841 × 594 мм, шрифты внедрены, оглавление по листам. Для печати — A1 альбомная, поля «нет», масштаб 100 %.</p>
 </div>
 
 <!-- ================= 01 · COVER ================= -->
