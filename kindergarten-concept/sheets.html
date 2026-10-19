@@ -98,9 +98,11 @@ p.b b{color:var(--ink);font-weight:600}
 .stat .k{font-size:.33em;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.15em}
 
 /* images */
-.ph{position:relative;overflow:hidden;background:#d6d3c9;min-height:0}
+.ph{position:relative;overflow:hidden;background:var(--paper);min-height:0}
 .ph img{width:100%;height:100%;object-fit:cover}
-.ph.contain img{object-fit:contain;background:var(--paper)}
+.ph.contain img{object-fit:contain;background:transparent}
+.ph.ink{background:var(--paper)}
+.ph.ink img{mix-blend-mode:multiply;filter:contrast(1.06)}
 .ph.paper img{background:var(--paper)}
 .fig{display:flex;flex-direction:column;min-height:0;min-width:0}
 .fig .ph{flex:1 1 auto;min-height:0}
@@ -153,7 +155,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 .cover .credit{font-size:.245em;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 
 /* findings */
-.find{border-top:1px solid var(--hair);padding-top:.85em;margin-bottom:1.15em;font-size:.70em;line-height:1.46}
+.find{border-top:1px solid var(--hair);padding-top:.8em;margin-bottom:.55em;font-size:.84em;line-height:1.46}
 .find .h{display:flex;gap:.45em;align-items:baseline;margin-bottom:.14em}
 .find .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.82em;letter-spacing:.05em}
 .find .ti{font-size:1.14em;font-weight:600;line-height:1.22;letter-spacing:-.005em;flex:1}
@@ -178,7 +180,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 .hrow .hv{text-align:right;font-variant-numeric:tabular-nums;font-size:.92em}
 
 /* pull quote */
-.pull{border-top:1px solid var(--ink);padding-top:.5em;margin-top:auto}
+.pull{border-top:1px solid var(--ink);padding-top:.5em;margin-top:auto;padding-bottom:1.6em}
 .pull .n{font-size:1.9em;line-height:.95;font-weight:600;letter-spacing:-.04em}
 .pull .n small{font-size:.34em;font-weight:500;letter-spacing:0;margin-left:.15em;color:var(--ink2)}
 .pull .k{font-size:.30em;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3em}
@@ -369,9 +371,9 @@ table.tb td.bad{color:var(--red);font-weight:600}
       <div>М 1:500 · A1</div>
     </header>
 
-    <div class="body" style="grid-template-columns:47% minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto">
+    <div class="body" style="grid-template-columns:47% minmax(0,1fr);grid-template-rows:auto auto;align-content:space-between">
       <figure class="fig">
-        <div class="ph contain"><img src="assets/draw/pzu.jpg" alt="Схема планировочной организации участка"></div>
+        <div class="ph contain ink" style="aspect-ratio:2103/2255"><img src="assets/draw/pzu.jpg" alt="Схема планировочной организации участка"></div>
         <figcaption class="cap"><b>Fig. 04</b> — ПЗУ: каре в центре, фруктовый сад по периметру, въезд с запада, разворот техники R=8,96.</figcaption>
       </figure>
 
@@ -392,10 +394,25 @@ table.tb td.bad{color:var(--red);font-weight:600}
           <tr><td>Машиноместа</td><td class="n bad">0</td></tr>
         </table>
 
-        <figure class="fig" style="flex:1">
-          <div class="ph"><img src="assets/img/03-green-roof-day.jpg" alt="Участок в контексте"></div>
+        <figure class="fig">
+          <div class="ph" style="aspect-ratio:900/600"><img src="assets/img/07-context.jpg" alt="Участок в контексте: лес, частный сектор, улица"></div>
           <figcaption class="cap"><b>Fig. 05</b> — участок в контексте леса и частного сектора: буферной полосы нет.</figcaption>
         </figure>
+      </div>
+
+      <div style="grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:0 2.4em;border-top:1px solid var(--ink);padding-top:.8em;margin-bottom:1.2em">
+        <div>
+          <div class="lbl">Въезд и разворот</div>
+          <p class="b" style="margin-top:.25em">Один въезд с запада, разворотная площадка R=8,96 у служебного корпуса. Второго выезда и круга для пожарной техники 12 × 12 м нет.</p>
+        </div>
+        <div>
+          <div class="lbl">Озеленение</div>
+          <p class="b" style="margin-top:.25em">15 деревьев по ведомости на 1,45 га: орех 6, яблоня 5, шелковица 4. Для участка такого размера это 10 деревьев на гектар при норме 80–120.</p>
+        </div>
+        <div>
+          <div class="lbl">Граница</div>
+          <p class="b" style="margin-top:.25em">Ограждение по периметру есть, но с востока и юга оно идёт вплотную к частным огородам. Нужен отступ 3–5 м и двухрядная посадка.</p>
+        </div>
       </div>
 
       <div style="grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:0 2.2em;align-content:start">
@@ -423,59 +440,64 @@ table.tb td.bad{color:var(--red);font-weight:600}
       <div>М 1:400 · A1</div>
     </header>
 
-    <div class="body" style="grid-template-rows:minmax(0,1fr) auto;gap:1.1em">
-      <div style="display:grid;grid-template-columns:41% 31% minmax(0,1fr);gap:1.1em;min-height:0">
+    <div class="body" style="grid-template-rows:minmax(0,1fr) auto;gap:1.3em">
+      <div style="display:grid;grid-template-columns:40% 34% minmax(0,1fr);gap:1.5em;min-height:0">
         <figure class="fig">
-          <div class="ph contain"><img src="assets/draw/plan-1.jpg" alt="План первого этажа"></div>
+          <div class="ph contain ink"><img src="assets/draw/plan-1.jpg" alt="План первого этажа"></div>
           <figcaption class="cap"><b>Fig. 06</b> — 1 этаж: 6 групп, пищеблок, медблок, администрация, бассейн. Двор с 16 площадками.</figcaption>
         </figure>
 
         <figure class="fig">
-          <div class="ph contain"><img src="assets/draw/plan-2.jpg" alt="План второго этажа"></div>
+          <div class="ph contain ink"><img src="assets/draw/plan-2.jpg" alt="План второго этажа"></div>
           <figcaption class="cap"><b>Fig. 07</b> — 2 этаж: 10 групп, музкласс 116 м², физзал и кружковый зал с ПУИ.</figcaption>
         </figure>
 
         <figure class="fig">
-          <div class="ph contain"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
+          <div class="ph contain ink"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
           <figcaption class="cap"><b>Fig. 08</b> — 3 этаж: спортплощадки на кровле, терраса, техпомещения.</figcaption>
         </figure>
       </div>
 
-      <div style="display:grid;grid-template-columns:23% 31% minmax(0,1fr);gap:1.1em;min-height:0">
-        <div>
-          <h3 class="st">Площади по этажам</h3>
-          <table class="tb">
-            <tr><th>Этаж</th><th style="text-align:right">м²</th><th style="text-align:right">Групп</th></tr>
-            <tr><td>Подвал −3,300</td><td class="n">2 373,0</td><td class="n">—</td></tr>
-            <tr><td>1 этаж ±0,000</td><td class="n">2 986,3</td><td class="n">6</td></tr>
-            <tr><td>2 этаж +4,500</td><td class="n">3 412,8</td><td class="n">10</td></tr>
-            <tr><td>3 этаж +8,500</td><td class="n">1 079,8</td><td class="n">—</td></tr>
-            <tr><td><b>Итого</b></td><td class="n"><b>9 852,0</b></td><td class="n"><b>16</b></td></tr>
-          </table>
-        </div>
-
-        <div>
-          <div class="lbl">Площади, м² — сравнение с двором</div>
-          <div class="hbars">
-            <div class="hrow alt"><span class="hl">двор</span><span class="ht"><i style="width:100%"></i></span><span class="hv">3 900</span></div>
-            <div class="hrow"><span class="hl">2 этаж</span><span class="ht"><i style="width:87.5%"></i></span><span class="hv">3 413</span></div>
-            <div class="hrow"><span class="hl">1 этаж</span><span class="ht"><i style="width:76.6%"></i></span><span class="hv">2 986</span></div>
-            <div class="hrow"><span class="hl">подвал</span><span class="ht"><i style="width:60.8%"></i></span><span class="hv">2 373</span></div>
-            <div class="hrow"><span class="hl">3 этаж</span><span class="ht"><i style="width:27.7%"></i></span><span class="hv">1 080</span></div>
+      <div style="display:grid;grid-template-columns:26% 26% minmax(0,1fr);gap:1.5em;align-items:start">
+        <div class="col">
+          <div>
+            <h3 class="st">Площади по этажам</h3>
+            <table class="tb">
+              <tr><th>Этаж</th><th style="text-align:right">м²</th><th style="text-align:right">Групп</th></tr>
+              <tr><td>Подвал −3,300</td><td class="n">2 373,0</td><td class="n">—</td></tr>
+              <tr><td>1 этаж ±0,000</td><td class="n">2 986,3</td><td class="n">6</td></tr>
+              <tr><td>2 этаж +4,500</td><td class="n">3 412,8</td><td class="n">10</td></tr>
+              <tr><td>3 этаж +8,500</td><td class="n">1 079,8</td><td class="n">—</td></tr>
+              <tr><td><b>Итого</b></td><td class="n"><b>9 852,0</b></td><td class="n"><b>16</b></td></tr>
+            </table>
+          </div>
+          <div style="display:flex;gap:.4em;flex-wrap:wrap;padding-top:.7em">
+            <span class="tag">16 групп</span><span class="tag">11 ЛК</span><span class="tag">2× МГН</span>
           </div>
         </div>
 
-        <div class="col between">
+        <div class="col">
+          <div>
+            <div class="lbl" style="margin-bottom:.4em">Площади, м² — сравнение с двором</div>
+            <div class="hbars" style="margin-top:.2em">
+              <div class="hrow alt"><span class="hl">двор</span><span class="ht"><i style="width:100%"></i></span><span class="hv">3 900</span></div>
+              <div class="hrow"><span class="hl">2 этаж</span><span class="ht"><i style="width:87.5%"></i></span><span class="hv">3 413</span></div>
+              <div class="hrow"><span class="hl">1 этаж</span><span class="ht"><i style="width:76.6%"></i></span><span class="hv">2 986</span></div>
+              <div class="hrow"><span class="hl">подвал</span><span class="ht"><i style="width:60.8%"></i></span><span class="hv">2 373</span></div>
+              <div class="hrow"><span class="hl">3 этаж</span><span class="ht"><i style="width:27.7%"></i></span><span class="hv">1 080</span></div>
+            </div>
+          </div>
+          <p class="b" style="font-size:.40em">Суммарно 9 852 м², из них 2 373 м² — подвал. Двор по площади больше любого этажа, кроме второго.</p>
+        </div>
+
+        <div class="col">
           <div>
             <h3 class="st">Что видно на планах</h3>
-            <p class="b">16 групповых ячеек полного состава: раздевальная детей и взрослых, буфет, место кормления, спальня, туалетная, пеленальная у ясельных. 11 лестничных клеток, зоны МГН на каждом этаже.</p>
-            <p class="b">Пищеблок полного цикла с девятью цехами и охлаждаемыми камерами, медблок с изолятором, бассейн с трибунами и техблоком в подвале. Подвал — 2 373 м²: столярная, слесарная, ИТП, насосные, венткамеры, электрощитовые, фильтровальная.</p>
+            <p class="b">16 групповых ячеек полного состава: раздевальная детей и взрослых, буфет, место кормления, спальня, туалетная, пеленальная у ясельных. 11 лестничных клеток, зоны МГН на каждом этаже. Пищеблок полного цикла с девятью цехами, медблок с изолятором, бассейн с трибунами.</p>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1em;border-top:1px solid var(--hair);padding-top:.5em">
-            <div class="lbl">Площадь 2 этажа больше 1-го на 426 м² — без объяснения</div>
-            <div style="display:flex;gap:.4em;flex-wrap:wrap">
-              <span class="tag">16 групп</span><span class="tag">11 ЛК</span><span class="tag">2× МГН</span>
-            </div>
+          <div style="border-top:1px solid var(--hair);padding-top:.55em">
+            <div class="lbl" style="margin-bottom:.3em">Что требует ответа</div>
+            <p class="b" style="font-size:.40em">2 этаж больше 1-го на 426 м² — без объяснения. Открытые площадки 3 этажа (374,7 м²) включены в площадь этажа. «Второй свет бассейна» — без площади.</p>
           </div>
         </div>
       </div>
@@ -497,9 +519,9 @@ table.tb td.bad{color:var(--red);font-weight:600}
       <div>М 1:300 · A1</div>
     </header>
 
-    <div class="body" style="grid-template-columns:56% minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto">
+    <div class="body" style="grid-template-columns:53% minmax(0,1fr);grid-template-rows:auto auto auto;align-content:space-between">
       <figure class="fig">
-        <div class="ph contain"><img src="assets/draw/sections.jpg" alt="Разрезы здания"></div>
+        <div class="ph contain ink" style="aspect-ratio:2987/1560"><img src="assets/draw/sections.jpg" alt="Разрезы здания"></div>
         <figcaption class="cap"><b>Fig. 09</b> — шесть разрезов: два этажа, третий частичный, подвал на всю ширину корпуса.</figcaption>
       </figure>
 
@@ -524,12 +546,12 @@ table.tb td.bad{color:var(--red);font-weight:600}
       </div>
 
       <figure class="fig" style="grid-column:1 / -1">
-        <div class="ph contain"><img src="assets/draw/facade-11.jpg" alt="Фасад 11/1-1"></div>
+        <div class="ph contain ink" style="aspect-ratio:3200/649"><img src="assets/draw/facade-11.jpg" alt="Фасад 11/1-1"></div>
         <figcaption class="cap"><b>Fig. 10</b> — фасад 11/1-1, 83 040 мм: два яруса арок, сплошная цветная заливка.</figcaption>
       </figure>
 
       <figure class="fig" style="grid-column:1 / -1">
-        <div class="ph contain"><img src="assets/draw/facade-zha.jpg" alt="Фасад Ж-А"></div>
+        <div class="ph contain ink" style="aspect-ratio:3200/686"><img src="assets/draw/facade-zha.jpg" alt="Фасад Ж-А"></div>
         <figcaption class="cap"><b>Fig. 11</b> — фасад Ж-А, 89 610 мм: главный вход, навесы, зона загрузки.</figcaption>
       </figure>
     </div>
@@ -610,9 +632,9 @@ table.tb td.bad{color:var(--red);font-weight:600}
       <div>М 1:300 · A1</div>
     </header>
 
-    <div class="body" style="grid-template-columns:43% minmax(0,1fr);grid-template-rows:minmax(0,1fr) 30%;gap:1.1em">
+    <div class="body" style="grid-template-columns:43% minmax(0,1fr);grid-template-rows:minmax(0,1fr) 35%;gap:1.1em">
       <figure class="fig">
-        <div class="ph contain"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
+        <div class="ph contain ink" style="min-height:0"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
         <figcaption class="cap"><b>Fig. 15</b> — план 3 этажа: три открытые спортплощадки 176,3 м², терраса 198,4 м², худкласс.</figcaption>
       </figure>
 
@@ -637,7 +659,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 
         <p class="b" style="margin-top:.7em">Открытые площадки на кровле — не ошибка, а сознательное решение: в условиях плотной застройки двор не вмещает весь набор. Вопрос лишь в том, как обеспечить безопасность и эвакуацию.</p>
 
-        <div style="margin-top:auto;border-top:1px solid var(--ink);padding-top:.6em;display:grid;grid-template-columns:1fr 1fr;gap:0 1.6em">
+        <div style="margin-top:1.1em;border-top:1px solid var(--ink);padding-top:.7em;display:grid;grid-template-columns:1fr 1fr;gap:0 1.8em">
           <div>
             <h3 class="st" style="margin-bottom:.35em">Три варианта</h3>
             <p class="b"><b>А.</b> Оставить открытыми: расчёт эвакуации, ограждение 1,2 м с поручнем, ветрозащита, регламент выхода.</p>
@@ -694,7 +716,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
         <div class="col between">
           <div class="kicker">A · блокирует экспертизу</div>
           <h3 class="st" style="margin-top:.15em">Состав и данные</h3>
-          <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0">
 
           <div class="find">
             <div class="h"><span class="n">01</span><span class="ti">Комплект — только чертежи</span></div>
@@ -705,6 +727,11 @@ table.tb td.bad{color:var(--red);font-weight:600}
             <div class="h"><span class="n">02</span><span class="ti">Вместимость не зафиксирована</span></div>
             <div class="b">16 групп, подписи 10–20 детей. 9 852 м² дают 41 м²/место при ориентире 12–15 — либо мест больше, либо площади завышены.</div>
             <div class="f">Действие: принять одно число в задании.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">03</span><span class="ti">Штампы и подписи</span></div>
+            <div class="b">В основной надписи «#Название Организации»; нет подписей ГИПа и главного архитектора, нет согласований и заданий смежников.</div>
+            <div class="f">Действие: заполнить штамп, приложить задания.</div>
           </div>
           <div class="find">
             <div class="h"><span class="n">04</span><span class="ti">Дети на кровле 3 этажа</span></div>
@@ -728,7 +755,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
         <div class="col between">
           <div class="kicker">B · качество и смета</div>
           <h3 class="st" style="margin-top:.15em">Планировка и среда</h3>
-          <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0">
 
           <div class="find">
             <div class="h"><span class="n">06</span><span class="ti">Групповые от 70 до 225 м²</span></div>
@@ -755,6 +782,11 @@ table.tb td.bad{color:var(--red);font-weight:600}
             <div class="b">Открытые площадки включены в площадь 3 этажа — 374,7 из 1 079,8; 2 этаж больше 1-го на 426 м².</div>
             <div class="f">Действие: разделить площадь этажа и кровли.</div>
           </div>
+          <div class="find">
+            <div class="h"><span class="n">05</span><span class="ti">Площадки на кровле не равны дворовым</span></div>
+            <div class="b">Спортплощадки на +8,50 засчитаны в нормативный набор, но не могут заменить прогулочные площадки у групп: доступ по лестнице, ветер, эвакуация.</div>
+            <div class="f">Действие: считать их дополнительной, а не основной площадью.</div>
+          </div>
           </div>
           <div class="pull"><div class="n">123<small>м²/группа</small></div><div class="k">при ориентире 180</div></div>
         </div>
@@ -762,7 +794,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
         <div class="col between">
           <div class="kicker">C · образ и оформление</div>
           <h3 class="st" style="margin-top:.15em">Фасад и документ</h3>
-          <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-start;min-height:0">
 
           <div class="find">
             <div class="h"><span class="n">11</span><span class="ti">Девять чистых RGB-цветов</span></div>
@@ -780,9 +812,14 @@ table.tb td.bad{color:var(--red);font-weight:600}
             <div class="f">Действие: вынести объём входа на 2,5–3 м.</div>
           </div>
           <div class="find">
-            <div class="h"><span class="n">03·14·16</span><span class="ti">Оформление</span></div>
-            <div class="b">«#Название Организации» в штампе, «Зал басейна», «Груповая», «Художественый». На фасадах нет инженерии и безопасности.</div>
-            <div class="f">Действие: нормоконтроль и корректура.</div>
+            <div class="h"><span class="n">14</span><span class="ti">На фасадах нет инженерии</span></div>
+            <div class="b">Ни вентрешёток, ни водосточных воронок, ни молниезащиты, ни камер, ни освещения. Всё это появится в Р и разрушит цветную графику.</div>
+            <div class="f">Действие: показать инженерию уже в П.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">16</span><span class="ti">Опечатки в наименованиях</span></div>
+            <div class="b">«Зал басейна», «Груповая», «Художественый», «постирочная» без пом. — документ читается как рабочий черновик.</div>
+            <div class="f">Действие: корректура и нормоконтроль.</div>
           </div>
           </div>
           <div class="pull"><div class="n">38<small>заливок</small></div><div class="k">из них 9 чистых RGB</div></div>
