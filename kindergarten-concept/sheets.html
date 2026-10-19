@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Детский сад на ул. Коллективная — альбом подачи, 9 листов A1</title>
+<style>
+:root{
+  --paper:#f7f5ef;
+  --paper2:#eeeade;
+  --ink:#111619;
+  --ink2:#3d484c;
+  --muted:#7a8489;
+  --hair:rgba(17,22,25,.22);
+  --line:#d5cebd;
+  --red:#b23a2b;
+  --olive:#6d7d4d;
+  --gold:#c9992f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:#d9d7cf;color:var(--ink);
+  font-family:"Helvetica Neue","Inter","Segoe UI",Arial,sans-serif;
+  font-weight:400;line-height:1.35;padding:0 0 70px;
+}
+img{display:block;max-width:none}
+
+/* screen chrome */
+.topnote{
+  position:sticky;top:0;z-index:60;background:rgba(17,22,25,.94);color:#e9e6dd;
+  font-size:12px;letter-spacing:.04em;padding:10px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;
+  backdrop-filter:blur(8px)
+}
+.topnote b{color:#fff;font-weight:600}
+.topnote a{color:#e6bb55;text-decoration:none;border-bottom:1px solid rgba(230,187,85,.35)}
+.topnote .sp{margin-left:auto;color:#969c9e}
+@media print{.topnote{display:none}}
+
+.deck{max-width:1640px;margin:24px auto 0;padding:0 20px}
+.deck h1{font-size:21px;letter-spacing:-.01em;font-weight:600;margin-bottom:5px}
+.deck p{font-size:13px;color:#4b5356;max-width:980px;line-height:1.55}
+
+/* sheet */
+.sheet-wrap{
+  container-type:inline-size;
+  width:calc(100% - 40px);max-width:1600px;margin:24px auto 0;
+  box-shadow:0 22px 54px rgba(17,22,25,.20);background:var(--paper);
+}
+.sheet{
+  font-size:1cqw;position:relative;width:100%;aspect-ratio:841/594;
+  background:var(--paper);color:var(--ink);overflow:hidden;
+  display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  padding:1.55em 1.9em 1.15em 2.15em;
+}
+.sheet.frame::before{content:"";position:absolute;inset:.95em;border:1px solid rgba(17,22,25,.08);pointer-events:none}
+
+.sh-head{display:flex;align-items:baseline;justify-content:space-between;gap:1em;
+  font-size:.32em;letter-spacing:.17em;text-transform:uppercase;color:var(--ink2);
+  padding-bottom:.5em;border-bottom:1px solid var(--hair);margin-bottom:1.0em}
+.sh-head .hl{display:flex;gap:1.4em;align-items:baseline;flex-wrap:wrap}
+.sh-head b{font-weight:700;color:var(--ink);letter-spacing:.1em}
+.sh-head .hr{color:var(--red);letter-spacing:.14em}
+.sh-foot{display:flex;align-items:baseline;justify-content:space-between;gap:1em;
+  font-size:.30em;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+  padding-top:.45em;border-top:1px solid var(--hair);margin-top:.9em}
+.sh-foot .num{color:var(--ink);font-weight:600;letter-spacing:.1em}
+.sh-foot .num i{font-style:normal;color:var(--muted);font-weight:400}
+
+.spine{position:absolute;left:.55em;top:50%;transform:translate(-50%,-50%) rotate(180deg);
+  writing-mode:vertical-rl;font-size:.24em;letter-spacing:.34em;text-transform:uppercase;
+  color:rgba(17,22,25,.32);white-space:nowrap;pointer-events:none}
+
+.body{min-height:0;display:grid;gap:1.0em}
+.col{display:flex;flex-direction:column;min-height:0;min-width:0}
+.between{justify-content:space-between}
+.end{justify-content:flex-end}
+
+/* type */
+.kicker{font-size:.40em;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:600}
+.kicker.dark{color:var(--ink2)}
+h2.t{font-size:1.75em;line-height:1.03;letter-spacing:-.015em;font-weight:600;margin:.22em 0 .34em}
+h2.t em{font-style:normal;color:var(--red)}
+h2.t.sm{font-size:1.35em}
+h3.st{font-size:.74em;letter-spacing:.01em;font-weight:600;margin-bottom:.35em}
+p.b{font-size:.60em;line-height:1.5;color:var(--ink2)}
+p.b + p.b{margin-top:.45em}
+p.b b{color:var(--ink);font-weight:600}
+.cap{font-size:.30em;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.5;margin-top:.45em}
+.cap b{color:var(--ink2);font-weight:600;letter-spacing:.1em}
+.lbl{font-size:.30em;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.rule{height:1px;background:var(--hair);margin:.65em 0}
+
+/* stats */
+.stat{display:flex;flex-direction:column;gap:.05em;padding:.42em 0 .3em;border-top:1px solid var(--hair)}
+.stat .n{font-size:2.55em;line-height:1;font-weight:600;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.stat .n small{font-size:.32em;font-weight:500;letter-spacing:0;color:var(--ink2);margin-left:.16em}
+.stat .k{font-size:.33em;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.15em}
+
+/* images */
+.ph{position:relative;overflow:hidden;background:#d6d3c9;min-height:0}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph.contain img{object-fit:contain;background:var(--paper)}
+.ph.paper img{background:var(--paper)}
+.fig{display:flex;flex-direction:column;min-height:0;min-width:0}
+.fig .ph{flex:1 1 auto;min-height:0}
+
+/* tables */
+table.tb{width:100%;border-collapse:collapse;font-size:.47em;line-height:1.35}
+table.tb th{font-size:.82em;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  font-weight:500;text-align:left;padding:.34em 0;border-bottom:1px solid var(--hair)}
+table.tb td{padding:.3em 0;border-bottom:1px solid rgba(17,22,25,.09);vertical-align:top}
+table.tb td:first-child{padding-right:1.1em}
+table.tb td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.tb tr:last-child td{border-bottom:0}
+table.tb.lg{font-size:.55em}
+table.tb.lg td{padding:.44em 0}
+table.tb.lg th{padding:.44em 0}
+table.tb td.bad{color:var(--red);font-weight:600}
+
+/* tags */
+.tag{display:inline-block;font-size:.40em;letter-spacing:.1em;text-transform:uppercase;
+  padding:.16em .5em;border-radius:2px;border:1px solid var(--hair);color:var(--ink2)}
+.tag.a{background:var(--red);color:#fff;border-color:var(--red)}
+.tag.b{background:#dfa722;color:#241c00;border-color:#dfa722}
+.tag.c{background:var(--olive);color:#fff;border-color:var(--olive)}
+
+/* swatches */
+.sw-row{display:grid;grid-template-columns:repeat(9,1fr);gap:.35em}
+.sw{border:1px solid var(--hair);background:#fff}
+.sw .c{height:1.35em}
+.sw .t{font-size:.32em;padding:.28em .32em;letter-spacing:.02em;color:var(--muted)}
+
+/* cover */
+.cover{padding:0;display:block}
+.cover .bg{position:absolute;inset:0}
+.cover .bg img{width:100%;height:100%;object-fit:cover}
+.cover .veil{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(7,11,11,.62) 0%,rgba(7,11,11,.08) 24%,rgba(7,11,11,.10) 48%,rgba(7,11,11,.88) 100%)}
+.cover .inner{position:absolute;inset:0;padding:1.7em 2.0em 1.4em;color:#fff;
+  display:grid;grid-template-rows:auto 1fr auto;gap:1em}
+.cover .top{display:flex;justify-content:space-between;align-items:baseline;gap:1em;
+  font-size:.28em;letter-spacing:.19em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.cover .mid{align-self:end}
+.cover h1{font-size:3.35em;line-height:.93;letter-spacing:-.04em;font-weight:600;text-transform:uppercase}
+.cover h1 span{display:block}
+.cover h1 .accent{color:#efc152}
+.cover .sub{display:flex;gap:1.5em;flex-wrap:wrap;font-size:.32em;letter-spacing:.11em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin-top:.8em;padding-top:.6em;border-top:1px solid rgba(255,255,255,.35)}
+.cover .bottom{display:grid;grid-template-columns:1fr auto;gap:2em;align-items:end}
+.cover .contents{font-size:.25em;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.6);line-height:2.0}
+.cover .contents b{color:#fff;font-weight:600}
+.cover .credit{font-size:.245em;letter-spacing:.11em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+/* findings */
+.find{border-top:1px solid var(--hair);padding-top:.85em;margin-bottom:1.15em;font-size:.70em;line-height:1.46}
+.find .h{display:flex;gap:.45em;align-items:baseline;margin-bottom:.14em}
+.find .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.82em;letter-spacing:.05em}
+.find .ti{font-size:1.14em;font-weight:600;line-height:1.22;letter-spacing:-.005em;flex:1}
+.find .b{color:var(--ink2)}
+.find .f{color:var(--muted);font-size:.86em;margin-top:.18em}
+
+/* actions */
+.act{border-top:1px solid var(--hair);padding-top:.62em;margin-bottom:.1em;font-size:.62em;line-height:1.4}
+.act .row{display:flex;gap:.55em;align-items:baseline}
+.act .n{font-size:1.4em;font-weight:600;line-height:1;letter-spacing:-.03em;color:var(--red);min-width:1.55em}
+.act .ti{font-weight:600;font-size:1.05em}
+.act .b{color:var(--ink2);margin-top:.12em}
+.act .m{font-size:.82em;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.14em}
+
+/* horizontal bars */
+.hbars{display:flex;flex-direction:column;gap:.55em;margin-top:.6em}
+.hrow{display:grid;grid-template-columns:7.2em minmax(0,1fr) 3.6em;align-items:center;gap:.7em;font-size:.42em}
+.hrow .hl{font-size:.82em;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.hrow .ht{height:1.0em;background:var(--paper2);position:relative}
+.hrow .ht i{display:block;height:100%;background:var(--ink)}
+.hrow.alt .ht i{background:#bdb49c}
+.hrow .hv{text-align:right;font-variant-numeric:tabular-nums;font-size:.92em}
+
+/* pull quote */
+.pull{border-top:1px solid var(--ink);padding-top:.5em;margin-top:auto}
+.pull .n{font-size:1.9em;line-height:.95;font-weight:600;letter-spacing:-.04em}
+.pull .n small{font-size:.34em;font-weight:500;letter-spacing:0;margin-left:.15em;color:var(--ink2)}
+.pull .k{font-size:.30em;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3em}
+
+/* bars */
+.bars{display:flex;align-items:flex-end;gap:.6em;height:100%}
+.bars .bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bars .v{background:var(--ink);width:100%}
+.bars .bar.alt .v{background:#cfc7b2}
+.bars .l{font-size:.30em;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.28em;line-height:1.3}
+.bars .q{font-size:.32em;font-variant-numeric:tabular-nums;margin-bottom:.16em;color:var(--ink2)}
+
+.badge{display:inline-flex;align-items:center;gap:.4em;font-size:.38em;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+.badge i{width:.5em;height:.5em;display:block;border-radius:50%}
+
+/* timeline */
+.tl{display:flex;flex-direction:column;gap:.28em;margin-top:.5em}
+.tl-row{display:grid;grid-template-columns:11.5em 1fr;align-items:center;gap:.7em}
+.tl-l{font-size:.30em;letter-spacing:.05em;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-track{position:relative;height:.62em;background:var(--paper2)}
+.tl-track i{position:absolute;top:0;bottom:0;background:var(--ink)}
+.tl-track i.red{background:var(--red)}
+.tl-axis{display:grid;grid-template-columns:11.5em 1fr;gap:.7em;margin-top:.15em}
+.tl-w{display:flex;justify-content:space-between;font-size:.24em;letter-spacing:.1em;color:var(--muted)}
+
+/* print */
+@page{size:A1 landscape;margin:0}
+@media print{
+  html,body{background:#fff}
+  .deck{display:none}
+  .sheet-wrap{width:841mm;max-width:none;margin:0;box-shadow:none;background:#fff}
+  .sheet{width:841mm;height:594mm;aspect-ratio:auto;break-after:page;page-break-after:always}
+  .sheet:last-of-type{break-after:auto;page-break-after:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="topnote">
+  <b>Альбом подачи · 9 листов A1</b>
+  <span>Печать: Ctrl / ⌘ + P → A1, альбомная, поля «нет», масштаб 100 %</span>
+  <a href="stage-p.html">← аудит стадии П</a>
+  <a href="index.html">концепция →</a>
+  <span class="sp">screen preview · 1 лист = 841 × 594 мм</span>
+</div>
+
+<div class="deck">
+  <h1>Альбом подачи: детский сад на ул. Коллективная</h1>
+  <p>Девять листов A1 в журнальной компоновке: одна мысль — один лист, крупные изображения, поля и подписи. Для экрана листы идут подряд; для печати — A1 альбомная, поля «нет», масштаб 100 %.</p>
+</div>
+
+<!-- ================= 01 · COVER ================= -->
+<div class="sheet-wrap">
+  <section class="sheet cover">
+    <div class="bg"><img src="assets/img/03-green-roof-day.jpg" alt="Аэровид: детский сад в парковой зоне"></div>
+    <div class="veil"></div>
+    <div class="inner">
+      <div class="top">
+        <div>Детский сад на ул. Коллективная · Пятигорск</div>
+        <div>Альбом подачи · 09 листов A1</div>
+      </div>
+
+      <div class="mid">
+        <div style="font-size:.27em;letter-spacing:.25em;text-transform:uppercase;color:#efc152;margin-bottom:.9em">
+          013/2024-АР · стадия П · лист 01
+        </div>
+        <h1>
+          <span>Детский</span>
+          <span>сад на ул.</span>
+          <span class="accent">Коллективная</span>
+        </h1>
+        <div class="sub">
+          <span>16 групп</span><span>9 852 м²</span><span>89,61 × 77,30 м</span><span>2 этажа + кровля</span><span>1,45 га</span>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="credit">
+          Визуализации — 8 кадров · чертежи — стадия П, раздел АР, 7 листов<br>
+          Альбом подготовлен для обсуждения с заказчиком · 19.10.2026
+        </div>
+        <div class="contents">
+          <b>01</b> обложка &nbsp;·&nbsp; <b>02</b> объект &nbsp;·&nbsp; <b>03</b> ситуация<br>
+          <b>04</b> планы &nbsp;·&nbsp; <b>05</b> разрез и фасады &nbsp;·&nbsp; <b>06</b> двор<br>
+          <b>07</b> кровля &nbsp;·&nbsp; <b>08</b> замечания &nbsp;·&nbsp; <b>09</b> предложения
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= 02 · OBJECT ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>02</b><span>Объект</span><span class="hr">Паспорт по чертежам стадии П</span></div>
+      <div>М 1:500 · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-columns:26% minmax(0,1fr) 23%;grid-template-rows:minmax(0,1fr) auto">
+      <div class="col between">
+        <div>
+          <div class="kicker">Что запроектировано</div>
+          <h2 class="t">Не «сад в парке»,<br>а <em>городской квартал</em><br>с защищённым двором</h2>
+          <p class="b">Замкнутое каре 89,61 × 77,30 м. Кольцо корпусов 10–16 м, внутри — двор 3 900 м² с шестнадцатью площадками вокруг круглой площади.</p>
+          <p class="b">Два этажа по 4,5 м и частичный третий: спортплощадки и терраса на +8,50. Подвал 2 373 м² — бассейн, ИТП, венткамеры.</p>
+          <div class="rule" style="margin:1.1em 0"></div>
+          <p class="b" style="font-size:.70em;color:var(--ink)">«Проект держится на одном приёме: замкнутое каре с аркадой. Всё остальное — производные от него».</p>
+          <div class="rule" style="margin:1.3em 0"></div>
+          <div class="lbl" style="margin-bottom:.5em">Программа</div>
+          <table class="tb" style="font-size:.42em">
+            <tr><td>Группы</td><td class="n">6 + 10</td></tr>
+            <tr><td>Бассейн, зал</td><td class="n">109,5 м²</td></tr>
+            <tr><td>Музкласс / физзал</td><td class="n">116 / 176 м²</td></tr>
+            <tr><td>Пищеблок</td><td class="n">полный цикл</td></tr>
+            <tr><td>Медблок</td><td class="n">с изолятором</td></tr>
+            <tr><td>Лестничные клетки</td><td class="n">11</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="rule"></div>
+          <div class="lbl">Оси 1–11/1, А–Ж · север ≈ 45°</div>
+        </div>
+      </div>
+
+      <figure class="fig">
+        <div class="ph"><img src="assets/img/02-courtyard-day.jpg" alt="Внутренний двор днём"></div>
+        <figcaption class="cap"><b>Fig. 01</b> — внутренний двор. Сосны, мощение, площадка. Кадр совпадает с проектом по габаритам двора и рисунку площадок.</figcaption>
+      </figure>
+
+      <div class="col" style="gap:.9em">
+        <figure class="fig" style="flex:1.08">
+          <div class="ph"><img src="assets/img/01-sunset-arcade.jpg" alt="Аркада главного фасада"></div>
+          <figcaption class="cap"><b>Fig. 02</b> — уличный фасад: два яруса арок.</figcaption>
+        </figure>
+        <figure class="fig" style="flex:1">
+          <div class="ph"><img src="assets/img/04-green-roof-golden.jpg" alt="Аэровид, золотой час"></div>
+          <figcaption class="cap"><b>Fig. 03</b> — аэровид: каре, кровля, контекст.</figcaption>
+        </figure>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0 1.6em;align-content:start">
+        <div class="stat"><div class="n">9 852<small>м²</small></div><div class="k">суммарная площадь</div></div>
+        <div class="stat"><div class="n">16</div><div class="k">групп</div></div>
+        <div class="stat"><div class="n">3 900<small>м²</small></div><div class="k">двор</div></div>
+        <div class="stat"><div class="n">2 373<small>м²</small></div><div class="k">подвал</div></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <h3 class="st">Что подтвердилось чертежами</h3>
+          <p class="b">Каре с защищённым двором, аркада как приём, цвет как образ, 16 площадок вокруг общей площади, бассейн в теле корпуса, пищеблок полного цикла, медблок с изолятором, 11 лестничных клеток.</p>
+        </div>
+        <div style="display:flex;gap:.9em;flex-wrap:wrap">
+          <div class="badge"><i style="background:#2e6b4f"></i>типология сильная</div>
+          <div class="badge"><i style="background:#dfa722"></i>цифры требуют решения</div>
+          <div class="badge"><i style="background:#b23a2b"></i>комплект неполный</div>
+        </div>
+      </div>
+
+      <div style="grid-column:3;display:flex;flex-direction:column;justify-content:space-between">
+        <div>
+          <div class="kicker dark">Статус комплекта</div>
+          <p class="b" style="margin-top:.35em"><b>Есть:</b> 7 листов АР — ПЗУ, подвал, три этажа, разрезы, фасады.</p>
+          <p class="b"><b>Нет:</b> пояснительной записки, ТЭП, ведомостей, спецификаций, расчётов.</p>
+        </div>
+        <div style="display:flex;gap:.4em;flex-wrap:wrap">
+          <span class="tag">стадия П</span><span class="tag">013/2024-АР</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Стадия П · 013/2024-АР · МКУ «УКС»</div>
+      <div class="num">02 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= 03 · SITUATION ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>03</b><span>Ситуация</span><span class="hr">Посадка на участке 1,45 га</span></div>
+      <div>М 1:500 · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-columns:47% minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto">
+      <figure class="fig">
+        <div class="ph contain"><img src="assets/draw/pzu.jpg" alt="Схема планировочной организации участка"></div>
+        <figcaption class="cap"><b>Fig. 04</b> — ПЗУ: каре в центре, фруктовый сад по периметру, въезд с запада, разворот техники R=8,96.</figcaption>
+      </figure>
+
+      <div class="col" style="gap:.9em">
+        <div>
+          <div class="kicker">Участок</div>
+          <h2 class="t">Двор защищён,<br>но <em>граница открыта</em></h2>
+          <p class="b">С востока и юга к участку вплотную подступают частные огороды — 73 подписи «огород» на листе ПЗУ. Приватность, запахи, доступ; буферной полосы в проекте нет.</p>
+        </div>
+
+        <table class="tb">
+          <tr><th>Показатель</th><th style="text-align:right">Значение</th></tr>
+          <tr><td>Габариты в осях</td><td class="n">89,61 × 77,30 м</td></tr>
+          <tr><td>Пятно застройки</td><td class="n">≈ 3 000 м²</td></tr>
+          <tr><td>Двор</td><td class="n">≈ 3 900 м²</td></tr>
+          <tr><td>Площадки</td><td class="n">1 970 м² / 16</td></tr>
+          <tr><td>Деревья по ведомости</td><td class="n">15 шт</td></tr>
+          <tr><td>Машиноместа</td><td class="n bad">0</td></tr>
+        </table>
+
+        <figure class="fig" style="flex:1">
+          <div class="ph"><img src="assets/img/03-green-roof-day.jpg" alt="Участок в контексте"></div>
+          <figcaption class="cap"><b>Fig. 05</b> — участок в контексте леса и частного сектора: буферной полосы нет.</figcaption>
+        </figure>
+      </div>
+
+      <div style="grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:0 2.2em;align-content:start">
+        <div class="stat"><div class="n">1,45<small>га</small></div><div class="k">площадь участка</div></div>
+        <div class="stat"><div class="n">21<small>%</small></div><div class="k">застройка</div></div>
+        <div class="stat"><div class="n">27<small>%</small></div><div class="k">двор</div></div>
+        <div class="stat"><div class="n">52<small>%</small></div><div class="k">проезды и буфер</div></div>
+      </div>
+    </div>
+
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Стадия П · 013/2024-АР · лист ПЗУ</div>
+      <div class="num">03 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= 04 · PLANS ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>04</b><span>Планы</span><span class="hr">Три этажа и подвал</span></div>
+      <div>М 1:400 · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-rows:minmax(0,1fr) auto;gap:1.1em">
+      <div style="display:grid;grid-template-columns:41% 31% minmax(0,1fr);gap:1.1em;min-height:0">
+        <figure class="fig">
+          <div class="ph contain"><img src="assets/draw/plan-1.jpg" alt="План первого этажа"></div>
+          <figcaption class="cap"><b>Fig. 06</b> — 1 этаж: 6 групп, пищеблок, медблок, администрация, бассейн. Двор с 16 площадками.</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="ph contain"><img src="assets/draw/plan-2.jpg" alt="План второго этажа"></div>
+          <figcaption class="cap"><b>Fig. 07</b> — 2 этаж: 10 групп, музкласс 116 м², физзал и кружковый зал с ПУИ.</figcaption>
+        </figure>
+
+        <figure class="fig">
+          <div class="ph contain"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
+          <figcaption class="cap"><b>Fig. 08</b> — 3 этаж: спортплощадки на кровле, терраса, техпомещения.</figcaption>
+        </figure>
+      </div>
+
+      <div style="display:grid;grid-template-columns:23% 31% minmax(0,1fr);gap:1.1em;min-height:0">
+        <div>
+          <h3 class="st">Площади по этажам</h3>
+          <table class="tb">
+            <tr><th>Этаж</th><th style="text-align:right">м²</th><th style="text-align:right">Групп</th></tr>
+            <tr><td>Подвал −3,300</td><td class="n">2 373,0</td><td class="n">—</td></tr>
+            <tr><td>1 этаж ±0,000</td><td class="n">2 986,3</td><td class="n">6</td></tr>
+            <tr><td>2 этаж +4,500</td><td class="n">3 412,8</td><td class="n">10</td></tr>
+            <tr><td>3 этаж +8,500</td><td class="n">1 079,8</td><td class="n">—</td></tr>
+            <tr><td><b>Итого</b></td><td class="n"><b>9 852,0</b></td><td class="n"><b>16</b></td></tr>
+          </table>
+        </div>
+
+        <div>
+          <div class="lbl">Площади, м² — сравнение с двором</div>
+          <div class="hbars">
+            <div class="hrow alt"><span class="hl">двор</span><span class="ht"><i style="width:100%"></i></span><span class="hv">3 900</span></div>
+            <div class="hrow"><span class="hl">2 этаж</span><span class="ht"><i style="width:87.5%"></i></span><span class="hv">3 413</span></div>
+            <div class="hrow"><span class="hl">1 этаж</span><span class="ht"><i style="width:76.6%"></i></span><span class="hv">2 986</span></div>
+            <div class="hrow"><span class="hl">подвал</span><span class="ht"><i style="width:60.8%"></i></span><span class="hv">2 373</span></div>
+            <div class="hrow"><span class="hl">3 этаж</span><span class="ht"><i style="width:27.7%"></i></span><span class="hv">1 080</span></div>
+          </div>
+        </div>
+
+        <div class="col between">
+          <div>
+            <h3 class="st">Что видно на планах</h3>
+            <p class="b">16 групповых ячеек полного состава: раздевальная детей и взрослых, буфет, место кормления, спальня, туалетная, пеленальная у ясельных. 11 лестничных клеток, зоны МГН на каждом этаже.</p>
+            <p class="b">Пищеблок полного цикла с девятью цехами и охлаждаемыми камерами, медблок с изолятором, бассейн с трибунами и техблоком в подвале. Подвал — 2 373 м²: столярная, слесарная, ИТП, насосные, венткамеры, электрощитовые, фильтровальная.</p>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1em;border-top:1px solid var(--hair);padding-top:.5em">
+            <div class="lbl">Площадь 2 этажа больше 1-го на 426 м² — без объяснения</div>
+            <div style="display:flex;gap:.4em;flex-wrap:wrap">
+              <span class="tag">16 групп</span><span class="tag">11 ЛК</span><span class="tag">2× МГН</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Стадия П · 013/2024-АР · планы 1–3 этажей</div>
+      <div class="num">04 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= 05 · SECTION + FACADES ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>05</b><span>Разрез и фасады</span><span class="hr">Вертикаль проекта</span></div>
+      <div>М 1:300 · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-columns:56% minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto auto">
+      <figure class="fig">
+        <div class="ph contain"><img src="assets/draw/sections.jpg" alt="Разрезы здания"></div>
+        <figcaption class="cap"><b>Fig. 09</b> — шесть разрезов: два этажа, третий частичный, подвал на всю ширину корпуса.</figcaption>
+      </figure>
+
+      <div class="col between">
+        <div>
+          <div class="kicker">Вертикаль</div>
+          <h2 class="t sm">Два этажа по 4,5 м<br>и <em>кровля как пятый фасад</em></h2>
+          <p class="b">Бассейн двусветный, со световым фонарём. На +8,50 — спортплощадки и терраса; парапет +12,000…+13,200.</p>
+        </div>
+        <table class="tb">
+          <tr><th>Отметка</th><th>Что на ней</th></tr>
+          <tr><td class="n">−3,300</td><td>подвал, техпомещения</td></tr>
+          <tr><td class="n">±0,000</td><td>1 этаж, входы</td></tr>
+          <tr><td class="n">+4,500</td><td>2 этаж, группы</td></tr>
+          <tr><td class="n">+8,500</td><td>3 этаж, площадки</td></tr>
+          <tr><td class="n">+13,200</td><td>парапет, максимум</td></tr>
+        </table>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 1.4em;border-top:1px solid var(--hair);padding-top:.7em">
+          <div><div class="lbl">Разрез 3-3</div><p class="b" style="margin-top:.2em">Бассейн в два света, световой фонарь, трибуны на 2 этаже.</p></div>
+          <div><div class="lbl">Разрез 13-13</div><p class="b" style="margin-top:.2em">Кровля с перепадом +8,50 / +11,20 и парапетом +13,20.</p></div>
+        </div>
+      </div>
+
+      <figure class="fig" style="grid-column:1 / -1">
+        <div class="ph contain"><img src="assets/draw/facade-11.jpg" alt="Фасад 11/1-1"></div>
+        <figcaption class="cap"><b>Fig. 10</b> — фасад 11/1-1, 83 040 мм: два яруса арок, сплошная цветная заливка.</figcaption>
+      </figure>
+
+      <figure class="fig" style="grid-column:1 / -1">
+        <div class="ph contain"><img src="assets/draw/facade-zha.jpg" alt="Фасад Ж-А"></div>
+        <figcaption class="cap"><b>Fig. 11</b> — фасад Ж-А, 89 610 мм: главный вход, навесы, зона загрузки.</figcaption>
+      </figure>
+    </div>
+
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Стадия П · 013/2024-АР · разрезы, фасады</div>
+      <div class="num">05 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= 06 · COURTYARD ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>06</b><span>Двор</span><span class="hr">Шестнадцать площадок вокруг центра</span></div>
+      <div>М 1:300 · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-columns:31% minmax(0,1fr);grid-template-rows:54% minmax(0,1fr);gap:1.1em">
+      <div class="col between">
+        <div>
+          <div class="kicker">Среда</div>
+          <h2 class="t">Двор как<br><em>внешняя комната</em><br>каждой группы</h2>
+          <p class="b">Круглая площадь в центре — амфитеатр, линейка, праздник. Вокруг шестнадцать площадок, у каждой свой выход из групповой.</p>
+          <p class="b">Двор защищён кольцом корпусов: посторонний не входит, ребёнок не выходит. Это главное достоинство схемы.</p>
+          <div class="rule" style="margin:1.1em 0"></div>
+          <div class="lbl" style="margin-bottom:.45em">Площадки по группам, м²</div>
+          <table class="tb" style="font-size:.44em">
+            <tr><td>А-7.2</td><td class="n">225</td><td class="n" style="color:var(--muted)">14,1 / реб.</td></tr>
+            <tr><td>А-5.1 · А-6.1 · А-6.2 · А-5.3 · А-4.3</td><td class="n">180</td><td class="n" style="color:var(--muted)">9,0</td></tr>
+            <tr><td>А-3.1 · А-3.2</td><td class="n">140</td><td class="n" style="color:var(--muted)">14,0 / 7,0</td></tr>
+            <tr><td>А-2.2</td><td class="n">105</td><td class="n" style="color:var(--muted)">10,5</td></tr>
+            <tr><td>А-1.1 · А-1.2 · А-2.1 · А-2.2 · А-2.3</td><td class="n">70</td><td class="n" style="color:var(--muted)">7,0 / 3,5</td></tr>
+          </table>
+          <p class="b" style="margin-top:.6em;font-size:.53em;color:var(--muted)">Дефицит к ориентиру 180 м² — около 30 %; выравнивается за счёт кровли и перераспределения.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 1.2em">
+          <div class="stat"><div class="n">3 900<small>м²</small></div><div class="k">двор</div></div>
+          <div class="stat"><div class="n">1 970<small>м²</small></div><div class="k">площадки</div></div>
+          <div class="stat"><div class="n">123<small>м²</small></div><div class="k">на группу</div></div>
+          <div class="stat"><div class="n">15</div><div class="k">деревьев</div></div>
+        </div>
+      </div>
+
+      <figure class="fig">
+        <div class="ph"><img src="assets/img/02-courtyard-day.jpg" alt="Двор, общий вид"></div>
+        <figcaption class="cap"><b>Fig. 12</b> — эталонный кадр: этот свет, эта плотность зелени, этот масштаб деталей. К нему приводятся остальные визуализации.</figcaption>
+      </figure>
+
+      <figure class="fig" style="grid-column:1">
+        <div class="ph"><img src="assets/img/05-courtyard-watermark.jpg" alt="Двор, летний сценарий"></div>
+        <figcaption class="cap"><b>Fig. 13</b> — летний сценарий.</figcaption>
+      </figure>
+
+      <figure class="fig" style="grid-column:2">
+        <div class="ph"><img src="assets/img/03-green-roof-day.jpg" alt="Двор и кровля сверху"></div>
+        <figcaption class="cap"><b>Fig. 14</b> — двор и кровля: обещанное и запроектированное в одном кадре.</figcaption>
+      </figure>
+    </div>
+
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Стадия П · 013/2024-АР · двор</div>
+      <div class="num">06 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= 07 · ROOF ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>07</b><span>Кровля</span><span class="hr">Спортплощадки, терраса, техзона</span></div>
+      <div>М 1:300 · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-columns:43% minmax(0,1fr);grid-template-rows:minmax(0,1fr) 30%;gap:1.1em">
+      <figure class="fig">
+        <div class="ph contain"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
+        <figcaption class="cap"><b>Fig. 15</b> — план 3 этажа: три открытые спортплощадки 176,3 м², терраса 198,4 м², худкласс.</figcaption>
+      </figure>
+
+      <div class="col">
+        <div>
+          <div class="kicker">Пятый фасад</div>
+          <h2 class="t">Кровля, которой<br><em>нет на картинках</em></h2>
+          <p class="b">Ни зелёной кровли, ни солнечных панелей в стадии П нет. На +8,50 — открытые спортплощадки старших групп и терраса. Решение требует расчёта эвакуации, ограждений 1,2 м и регламента доступа.</p>
+        </div>
+
+        <table class="tb lg" style="margin-top:.6em">
+          <tr><th>Элемент</th><th style="text-align:right">Площадь / статус</th></tr>
+          <tr><td>Спортплощадки ×3</td><td class="n">176,3 м²</td></tr>
+          <tr><td>Терраса</td><td class="n">198,4 м²</td></tr>
+          <tr><td>Художественный класс</td><td class="n">40,2 м²</td></tr>
+          <tr><td>Всего открытых зон на +8,50</td><td class="n">375 м² / 19 %</td></tr>
+          <tr><td>Ограждение кровли</td><td class="n bad">не задано</td></tr>
+          <tr><td>Расчёт эвакуации</td><td class="n bad">отсутствует</td></tr>
+          <tr><td>Зелёная кровля в проекте</td><td class="n bad">0</td></tr>
+          <tr><td>Солнечные панели в проекте</td><td class="n bad">0</td></tr>
+        </table>
+
+        <p class="b" style="margin-top:.7em">Открытые площадки на кровле — не ошибка, а сознательное решение: в условиях плотной застройки двор не вмещает весь набор. Вопрос лишь в том, как обеспечить безопасность и эвакуацию.</p>
+
+        <div style="margin-top:auto;border-top:1px solid var(--ink);padding-top:.6em;display:grid;grid-template-columns:1fr 1fr;gap:0 1.6em">
+          <div>
+            <h3 class="st" style="margin-bottom:.35em">Три варианта</h3>
+            <p class="b"><b>А.</b> Оставить открытыми: расчёт эвакуации, ограждение 1,2 м с поручнем, ветрозащита, регламент выхода.</p>
+            <p class="b"><b>Б (рекомендуется).</b> Закрыть светопрозрачным навесом: функция сохраняется, дети не на парапете, эксплуатация дешевле.</p>
+            <p class="b"><b>В.</b> Отказаться от третьего этажа: получить зелёную кровлю и СЭС — то, что обещают визуализации.</p>
+          </div>
+          <div class="col between">
+            <div style="display:flex;gap:.4em;flex-wrap:wrap">
+              <span class="tag a">A · открыто</span><span class="tag b">B · навес</span><span class="tag c">C · зелёная кровля</span>
+            </div>
+            <div style="margin-top:1em">
+              <div class="lbl">Вывод</div>
+              <p class="b" style="margin-top:.2em">Кровля — единственное место, где проект обещает больше, чем рисует. Решение о ней определяет и смету, и образ.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="fig" style="grid-column:1 / -1">
+        <div class="ph"><img src="assets/img/04-green-roof-golden.jpg" alt="Аэровид, золотой час"></div>
+        <figcaption class="cap"><b>Fig. 16</b> — «зелёная кровля» с визуализации: в проекте отсутствует. Обещанное и запроектированное нужно свести к одному решению.</figcaption>
+      </figure>
+    </div>
+
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Стадия П · 013/2024-АР · кровля</div>
+      <div class="num">07 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= 08 · FINDINGS ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>08</b><span>Замечания</span><span class="hr">Восемнадцать пунктов по стадии П</span></div>
+      <div>Текст · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-rows:auto minmax(0,1fr) auto;gap:1.0em">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:2em;border-bottom:1px solid var(--hair);padding-bottom:.7em">
+        <h2 class="t" style="margin:0">Разбор идёт<br>от <em>экспертизы</em> к образу</h2>
+        <p class="b" style="max-width:40em;margin:0">Пять пунктов блокируют прохождение, девять бьют по качеству и смете, четыре — по оформлению. Ни один не требует переделки архитектуры: правятся данные, состав и палитра.</p>
+        <div style="display:flex;gap:1.8em">
+          <div class="stat" style="border-top:0"><div class="n">18</div><div class="k">замечаний</div></div>
+          <div class="stat" style="border-top:0"><div class="n">10</div><div class="k">действий</div></div>
+          <div class="stat" style="border-top:0"><div class="n">4</div><div class="k">решения</div></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 2.2em">
+        <div class="col between">
+          <div class="kicker">A · блокирует экспертизу</div>
+          <h3 class="st" style="margin-top:.15em">Состав и данные</h3>
+          <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+
+          <div class="find">
+            <div class="h"><span class="n">01</span><span class="ti">Комплект — только чертежи</span></div>
+            <div class="b">Нет пояснительной записки, ТЭП, ведомостей и спецификаций. По ПП № 87 стадия П включает текстовую часть.</div>
+            <div class="f">Действие: ПЗ 40–60 стр. и свод ТЭП.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">02</span><span class="ti">Вместимость не зафиксирована</span></div>
+            <div class="b">16 групп, подписи 10–20 детей. 9 852 м² дают 41 м²/место при ориентире 12–15 — либо мест больше, либо площади завышены.</div>
+            <div class="f">Действие: принять одно число в задании.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">04</span><span class="ti">Дети на кровле 3 этажа</span></div>
+            <div class="b">Спортплощадки и терраса на +8,50 без расчёта эвакуации, ограждений и ветрозащиты.</div>
+            <div class="f">Действие: раздел ПБ, ограждение 1,2 м с поручнем.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">08</span><span class="ti">Парковки нет вообще</span></div>
+            <div class="b">Ни машиноместа, ни drop-off. Разворот R=8,96 меньше площадки 12 × 12 м для пожарной техники.</div>
+            <div class="f">Действие: карман на 4–5 машин, 15–20 м/м.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">15</span><span class="ti">Дубли номеров помещений</span></div>
+            <div class="b">150 · 221.2 · 222.1 · 250 идут дважды с разными площадями; 149.1 без наименования.</div>
+            <div class="f">Действие: сквозная нумерация и сверка.</div>
+          </div>
+          </div>
+          <div class="pull"><div class="n">41<small>м²/место</small></div><div class="k">при ориентире 12–15</div></div>
+        </div>
+
+        <div class="col between">
+          <div class="kicker">B · качество и смета</div>
+          <h3 class="st" style="margin-top:.15em">Планировка и среда</h3>
+          <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+
+          <div class="find">
+            <div class="h"><span class="n">06</span><span class="ti">Групповые от 70 до 225 м²</span></div>
+            <div class="b">Разброс в три раза. При норме 2,5 м²/ребёнок групповая на 20 детей — 50 м², то есть запас до 3,6×.</div>
+            <div class="f">Действие: площади по программе групп.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">07</span><span class="ti">Площадок на 30 % меньше нормы</span></div>
+            <div class="b">1 970 м² на 16 групп = 123 м²/группа при ориентире 180. Хуже всего А-3.2: 7,0 м²/ребёнок.</div>
+            <div class="f">Действие: перебалансировать двор и кровлю.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">09</span><span class="ti">15 деревьев на 3 900 м²</span></div>
+            <div class="b">Орех 6 · яблоня 5 · шелковица 4. Тени почти нет; орех у игровых зон — аллергия и корневая.</div>
+            <div class="f">Действие: +15–20 крупномеров, орех в буфер.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">10</span><span class="ti">Огороды вплотную к границе</span></div>
+            <div class="b">73 подписи «огород»: приватность, пестициды, животные, доступ. Буферной полосы нет.</div>
+            <div class="f">Действие: буфер 3–5 м и два ряда посадки.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">17–18</span><span class="ti">Площади посчитаны неверно</span></div>
+            <div class="b">Открытые площадки включены в площадь 3 этажа — 374,7 из 1 079,8; 2 этаж больше 1-го на 426 м².</div>
+            <div class="f">Действие: разделить площадь этажа и кровли.</div>
+          </div>
+          </div>
+          <div class="pull"><div class="n">123<small>м²/группа</small></div><div class="k">при ориентире 180</div></div>
+        </div>
+
+        <div class="col between">
+          <div class="kicker">C · образ и оформление</div>
+          <h3 class="st" style="margin-top:.15em">Фасад и документ</h3>
+          <div style="flex:1;display:flex;flex-direction:column;min-height:0">
+
+          <div class="find">
+            <div class="h"><span class="n">11</span><span class="ti">Девять чистых RGB-цветов</span></div>
+            <div class="b">38 заливок на листе. Цвет не привязан к функции, чистые тона выгорают, в RAL аналогов нет.</div>
+            <div class="f">Действие: 6 цветов RAL, правило 80 / 15 / 5.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">12</span><span class="ti">Одна арка на всё</span></div>
+            <div class="b">Вход в группу не отличается от окна группы. Первый этаж читается как торговая галерея.</div>
+            <div class="f">Действие: три типа проёма в сетке 6,3 м.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">13</span><span class="ti">Главный вход не читается</span></div>
+            <div class="b">Нет козырька, увеличенного тамбура, места ожидания и навигации.</div>
+            <div class="f">Действие: вынести объём входа на 2,5–3 м.</div>
+          </div>
+          <div class="find">
+            <div class="h"><span class="n">03·14·16</span><span class="ti">Оформление</span></div>
+            <div class="b">«#Название Организации» в штампе, «Зал басейна», «Груповая», «Художественый». На фасадах нет инженерии и безопасности.</div>
+            <div class="f">Действие: нормоконтроль и корректура.</div>
+          </div>
+          </div>
+          <div class="pull"><div class="n">38<small>заливок</small></div><div class="k">из них 9 чистых RGB</div></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 2.2em;border-top:1px solid var(--hair);padding-top:.7em">
+        <div>
+          <div class="lbl" style="margin-bottom:.45em">Что в проекте уже сильно — это не трогаем</div>
+          <div style="display:flex;gap:.4em;flex-wrap:wrap">
+            <span class="tag">каре и двор</span><span class="tag">16 площадок</span><span class="tag">бассейн</span>
+            <span class="tag">пищеблок</span><span class="tag">медблок</span><span class="tag">11 ЛК</span>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.45em">
+            <div class="lbl">Палитра фасадов из PDF — 38 заливок, из них 9 чистых</div>
+            <div class="lbl">→ 6 RAL</div>
+          </div>
+          <div class="sw-row">
+            <div class="sw"><div class="c" style="background:#FFFF00"></div><div class="t">FFFF00</div></div>
+            <div class="sw"><div class="c" style="background:#FF0000"></div><div class="t">FF0000</div></div>
+            <div class="sw"><div class="c" style="background:#00FFFF"></div><div class="t">00FFFF</div></div>
+            <div class="sw"><div class="c" style="background:#0000FF"></div><div class="t">0000FF</div></div>
+            <div class="sw"><div class="c" style="background:#87D220"></div><div class="t">87D220</div></div>
+            <div class="sw"><div class="c" style="background:#FF80C0"></div><div class="t">FF80C0</div></div>
+            <div class="sw"><div class="c" style="background:#FF9E3E"></div><div class="t">FF9E3E</div></div>
+            <div class="sw"><div class="c" style="background:#50CBAC"></div><div class="t">50CBAC</div></div>
+            <div class="sw"><div class="c" style="background:#09F2A0"></div><div class="t">09F2A0</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Полный разбор — аудит стадии П, 18 пунктов</div>
+      <div class="num">08 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+<!-- ================= 09 · PROPOSALS ================= -->
+<div class="sheet-wrap">
+  <section class="sheet frame">
+    <div class="spine">Детский сад на ул. Коллективная · Пятигорск · 013/2024-АР</div>
+    <header class="sh-head">
+      <div class="hl"><b>09</b><span>Предложения</span><span class="hr">Десять действий и четыре решения</span></div>
+      <div>Текст · A1</div>
+    </header>
+
+    <div class="body" style="grid-template-columns:54% minmax(0,1fr);gap:1.3em">
+      <div class="col">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--hair);padding-bottom:.45em;margin-bottom:.75em">
+          <div>
+            <h2 class="t" style="margin:0">Что делать<br>и <em>в каком порядке</em></h2>
+            <p class="b" style="margin-top:.55em;max-width:34em">Десять правок разной цены. Первые две не требуют решений — их можно делать сразу, параллельно с обсуждением остальных.</p>
+          </div>
+          <div class="lbl">срок · стоимость</div>
+        </div>
+
+        <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0 2.0em;min-height:0">
+          <div style="display:flex;flex-direction:column;justify-content:space-between">
+            <div class="act"><div class="row"><div class="n">01</div><div><div class="ti">Почистить экспликации</div><div class="b">Дубли номеров, наименования, опечатки. Самое дешёвое и заметное исправление.</div><div class="m">1–2 недели · низкая</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">02</div><div><div class="ti">Свести ТЭП и баланс</div><div class="b">Площадь застройки, двор, площадки, озеленение, места, вместимость — одним листом.</div><div class="m">2–3 недели · низкая</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">03</div><div><div class="ti">Зафиксировать вместимость</div><div class="b">240 / 300 / 320 мест. Без этого любая правка площадей — переделка.</div><div class="m">3–6 недель · решение</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">04</div><div><div class="ti">Решить судьбу 3 этажа</div><div class="b">Открыто / навес / отказ в пользу зелёной кровли.</div><div class="m">3–6 недель · средняя</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">05</div><div><div class="ti">Найти парковку</div><div class="b">Drop-off 4–5 машин, 15–20 м/м, разворот 12 × 12 м.</div><div class="m">3–6 недель · средняя</div></div></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between">
+            <div class="act"><div class="row"><div class="n">06</div><div><div class="ti">Перебалансировать двор</div><div class="b">Старшим группам +180 м², +15–20 крупномеров, перголы, орех в буфер.</div><div class="m">3–6 недель · средняя</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">07</div><div><div class="ti">Переписать палитру</div><div class="b">6 цветов RAL, 80 / 15 / 5, цвет = возраст группы. Замена ведомости отделки.</div><div class="m">4–8 недель · 2–3 листа</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">08</div><div><div class="ti">Ввести три типа проёма</div><div class="b">Окно 2,1 · вход 1,8 · общий блок 3,0 м в сетке 6,3 м.</div><div class="m">4–8 недель · 2–3 листа</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">09</div><div><div class="ti">Кровля: считать или убрать</div><div class="b">Седаум 60–80 кг/м², панели 15–20, доступ — либо честно снять с визуализаций.</div><div class="m">6–10 недель · высокая</div></div></div></div>
+            <div class="act"><div class="row"><div class="n">10</div><div><div class="ti">Пересобрать визуализации</div><div class="b">Шесть канонических кадров по пяти схемам вместо восьми случайных.</div><div class="m">2 недели · низкая</div></div></div></div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto;padding-top:.7em">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--hair);padding-top:.6em;margin-bottom:.2em">
+            <div class="lbl">График: 12 недель, работы идут параллельно</div>
+            <div class="lbl">недели 1–12</div>
+          </div>
+          <div class="tl">
+            <div class="tl-row"><div class="tl-l">01 Экспликации</div><div class="tl-track"><i style="left:0;width:16%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">02 ТЭП и баланс</div><div class="tl-track"><i style="left:14%;width:26%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">03 Вместимость</div><div class="tl-track"><i class="red" style="left:14%;width:50%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">04 Третий этаж</div><div class="tl-track"><i class="red" style="left:14%;width:50%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">05 Парковка</div><div class="tl-track"><i class="red" style="left:14%;width:50%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">06 Двор</div><div class="tl-track"><i style="left:20%;width:47%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">07 Палитра</div><div class="tl-track"><i style="left:25%;width:58%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">08 Проёмы</div><div class="tl-track"><i style="left:25%;width:58%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">09 Кровля</div><div class="tl-track"><i style="left:42%;width:58%"></i></div></div>
+            <div class="tl-row"><div class="tl-l">10 Визуализации</div><div class="tl-track"><i style="left:0;width:16%"></i></div></div>
+          </div>
+          <div class="tl-axis"><div></div><div class="tl-w"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div></div>
+          <div style="margin-top:1.1em;border-top:1px solid var(--hair);padding-top:.7em">
+            <div class="kicker">Что готово уже сейчас</div>
+            <p class="b" style="margin-top:.25em">Пять схем раздела 04 аудита можно показывать вместо текущих визуализаций: они совпадают с проектом по габаритам, сетке, отметкам и составу помещений. Это честная подача — и она выигрывает у красивых картинок, которые не сходятся с чертежами.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" style="gap:.9em">
+        <figure class="fig" style="flex:1.35">
+          <div class="ph"><img src="assets/img/06-sunset-arcade-b.jpg" alt="Аркада на закате"></div>
+          <figcaption class="cap"><b>Fig. 17</b> — образ сохраняется: меняются цифры, а не архитектура.</figcaption>
+        </figure>
+
+        <table class="tb">
+          <tr><th>№</th><th>Решение заказчика</th><th>Варианты</th></tr>
+          <tr><td class="n">1</td><td>Вместимость</td><td>240 / 300 / 320</td></tr>
+          <tr><td class="n">2</td><td>Третий этаж</td><td>открыто / навес / отказ</td></tr>
+          <tr><td class="n">3</td><td>Парковка</td><td>участок / drop-off</td></tr>
+          <tr><td class="n">4</td><td>Зелёная кровля и СЭС</td><td>в стадии Р / убрать</td></tr>
+        </table>
+
+        <div>
+          <h3 class="st">Ближайший шаг</h3>
+          <p class="b">Согласовать четыре решения на этой неделе — и выпустить восьмой лист: ТЭП и баланс территории. Дальше правки идут пакетами, без перерисовки чертежей.</p>
+          <div style="display:flex;gap:.4em;flex-wrap:wrap;margin-top:.6em">
+            <a href="stage-p.html" class="tag" style="text-decoration:none">смотреть аудит →</a>
+            <span class="tag">5 схем</span><span class="tag">6 кадров</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="sh-foot">
+      <div>Детский сад на ул. Коллективная · Пятигорск</div>
+      <div>Альбом подготовлен для обсуждения · 19.10.2026</div>
+      <div class="num">09 <i>/ 09</i></div>
+    </footer>
+  </section>
+</div>
+
+</body>
+</html>
