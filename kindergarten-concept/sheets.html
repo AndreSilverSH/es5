@@ -102,6 +102,7 @@ p.b b{color:var(--ink);font-weight:600}
 .ph img{width:100%;height:100%;object-fit:cover}
 .ph.contain img{object-fit:contain;background:transparent}
 .ph.ink{background:var(--paper)}
+  @media print{.ph[data-vec] img{visibility:hidden}}
 .ph.ink img{mix-blend-mode:multiply;filter:contrast(1.06)}
 .ph.paper img{background:var(--paper)}
 .fig{display:flex;flex-direction:column;min-height:0;min-width:0}
@@ -375,7 +376,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 
     <div class="body" style="grid-template-columns:47% minmax(0,1fr);grid-template-rows:auto auto;align-content:space-between">
       <figure class="fig">
-        <div class="ph contain ink" style="aspect-ratio:2103/2255"><img src="assets/draw/pzu.jpg" alt="Схема планировочной организации участка"></div>
+        <div class="ph contain ink" style="aspect-ratio:2103/2255" data-vec="pzu"><img src="assets/draw/pzu.jpg" alt="Схема планировочной организации участка"></div>
         <figcaption class="cap"><b>Fig. 04</b> — ПЗУ: каре в центре, фруктовый сад по периметру, въезд с запада, разворот техники R=8,96.</figcaption>
       </figure>
 
@@ -445,17 +446,17 @@ table.tb td.bad{color:var(--red);font-weight:600}
     <div class="body" style="grid-template-rows:minmax(0,1fr) auto;gap:1.3em">
       <div style="display:grid;grid-template-columns:40% 34% minmax(0,1fr);gap:1.5em;min-height:0">
         <figure class="fig">
-          <div class="ph contain ink"><img src="assets/draw/plan-1.jpg" alt="План первого этажа"></div>
+          <div class="ph contain ink" data-vec="plan-1"><img src="assets/draw/plan-1.jpg" alt="План первого этажа"></div>
           <figcaption class="cap"><b>Fig. 06</b> — 1 этаж: 6 групп, пищеблок, медблок, администрация, бассейн. Двор с 16 площадками.</figcaption>
         </figure>
 
         <figure class="fig">
-          <div class="ph contain ink"><img src="assets/draw/plan-2.jpg" alt="План второго этажа"></div>
+          <div class="ph contain ink" data-vec="plan-2"><img src="assets/draw/plan-2.jpg" alt="План второго этажа"></div>
           <figcaption class="cap"><b>Fig. 07</b> — 2 этаж: 10 групп, музкласс 116 м², физзал и кружковый зал с ПУИ.</figcaption>
         </figure>
 
         <figure class="fig">
-          <div class="ph contain ink"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
+          <div class="ph contain ink" data-vec="plan-3"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
           <figcaption class="cap"><b>Fig. 08</b> — 3 этаж: спортплощадки на кровле, терраса, техпомещения.</figcaption>
         </figure>
       </div>
@@ -523,7 +524,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 
     <div class="body" style="grid-template-columns:53% minmax(0,1fr);grid-template-rows:auto auto auto;align-content:space-between">
       <figure class="fig">
-        <div class="ph contain ink" style="aspect-ratio:2987/1560"><img src="assets/draw/sections.jpg" alt="Разрезы здания"></div>
+        <div class="ph contain ink" style="aspect-ratio:2987/1560" data-vec="sections"><img src="assets/draw/sections.jpg" alt="Разрезы здания"></div>
         <figcaption class="cap"><b>Fig. 09</b> — шесть разрезов: два этажа, третий частичный, подвал на всю ширину корпуса.</figcaption>
       </figure>
 
@@ -548,12 +549,12 @@ table.tb td.bad{color:var(--red);font-weight:600}
       </div>
 
       <figure class="fig" style="grid-column:1 / -1">
-        <div class="ph contain ink" style="aspect-ratio:3200/649"><img src="assets/draw/facade-11.jpg" alt="Фасад 11/1-1"></div>
+        <div class="ph contain ink" style="aspect-ratio:3200/649" data-vec="facade-11"><img src="assets/draw/facade-11.jpg" alt="Фасад 11/1-1"></div>
         <figcaption class="cap"><b>Fig. 10</b> — фасад 11/1-1, 83 040 мм: два яруса арок, сплошная цветная заливка.</figcaption>
       </figure>
 
       <figure class="fig" style="grid-column:1 / -1">
-        <div class="ph contain ink" style="aspect-ratio:3200/686"><img src="assets/draw/facade-zha.jpg" alt="Фасад Ж-А"></div>
+        <div class="ph contain ink" style="aspect-ratio:3200/686" data-vec="facade-zha"><img src="assets/draw/facade-zha.jpg" alt="Фасад Ж-А"></div>
         <figcaption class="cap"><b>Fig. 11</b> — фасад Ж-А, 89 610 мм: главный вход, навесы, зона загрузки.</figcaption>
       </figure>
     </div>
@@ -636,7 +637,7 @@ table.tb td.bad{color:var(--red);font-weight:600}
 
     <div class="body" style="grid-template-columns:43% minmax(0,1fr);grid-template-rows:minmax(0,1fr) 35%;gap:1.1em">
       <figure class="fig">
-        <div class="ph contain ink" style="min-height:0"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
+        <div class="ph contain ink" data-vec="plan-3" style="min-height:0"><img src="assets/draw/plan-3.jpg" alt="План третьего этажа"></div>
         <figcaption class="cap"><b>Fig. 15</b> — план 3 этажа: три открытые спортплощадки 176,3 м², терраса 198,4 м², худкласс.</figcaption>
       </figure>
 
